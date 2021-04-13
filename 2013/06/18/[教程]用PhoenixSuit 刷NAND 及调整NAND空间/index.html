@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="软工具: PhoenixSuit,超级在终端(xp自带 “开始-&gt;附件” 里有)安装法请看:hipboi的帖子http:&#x2F;&#x2F;cn.cubieboard.org&#x2F;forum.php?mod&#x3D;viewthread&amp;tid&#x3D;327 镜像文件:http:&#x2F;&#x2F;tom.linux-sunxi.org&#x2F;cubieboard_linux_nano_livesuit.img.zip本文用的就是这个(可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[教程]用PhoenixSuit刷NAND及调整NAND空间">
+<meta property="og:url" content="https://zecheng.github.io/2013/06/18/[%E6%95%99%E7%A8%8B]%E7%94%A8PhoenixSuit%20%E5%88%B7NAND%20%E5%8F%8A%E8%B0%83%E6%95%B4NAND%E7%A9%BA%E9%97%B4/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="软工具: PhoenixSuit,超级在终端(xp自带 “开始-&gt;附件” 里有)安装法请看:hipboi的帖子http:&#x2F;&#x2F;cn.cubieboard.org&#x2F;forum.php?mod&#x3D;viewthread&amp;tid&#x3D;327 镜像文件:http:&#x2F;&#x2F;tom.linux-sunxi.org&#x2F;cubieboard_linux_nano_livesuit.img.zip本文用的就是这个(可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://linux-sunxi.org/images/e/ec/Cubieboard_ttl.jpg">
+<meta property="og:image" content="http://cn.cubieboard.org/data/attachment/forum/201304/24/165056r1ulfma4w1fyhyuu.jpg">
+<meta property="og:image" content="http://cn.cubieboard.org/data/attachment/forum/201304/24/165103sozux2xnlcg2kq2i.jpg">
+<meta property="og:image" content="http://cn.cubieboard.org/data/attachment/forum/201304/24/165407wvfyfkf9il0k0e9f.jpg">
+<meta property="article:published_time" content="2013-06-18T05:21:53.000Z">
+<meta property="article:modified_time" content="2013-06-18T05:28:09.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="CubieBoard">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://linux-sunxi.org/images/e/ec/Cubieboard_ttl.jpg">
+
+<link rel="canonical" href="https://zecheng.github.io/2013/06/18/[%E6%95%99%E7%A8%8B]%E7%94%A8PhoenixSuit%20%E5%88%B7NAND%20%E5%8F%8A%E8%B0%83%E6%95%B4NAND%E7%A9%BA%E9%97%B4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>[教程]用PhoenixSuit刷NAND及调整NAND空间 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/18/[%E6%95%99%E7%A8%8B]%E7%94%A8PhoenixSuit%20%E5%88%B7NAND%20%E5%8F%8A%E8%B0%83%E6%95%B4NAND%E7%A9%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [教程]用PhoenixSuit刷NAND及调整NAND空间
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2013-06-18 13:21:53 / 修改时间：13:28:09" itemprop="dateCreated datePublished" datetime="2013-06-18T13:21:53+08:00">2013-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CubieBoard/" itemprop="url" rel="index"><span itemprop="name">CubieBoard</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>软工具: PhoenixSuit,超级在终端(xp自带 “开始-&gt;附件” 里有)<br>安装法请看:hipboi的帖子<a target="_blank" rel="noopener" href="http://cn.cubieboard.org/forum.php?mod=viewthread&amp;tid=327">http://cn.cubieboard.org/forum.php?mod=viewthread&amp;tid=327</a></p>
+<p>镜像文件:<br><a target="_blank" rel="noopener" href="http://tom.linux-sunxi.org/cubieboard_linux_nano_livesuit.img.zip%E6%9C%AC%E6%96%87%E7%94%A8%E7%9A%84%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%AA">http://tom.linux-sunxi.org/cubieboard_linux_nano_livesuit.img.zip本文用的就是这个</a><br>(可以刷到NAND里面的镜像还有cubiebox_tvbox_rel2.2.img这个是 TV的镜像)</p>
+<span id="more"></span>
+
+<p>硬工具:<br>TTL线<br>连接方法:<br>文字: 黑色gnd 绿色rx 白色tx<br><img alt="" src="http://linux-sunxi.org/images/e/ec/Cubieboard_ttl.jpg" width="341" height="227" /></p>
+<p>OTG线:<br>注意:小头的那面一定是miniUSA(miniT型头)<br>[图]:公头 otg_g.jpg</p>
+<img alt="" src="http://cn.cubieboard.org/data/attachment/forum/201304/24/165056r1ulfma4w1fyhyuu.jpg" />
+[图]:母头 otg_m.jpg
+<img alt="" src="http://cn.cubieboard.org/data/attachment/forum/201304/24/165103sozux2xnlcg2kq2i.jpg" />
+
+<p>我的环境:WIN XP 32位系统</p>
+<p>PhoenixSuit安装完毕后我们,选自己的镜像文件,按住fel键不要放手等连接usb (提示刷机的时候放开WindLand一直强调这点, 这里</p>
+<p>用OTG线我原先以为是用TTl线呢,走了很多弯路) ,等待刷机完成后移除OTG线.现在开始调试他,我们先把TTL线接到板子上,在</p>
+<p>把usb端连接到电脑上,打开”超级终端”他会提示你输入区号什么的不用管它跳过,直接到”连接描述”随便起个名字,到下一界面这</p>
+<p>里你要选对自己的端口号,如果不知道自己的端口号就到”设备管理器-&gt;端口-&gt;有一个”Prolific USB-to-Serial Comm Port (comx)” com.jpg 我们就看括号里面的端口号就好,我这里是com3<br><img alt="" src="http://cn.cubieboard.org/data/attachment/forum/201304/24/165407wvfyfkf9il0k0e9f.jpg" /></p>
+<p>ComSelect.jpg “秒/位”:选115200,”数据流控制”选无,确定后等待直到出现 [root@xxx /]# 在这里输入</p>
+<p>nand-part /dev/nand ‘rootfs 0x10000’</p>
+<p>reboot</p>
+<p>以上命令是把nand重新分区,这里我们还继续等待,重启后在把nand的使用空间最大化</p>
+<p>resize2fs /dev/nandb(这些命令是hipboi告诉我的)</p>
+<p>到这里就全部结束了,剩下的就是我们可以安装自己的服务器环境了比如ssh什么的 ,如果你要连接到显示器他会是黑屏的,因为镜</p>
+<p>像里面没有显示驱动,想要有输出就得自己编译内核.</p>
+<p>这里我十分感谢: hipboi不厌其烦的讲解怎么安装nand, WindLand的有贴必回细致精炼还有matson的详细讲解和建议.</p>
+<p>这里有了你们,才能让像我们这样的小白继续玩这样的”高级玩具”,通过cubieboard我学到了很多以前不懂得知识这是最重要的,谢</p>
+<p>谢你们,加油支持你cubieboard.</p>
+<p>这里我只是记录我安装的过程,欢迎拍砖不断地拍不断的成长.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CubieBoard/" rel="tag"># CubieBoard</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/06/17/xp%E5%BF%AB%E6%8D%B7%E7%AE%AD%E5%A4%B4/" rel="prev" title="xp快捷箭头">
+      <i class="fa fa-chevron-left"></i> xp快捷箭头
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2013/06/18/%E5%9C%A8TMD%E5%8F%91%E5%B2%9B%E5%9B%BD%E4%BF%A1%E6%81%AF,%E6%88%91%E5%B0%B1MD...../" rel="next" title="在TMD发岛国信息,我就MD.....">
+      在TMD发岛国信息,我就MD..... <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

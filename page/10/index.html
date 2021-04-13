@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="路虽遥,行必至.事虽难,做必成.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="泽宬的技术博客">
+<meta property="og:url" content="https://zecheng.github.io/page/10/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="路虽遥,行必至.事虽难,做必成.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/page/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/05/19/show%20status%E8%A7%A3%E9%87%8A(mysql)%20%E8%BD%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/05/19/show%20status%E8%A7%A3%E9%87%8A(mysql)%20%E8%BD%AC/" class="post-title-link" itemprop="url">show status解释(mysql) 转</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-05-19 22:13:07" itemprop="dateCreated datePublished" datetime="2014-05-19T22:13:07+08:00">2014-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2014-06-04 22:29:11" itemprop="dateModified" datetime="2014-06-04T22:29:11+08:00">2014-06-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-20204919-id-1972099.html">http://blog.chinaunix.net/uid-20204919-id-1972099.html</a></p>
+<div>Aborted_clients         由于客户没有正确关闭连接已经死掉，已经放弃的连接数量。</div>
+<div><span style="font-size: medium;"> </span></div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2014/05/19/show%20status%E8%A7%A3%E9%87%8A(mysql)%20%E8%BD%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/05/19/%E6%91%A9%E6%96%AF%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/05/19/%E6%91%A9%E6%96%AF%E7%A0%81/" class="post-title-link" itemprop="url">摩斯码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-05-19 14:43:21" itemprop="dateCreated datePublished" datetime="2014-05-19T14:43:21+08:00">2014-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2014-07-16 15:53:02" itemprop="dateModified" datetime="2014-07-16T15:53:02+08:00">2014-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>摩斯码生成:</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2014/05/19/%E6%91%A9%E6%96%AF%E7%A0%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/05/19/%E6%91%A9%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/05/19/%E6%91%A9%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81/" class="post-title-link" itemprop="url">摩尔斯电码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-05-19 13:28:17" itemprop="dateCreated datePublished" datetime="2014-05-19T13:28:17+08:00">2014-05-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>662</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>摩尔</p>
+<p>斯电码定义了包括：英文字母A-Z（无大小写区分）十进制数字0-9，以及“？”“/”“（）”“－”“．”很适合英语的通信。至今仍有很多地方在使用。在业余无线电通信中，他是全世界运用统一的电码。下面列出的是基本码表：</p>
+<h2>字母</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+</tr>
+<tr>
+<th>A</th>
+<td>．━</td>
+<th>B</th>
+<td>━ ．．．</td>
+<th>C</th>
+<td>━ ．━ ．</td>
+<th>D</th>
+<td>━ ．．</td>
+</tr>
+<tr>
+<th>E</th>
+<td>．</td>
+<th>F</th>
+<td>．．━ ．</td>
+<th>G</th>
+<td>━ ━ ．</td>
+<th>H</th>
+<td>．．．．</td>
+</tr>
+<tr>
+<th>I</th>
+<td>．．</td>
+<th>J</th>
+<td>．━ ━ ━</td>
+<th>K</th>
+<td>━ ．━</td>
+<th>L</th>
+<td>．━ ．．</td>
+</tr>
+<tr>
+<th>M</th>
+<td>━ ━</td>
+<th>N</th>
+<td>━ ．</td>
+<th>O</th>
+<td>━ ━ ━</td>
+<th>P</th>
+<td>．━ ━ ．</td>
+</tr>
+<tr>
+<th>Q</th>
+<td>━ ━ ．━</td>
+<th>R</th>
+<td>．━ ．</td>
+<th>S</th>
+<td>．．．</td>
+<th>T</th>
+<td>━</td>
+</tr>
+<tr>
+<th>U</th>
+<td>．．━</td>
+<th>V</th>
+<td>．．．━</td>
+<th>W</th>
+<td>．━ ━</td>
+<th>X</th>
+<td>━ ．．━</td>
+</tr>
+<tr>
+<th>Y</th>
+<td>━ ．━ ━</td>
+<th>Z</th>
+<td>━ ━ ．．</td>
+<th></th>
+<td></td>
+<th></th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>数字</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+</tr>
+<tr>
+<th>0</th>
+<td>━ ━ ━ ━ ━</td>
+<th>1</th>
+<td>．━ ━ ━ ━</td>
+<th>2</th>
+<td>．．━ ━ ━</td>
+<th>3</th>
+<td>．．．━ ━</td>
+</tr>
+<tr>
+<th>4</th>
+<td>．．．．━</td>
+<th>5</th>
+<td>．．．．．</td>
+<th>6</th>
+<td>━ ．．．．</td>
+<th>7</th>
+<td>━ ━ ．．．</td>
+</tr>
+<tr>
+<th>8</th>
+<td>━ ━ ━ ．．</td>
+<th>9</th>
+<td>━ ━ ━ ━ ．</td>
+<th></th>
+<td></td>
+<th></th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>标点符号</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+</tr>
+<tr>
+<th title="句号">.</th>
+<td title="句号">．━ ．━ ．━</td>
+<th title="冒号">:</th>
+<td title="冒号">━ ━ ━ ．．．</td>
+<th title="逗号">,</th>
+<td title="逗号">━ ━ ．．━ ━</td>
+<th title="分号">;</th>
+<td title="分号">━ ．━ ．━ ．</td>
+</tr>
+<tr>
+<th title="问号">?</th>
+<td title="问号">．．━ ━ ．．</td>
+<th title="等号">=</th>
+<td title="等号">━ ．．．━</td>
+<th title="省略符">'</th>
+<td title="省略符">．━ ━ ━ ━ ．</td>
+<th title="斜线">/</th>
+<td title="斜线">━ ．．━ ．</td>
+</tr>
+<tr>
+<th title="叹号">!</th>
+<td title="叹号">━ ．━ ．━ ━</td>
+<th title="连字号">━</th>
+<td title="连字号">━ ．．．．━</td>
+<th title="下划线">_</th>
+<td title="下划线">．．━ ━ ．━</td>
+<th title="双引号">"</th>
+<td title="双引号">．━ ．．━ ．</td>
+</tr>
+<tr>
+<th title="前括号">(</th>
+<td title="前括号">━ ．━ ━ ．</td>
+<th title="后括号">)</th>
+<td title="后括号">━ ．━ ━ ．━</td>
+<th title="美元">$</th>
+<td title="美元">．．．━ ．．━</td>
+<th title="">&amp;</th>
+<td title="">． ．．．</td>
+</tr>
+<tr>
+<th title="">@</th>
+<td title="">．━ ━ ．━ ．</td>
+<th></th>
+<td></td>
+<th></th>
+<td></td>
+<th></th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>非英语字符</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+</tr>
+<tr>
+<th>à或å</th>
+<td>．━ ━ ．━</td>
+<th>ä或æ</th>
+<td>．━ ．━</td>
+<th>ch</th>
+<td>━ ━ ━ ━</td>
+<th>ç或ĉ</th>
+<td>━ ．━ ．．</td>
+</tr>
+<tr>
+<th>ð</th>
+<td>．．━ ━ ．</td>
+<th>é</th>
+<td>．．━ ．．</td>
+<th>è</th>
+<td>．━ ．．━</td>
+<th>ĝ</th>
+<td>━ ━ ．━ ．</td>
+</tr>
+<tr>
+<th>ĥ</th>
+<td>━ ．━ ━ ．</td>
+<th>ĵ</th>
+<td>．━ ━ ━ ．</td>
+<th>ñ</th>
+<td>━ ━ ．━ ━</td>
+<th>ö或ø</th>
+<td>━ ━ ━ ．</td>
+</tr>
+<tr>
+<th>ŝ</th>
+<td>．．．━ ．</td>
+<th>þ</th>
+<td>．━ ━ ．．</td>
+<th>ü或ŭ</th>
+<td>．．━ ━</td>
+<th></th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>特殊符号</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+<th><strong>字符</strong></th>
+<td><strong>电码符号</strong></td>
+</tr>
+<tr>
+<th title="停止（消息结束）">AR</th>
+<td title="停止（消息结束）">．━ ．━ ．</td>
+<th title="等待">AS</th>
+<td title="等待">．━ ．．．</td>
+<th title="邀请发射信号（一般跟随AR，表示“该你了”）">K</th>
+<td title="邀请发射信号（一般跟随AR，表示“该你了”）">━ ．━</td>
+<th title="终止（联络结束）">SK</th>
+<td title="终止（联络结束）">．．．━ ．━</td>
+</tr>
+<tr>
+<th title="分隔符">BT</th>
+<td title="分隔符">━ ．．．━</td>
+<th></th>
+<td></td>
+<th></th>
+<td></td>
+<th></th>
+<td></td>
+</tr>
+</tbody>
+</table>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/05/19/mysql%20%E4%B8%BB%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/05/19/mysql%20%E4%B8%BB%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">mysql 主从服务器配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-05-19 00:15:33" itemprop="dateCreated datePublished" datetime="2014-05-19T00:15:33+08:00">2014-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-09-14 06:25:16" itemprop="dateModified" datetime="2018-09-14T06:25:16+08:00">2018-09-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mysql 主服务器(master)<br>mysql 从服务器(slave)<br>mysql不建议用户,称呼服务器为主从服务器,因为他们可以随时互换较色!<br>这里我们按照国内统一叫法主从服务器来称呼.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2014/05/19/mysql%20%E4%B8%BB%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/04/15/PHP%E6%95%B0%E7%BB%84(array)%E9%80%92%E5%BD%92%E5%A4%84%E7%90%86%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/04/15/PHP%E6%95%B0%E7%BB%84(array)%E9%80%92%E5%BD%92%E5%A4%84%E7%90%86%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">PHP数组(array)递归处理编码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-04-15 10:43:28" itemprop="dateCreated datePublished" datetime="2014-04-15T10:43:28+08:00">2014-04-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>796</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$arr</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="number">0</span> =&gt; <span class="string">&#x27;北京&#x27;</span>,</span><br><span class="line">    <span class="number">1</span> =&gt; <span class="string">&#x27;铁路&#x27;</span>,</span><br><span class="line">    <span class="number">2</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="number">0</span> =&gt; <span class="string">&#x27;雾霾&#x27;</span>,</span><br><span class="line">        <span class="number">1</span> =&gt; <span class="string">&#x27;地铁&#x27;</span>,</span><br><span class="line">        <span class="number">2</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="number">0</span> =&gt; <span class="string">&#x27;公交&#x27;</span>,</span><br><span class="line">            <span class="number">1</span> =&gt; <span class="string">&#x27;打车&#x27;</span></span><br><span class="line">        ),</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="string">&#x27;车票&#x27;</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="number">3</span> =&gt; <span class="string">&#x27;租房&#x27;</span></span><br><span class="line">);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dg</span>(<span class="params"><span class="variable">$arr</span> = <span class="keyword">array</span>(<span class="params"></span>), <span class="variable">$in_charset</span> = <span class="string">&#x27;utf-8&#x27;</span>, <span class="variable">$out_charset</span> = <span class="string">&#x27;gbk&#x27;</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!is_array(<span class="variable">$arr</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">FALSE</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$coun</span> = count(<span class="variable">$arr</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$coun</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (is_array(<span class="variable">$val</span>)) &#123;</span><br><span class="line">                <span class="comment">//关键</span></span><br><span class="line">                <span class="variable">$arr</span>[<span class="variable">$key</span>] = dg(<span class="variable">$val</span>); </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//也可以换成其他</span></span><br><span class="line">                <span class="variable">$arr</span>[<span class="variable">$key</span>] = iconv(<span class="variable">$in_charset</span>, <span class="variable">$out_charset</span> . <span class="string">&#x27;//TRANSLIT&#x27;</span>, <span class="variable">$val</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;pre &gt;&#x27;</span>;</span><br><span class="line">print_r(<span class="variable">$arr</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;hr&gt;&#x27;</span>;</span><br><span class="line"><span class="comment">//var_dump(dg($arr));</span></span><br><span class="line">print_r(dg(<span class="variable">$arr</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/03/30/Linux%20%E5%86%99C%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/03/30/Linux%20%E5%86%99C%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Linux 写C程序编译执行步骤记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-03-30 14:53:57" itemprop="dateCreated datePublished" datetime="2014-03-30T14:53:57+08:00">2014-03-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>309</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Linux 写C程序编译执行步骤记录</p>
+<ol>
+<li>选定好一个目录（或者mkdir 文件名）</li>
+<li>vim cFile.c</li>
+<li>vim 开始编辑代码<br>int main(){<br>return 0;<br>}<br>//x 保存并退出;</li>
+<li>在当前目录执行 gcc cFile.c (gcc 文件名 如果没有gcc自行安装) 会生成一个 .out 输出文件</li>
+<li>我可也可以使用 gcc cFile.c -o 文件名 生成一个我们想要的输出文件 注意这里生成的文件只有文件名</li>
+<li>执行编译后的文件需要 ./ <em>.out(</em> 你的文件名) 或者是你用 gcc -o选项 输出的文件名 ./文件名</li>
+<li>因为刚才的那段代码 return 0 所以看不到 你可以输入 echo $? 就看到 0 你也可以试试改变 return 100 然后重新编译执行.<br>PHP是用c编写的所以需要重新捡起来c.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/03/12/%E5%AD%97%E8%8A%82%E6%8D%A2%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/03/12/%E5%AD%97%E8%8A%82%E6%8D%A2%E7%AE%97/" class="post-title-link" itemprop="url">字节换算</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2014-03-12 13:48:45 / 修改时间：13:54:43" itemprop="dateCreated datePublished" datetime="2014-03-12T13:48:45+08:00">2014-03-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//字节换算</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">conversion</span>(<span class="params"><span class="variable">$size</span></span>) </span>&#123;</span><br><span class="line"><span class="variable">$kb</span> = <span class="number">1024</span>; <span class="comment">// 1KB（Kibibyte，千字节）=1024B，</span></span><br><span class="line"><span class="variable">$mb</span> = <span class="number">1024</span> * <span class="variable">$kb</span>; <span class="comment">//1MB（Mebibyte，兆字节，简称“兆”）=1024KB，</span></span><br><span class="line"><span class="variable">$gb</span> = <span class="number">1024</span> * <span class="variable">$mb</span>; <span class="comment">// 1GB（Gigabyte，吉字节，又称“千兆”）=1024MB，</span></span><br><span class="line"><span class="variable">$tb</span> = <span class="number">1024</span> * <span class="variable">$gb</span>; <span class="comment">// 1TB（Terabyte，万亿字节，太字节）=1024GB，</span></span><br><span class="line"><span class="variable">$pb</span> = <span class="number">1024</span> * <span class="variable">$tb</span>; <span class="comment">//1PB（Petabyte，千万亿字节，拍字节）=1024TB，</span></span><br><span class="line"><span class="variable">$fb</span> = <span class="number">1024</span> * <span class="variable">$pb</span>; <span class="comment">//1EB（Exabyte，百亿亿字节，艾字节）=1024PB，</span></span><br><span class="line"><span class="variable">$zb</span> = <span class="number">1024</span> * <span class="variable">$fb</span>; <span class="comment">//1ZB（Zettabyte，十万亿亿字节，泽字节）= 1024EB，</span></span><br><span class="line"><span class="variable">$yb</span> = <span class="number">1024</span> * <span class="variable">$zb</span>; <span class="comment">//1YB（Yottabyte，一亿亿亿字节，尧字节）= 1024ZB，</span></span><br><span class="line"><span class="variable">$bb</span> = <span class="number">1024</span> * <span class="variable">$yb</span>; <span class="comment">//1BB（Brontobyte，一千亿亿亿字节）= 1024YB</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$kb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$size</span> . <span class="string">&quot; B&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$mb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$kb</span>, <span class="number">2</span>) . <span class="string">&quot; KB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$gb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$mb</span>, <span class="number">2</span>) . <span class="string">&quot; MB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$tb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$gb</span>, <span class="number">2</span>) . <span class="string">&quot; GB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$pb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$tb</span>, <span class="number">2</span>) . <span class="string">&quot; TB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$fb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$pb</span>, <span class="number">2</span>) . <span class="string">&quot; PB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$zb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$fb</span>, <span class="number">2</span>) . <span class="string">&quot; EB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$size</span> &lt; <span class="variable">$yb</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$zb</span>, <span class="number">2</span>) . <span class="string">&quot; ZB&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">return</span> round(<span class="variable">$size</span> / <span class="variable">$bb</span>, <span class="number">2</span>) . <span class="string">&quot; YB&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/01/17/%E5%8D%81%E4%B8%AALinux%E4%B8%AD%E5%91%BD%E4%BB%A4%E9%93%BE%E6%8E%A5%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E4%BE%8B[%E8%BD%AC]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/01/17/%E5%8D%81%E4%B8%AALinux%E4%B8%AD%E5%91%BD%E4%BB%A4%E9%93%BE%E6%8E%A5%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E4%BE%8B%5B%E8%BD%AC%5D/" class="post-title-link" itemprop="url">十个Linux中命令链接操作符的最佳实例[转]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-01-17 10:29:54" itemprop="dateCreated datePublished" datetime="2014-01-17T10:29:54+08:00">2014-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Linux命令中的链接的意思是，通过操作符的行为将几个命令组合执行。Linux中的链接命令，有些像你在shell中写<a href="http://www.tecmint.com/category/bash-shell/" target="_blank" rel="external nofollow">短小的shell脚本</a>，并直接在终端中执行。链接使得自动处理变得更方便。不仅如此，一个无人看管的机器在链接操作符的帮助下能够十分有条理地运行。</p>
+<p>Linux中的10个链接操作符</p>
+<p>本文旨在介绍一些常用的链接操作符，通过简短的描述和相关的例子帮助读者提高生产力、降低系统负载、写出更加简短有意义的代码。</p>
+<h3><a name="t1"></a>1. 和号操作符 (&amp;)</h3>
+‘&amp;’的作用是使命令在后台运行。只要在命令后面跟上一个空格和 ‘&amp;’。你可以一口气在后台运行多个命令。
+
+<p>在后台运行一个命令:</p>
+<pre>tecmint@localhost:~$ ping ­c5 www.tecmint.com &amp;
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">同时在后台运行两个命令：</span><br><span class="line">&lt;pre&gt;root<span class="variable">@localhost</span><span class="symbol">:/home/tecmint</span><span class="comment"># apt-get update &amp;amp; mkdit test &amp;amp;</span></span><br></pre></td></tr></table></figure>
+
+<h3><a name="t2"></a>2. 分号操作符 (;)</h3>
+分号操作符使你可以一口气运行几个命令，命令顺序执行。
+<pre>root@localhost:/home/tecmint# apt-get update ; apt-get upgrade ; mkdir test
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上述命令先后执行了update和upgrade，最后在当前工作目录下创建了一个‘test’文件夹</span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;t3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>3. 与操作符 (<span class="symbol">&amp;amp;</span><span class="symbol">&amp;amp;</span>)<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">如果第一个命令执行成功，与操作符 (<span class="symbol">&amp;amp;</span><span class="symbol">&amp;amp;</span>)才会执行第二个命令，也就是说，第一个命令退出状态是0。（译注：原文的这里明显写错了，我们进行了改译，有兴趣的读者可以参看原文以及原文下面的评论。在UNIX里面，0表示无错误，而所有非0返回值都是各种错误）。这个命令在检查最后一个命令的执行状态时很有用。</span><br><span class="line"></span><br><span class="line">比如，我想使用<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.tecmint.com/command-line-web-browsers/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;external nofollow&quot;</span>&gt;</span>links 命令<span class="tag">&lt;/<span class="name">a</span>&gt;</span>在终端中访问网站tecmint.com，但在这之前我需要检查主机是否在线或不在线。</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>root@localhost:/home/tecmint# ping -c3 www.tecmint.com <span class="symbol">&amp;amp;</span><span class="symbol">&amp;amp;</span> links www.tecmint.com</span><br></pre></td></tr></table></figure>
+
+<h3><a name="t4"></a>4. 或操作符 (||)</h3>
+或操作符 (||)很像编程中的else语句。上面的操作符允许你在第一个命令失败的情况下执行第二个命令，比如，第一个命令的退出状态是1。
+
+举例来说，我想要在非root帐户中执行‘apt-get update‘，如果第一个命令失败了，接着会执行第二个命令‘links <a href="http://www.tecmint.com/" target="_blank" rel="external nofollow">www.tecmint.com</a>‘。
+<pre>tecmint@localhost:~$ apt-get update || links tecmint.com
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面的命令中，由于该用户不允许更新系统，这意味着第一个命令的退出状态是’<span class="number">1</span>′,因此最后一个命令‘links tecmint.<span class="keyword">com</span>‘会执行。</span><br><span class="line"></span><br><span class="line">如果第一个命令成功执行并且退出状态是‘<span class="number">0</span>‘呢？很明显的，第二个命令不会执行。</span><br><span class="line"><span class="symbol">&lt;pre&gt;</span>tecmint@localhos<span class="variable">t:</span>~$ <span class="built_in">mkdir</span> test || links tecmint.<span class="keyword">com</span></span><br></pre></td></tr></table></figure>
+
+这里，用户在家目录创建了一个‘test‘文件夹，这是被允许的。命令成功的执行，退出状态是‘0‘,因此，最后的命令不会执行。
+<h3><a name="t5"></a>5. 非操作符 (!)</h3>
+非操作符 (!)很像except语句。这个命令会执行除了提供的条件外的所有的语句。要理解这点，在你的主目录创建一个目录‘tecmint’，并‘cd’到它这里。
+<pre>tecmint@localhost:~$ mkdir tecmint 
+tecmint@localhost:~$ cd tecmint
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">接下来，在文件夹‘tecmint’下创建不同类型的文件。</span><br><span class="line">&lt;pre&gt;tecmint@localhost:~/tecmint$ touch <span class="selector-tag">a</span><span class="selector-class">.doc</span> <span class="selector-tag">b</span><span class="selector-class">.doc</span> <span class="selector-tag">a</span><span class="selector-class">.pdf</span> <span class="selector-tag">b</span><span class="selector-class">.pdf</span> <span class="selector-tag">a</span><span class="selector-class">.xml</span> <span class="selector-tag">b</span><span class="selector-class">.xml</span> <span class="selector-tag">a</span><span class="selector-class">.html</span> <span class="selector-tag">b</span>.html</span><br></pre></td></tr></table></figure>
+
+看一下我们在文件夹‘tecmint’创建的新文件。
+<pre>tecmint@localhost:~/tecmint$ ls 
+
+a.doc  a.html  a.pdf  a.xml  b.doc  b.html  b.pdf  b.xml
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">用一种聪明的办法马上删除除了 ‘html’之外的所有文件。</span><br><span class="line">&lt;pre&gt;tecmint<span class="variable">@localhost</span><span class="symbol">:~/tecmint</span><span class="variable">$ </span>rm -r !(*.html)</span><br></pre></td></tr></table></figure>
+
+验证一下上次的执行结果，使用<a href="http://www.tecmint.com/15-basic-ls-command-examples-in-linux/" target="_blank" rel="external nofollow">ls 命令</a>列出可见所有文件。
+<pre>tecmint@localhost:~/tecmint$ ls 
+
+a.html  b.html
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="params">&lt;h3&gt;</span><span class="params">&lt;a name=&quot;t6&quot;&gt;</span><span class="params">&lt;/a&gt;</span><span class="number">6.</span> 与或操作符 (<span class="variable">&amp;amp</span>;<span class="variable">&amp;amp</span>; – ||)<span class="params">&lt;/h3&gt;</span></span><br><span class="line">上面的操作符实际上是‘与’和‘或’操作符的组合。它很像‘if-else‘语句。</span><br><span class="line"></span><br><span class="line">比如，我们ping tecmint.com，如果成功打印‘已验证’，否则打印‘主机故障’。</span><br><span class="line"><span class="params">&lt;pre&gt;</span>tecmint@localhost:~/tecmint$ ping -c3 www.tecmint.com <span class="variable">&amp;amp</span>;<span class="variable">&amp;amp</span>; echo <span class="string">&quot;Verified&quot;</span> || echo <span class="string">&quot;Host Down&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4><a name="t7"></a>示例输出</h4>
+<pre>PING www.tecmint.com (212.71.234.61) 56(84) bytes of data. 
+64 bytes from www.tecmint.com (212.71.234.61): icmp_req=1 ttl=55 time=216 ms 
+64 bytes from www.tecmint.com (212.71.234.61): icmp_req=2 ttl=55 time=224 ms 
+64 bytes from www.tecmint.com (212.71.234.61): icmp_req=3 ttl=55 time=226 ms 
+
+--- www.tecmint.com ping statistics --- 
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms 
+rtt min/avg/max/mdev = 216.960/222.789/226.423/4.199 ms 
+Verified
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">现在，断开我们现在的网络连接诶，再试一下相同的命令。</span><br><span class="line">&lt;pre&gt;tecmint<span class="variable">@localhost</span><span class="symbol">:~/tecmint</span><span class="variable">$ </span>ping -c3 www.tecmint.com &amp;amp;&amp;amp; echo <span class="string">&quot;verified&quot;</span> || echo <span class="string">&quot;Host Down&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4><a name="t8"></a>实例输出</h4>
+<pre>ping: unknown host www.tecmint.com 
+Host Down
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;t9&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>7. 管道操作符 (|)<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">PIPE在将第一个命令的输出作为第二个命令的输入时很有用。比如，‘ls -l’的输出通过管道到‘less’，并看一下输出。</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>tecmint@localhost:~$ ls -l | less</span><br></pre></td></tr></table></figure>
+
+<h3><a name="t10"></a>8. 命令合并操作符 {}</h3>
+合并两个或多个命令，第二个命令依赖于第一个命令的执行。
+
+比如，检查一下文件‘xyz.txt’是否在Downloads目录下，如果不存在则创建之并输出提示信息。
+<pre>tecmint@localhost:~$ [ -f /home/tecmint/Downloads/xyz.txt ] || touch /home/tecmint/Downloads/xyz.txt; echo "The file does not exist"
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">但是这样的命令的运行结果并不如我们预期的运行，会始终都输出提示信息。因此需要使用&#123;&#125;操作符来合并命令：</span><br><span class="line">&lt;pre&gt;tecmint@localhost:~$ [ -f <span class="regexp">/home/</span>tecmint<span class="regexp">/Downloads/</span>xyz1.txt ] || &#123;touch <span class="regexp">/home/</span>tecmint<span class="regexp">/Downloads/</span>xyz.txt; echo <span class="string">&quot;The file does not exist&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">“The <span class="keyword">file</span> does not exist”</span><br></pre></td></tr></table></figure>
+
+（译注：原文这里应该也是复制或书写的时候，出现了一些问题，例子中并没有出现小标题中的"{}"操作符，所以这里我们进行了修改）
+<h3><a name="t11"></a>9. 优先操作符 ()</h3>
+这个操作符可以让命令以优先顺序执行。
+<pre>Command_x1 &amp;&amp;Command_x2 || Command_x3 &amp;&amp; Command_x4.
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在上面的伪代码中，如果Comma<span class="symbol">nd_x1</span>执行失败了会怎么样，Comma<span class="symbol">nd_x2</span>,Comma<span class="symbol">nd_x3</span>, Comma<span class="symbol">nd_x4</span>没有一个会执行，对于这种情况，我们使用优先操作符。</span><br><span class="line">&lt;pre&gt;<span class="comment">(Command_x1 &amp;amp;&amp;amp;Command_x2)</span> || <span class="comment">(Command_x3 &amp;amp;&amp;amp; Command_x4)</span></span><br></pre></td></tr></table></figure>
+
+在上面的伪代码中，如果Command_x1执行失败，Command_x2不会执行，但是Command_x3会继续执行， Command_x4会依赖于 Command_x3的退出状态。
+<h3><a name="t12"></a>10. 连接符 ()</h3>
+连接符 ()如它名字所说，被用于连接shell中那些太长而需要分成多行的命令。可以在输入一个“”之后就回车，然后继续输入命令行，直到输入完成。比如，下面的命令会打开文本文件test(1).txt。
+<pre>tecmint@localhost:~/Downloads$ nano test
+1.txt
+```
+
+今天就到这里，我会近日开始另外一个有趣的文章。不要走开，继续关注我们。不要忘记在评论栏里提出有价值的反馈。
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2014/01/07/%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%A7%8D%E6%96%B0%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%A6%81%E5%81%9A%E7%9A%8415%E4%B8%AA%E7%BB%83%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/01/07/%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%A7%8D%E6%96%B0%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%A6%81%E5%81%9A%E7%9A%8415%E4%B8%AA%E7%BB%83%E4%B9%A0/" class="post-title-link" itemprop="url">学习一种新编程语言要做的15个练习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-01-07 17:25:53" itemprop="dateCreated datePublished" datetime="2014-01-07T17:25:53+08:00">2014-01-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%94%A0%E5%8F%A8/" itemprop="url" rel="index"><span itemprop="name">唠叨</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>993</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>虽然我已经可以使用很多种编程语言进行工作，但我的工作常常会要求我快速掌握一门新的语言。我没有选择去阅读几百页的程序手册，而是快速浏览10到15页的教程（可以在Google中搜索），并把程序语言的语法参考说明印在小卡片上（在google里搜索language to learn+reference card就能找到）。 首先，我会熟悉这种程序语言的编译器、编译选项、编辑器或集成开发环境的的快捷键和小技巧，写一个简单的“你好世界”程序，编译并运行它，再用调试器进行简单的调试，如设置断电、查看变量值、跳转到某一位置等。 为了能够快速地掌握一种新的程序语言，我会做以下几个练习。注意，有些程序对初学者来说是很困难的。 用无限循环语句显示一系列数字（1、2、3、4、5……），并设置当用户按下某个按钮时（如ESC键）程序就会中止； 斐波那契数列、交换两个变量的值、从一组数据中找出最大最小值等； 让用户输入一些数字或字符串，以升序或降序进行排列； 雷诺数的计算公式是(D<em>v</em>rho)/mu，其中D为直径，v为速度，rho为密度，mu为黏性。编写一个程序，接收一组数据并计算雷诺数。如果小于2100，则显示“层流”；在2100至4000之间，则显示“暂态流”；大与4000则显示“湍流”（使用分支语句if else then）； 修改上面的程序，显示“开始新的计算？（是/否）”，如果选“是”，则重新输入一组数据；如果选“否”，则退出程序（使用循环语句）。如果mu的值为0，程序是否会提示“除数为0”的错误？或是给出“程序崩溃”的提示？怎样处理这种情况呢？该程序语言里是否提供了这样的机制？（异常处理） 编写一个科学计算器，包括加、减、乘、除、平方、立方、平方根、正弦、余弦、正切、阶乘、倒数、取模等操作； 用不同的格式进行输出（比如四舍五入到5位数字、截取前四位数字、用0填充左边或右边、左右对齐等）（输入输出操作） 将一个文本文件转换成网页文件（文件输入输出操作、字符串操作） 时间和日期：获取系统当前时间并将其转换成不同的格式； 创建一个文件名中含有时间日期的文件； 输入一个HTML表格，将其转换为以逗号或制表符分隔的文件； 实现自动换行的功能（看看Windows里记事本是怎样做的） 在数组的开头、结尾和中间添加或删除元素； 该程序语言是否支持以下特性：操作符重载、虚函数、引用、指针等；是否有命名空间、包、模块等；了解一下吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/12/07/WordPress%203.6.1%E8%A2%AB%E9%BB%91%E6%9F%A5%E7%9C%8B%E4%B8%8B%E9%9D%A2%E7%9A%84%E7%BD%91%E7%AB%99%E4%BF%AE%E6%94%B9%E5%90%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/12/07/WordPress%203.6.1%E8%A2%AB%E9%BB%91%E6%9F%A5%E7%9C%8B%E4%B8%8B%E9%9D%A2%E7%9A%84%E7%BD%91%E7%AB%99%E4%BF%AE%E6%94%B9%E5%90%A7/" class="post-title-link" itemprop="url">WordPress 3.6.1被黑查看下面的网站修改吧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-12-07 15:34:40" itemprop="dateCreated datePublished" datetime="2013-12-07T15:34:40+08:00">2013-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%94%A0%E5%8F%A8/" itemprop="url" rel="index"><span itemprop="name">唠叨</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>41</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://help.cefhost.cn/WordPress/108.html">http://help.cefhost.cn/WordPress/108.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言 MDL锁主要用来保护Mysql内部对象的元数据，通过MDL机制保证DDL与DML以及SELECT查询操作的并发。MySQL Meta Lock(一)和MySQL Meta Lock(二)已经讲了一些关于MDL知识，本文将会对MDL进行一个补充，并解释查询堵塞和mysqldump获取一致性备份的原理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql metadata lock(三)">
+<meta property="og:url" content="https://zecheng.github.io/2015/04/17/mysql%20metadata%20lock(%E4%B8%89)/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="前言 MDL锁主要用来保护Mysql内部对象的元数据，通过MDL机制保证DDL与DML以及SELECT查询操作的并发。MySQL Meta Lock(一)和MySQL Meta Lock(二)已经讲了一些关于MDL知识，本文将会对MDL进行一个补充，并解释查询堵塞和mysqldump获取一致性备份的原理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-04-17T15:28:01.000Z">
+<meta property="article:modified_time" content="2015-04-17T15:28:01.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="MySql">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2015/04/17/mysql%20metadata%20lock(%E4%B8%89)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>mysql metadata lock(三) | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2015/04/17/mysql%20metadata%20lock(%E4%B8%89)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mysql metadata lock(三)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-17 23:28:01" itemprop="dateCreated datePublished" datetime="2015-04-17T23:28:01+08:00">2015-04-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言</p>
+<p>MDL锁主要用来保护Mysql内部对象的元数据，通过MDL机制保证DDL与DML以及SELECT查询操作的并发。MySQL Meta Lock(一)和MySQL Meta Lock(二)已经讲了一些关于MDL知识，本文将会对MDL进行一个补充，并解释查询堵塞和mysqldump获取一致性备份的原理。</p>
+<span id="more"></span>
+
+
+<p>一、MDL锁类型</p>
+<p>1.按类型划分</p>
+<p>参见MySQL Meta Lock(二)</p>
+<p>2.按对象/范围维度划分</p>
+<table style="height: 342px; width: 402px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="142">
+<p align="left">属性</p>
+</td>
+<td valign="top" width="142">
+<p align="left">含义</p>
+</td>
+<td valign="top" width="142">
+<p align="left">范围/对象</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">GLOBAL</p>
+</td>
+<td valign="top" width="142">
+<p align="left">全局锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">范围</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">COMMIT</p>
+</td>
+<td valign="top" width="142">
+<p align="left">提交保护锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">范围</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">SCHEMA</p>
+</td>
+<td valign="top" width="142">
+<p align="left">库锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">对象</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">TABLE</p>
+</td>
+<td valign="top" width="142">
+<p align="left">表锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">对象</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">FUNCTION</p>
+</td>
+<td valign="top" width="142">
+<p align="left">函数锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">对象</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">PROCEDURE</p>
+</td>
+<td valign="top" width="142">
+<p align="left">存储过程锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">对象</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">TRIGGER</p>
+</td>
+<td valign="top" width="142">
+<p align="left">触发器锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">对象</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">EVENT</p>
+</td>
+<td valign="top" width="142">
+<p align="left">事件锁</p>
+</td>
+<td valign="top" width="142">
+<p align="left">对象</p>
+</td>
+</tr>
+</tbody>
+</table>
+MDL锁主要包括DB对象和范围两个维度，对象的MDL我们很好理解，为了保护对象的元数据。那么范围级别的锁呢？锁本质是为了保护共享资源，所以范围和对象都可以理解为一种资源。MYSQL约定某些操作必需要上COMMIT范围锁或GLOBAL范围锁，通过这种同步机制，保证各个线程有序运转。后面会结合案例详细讨论COMMIT和GLOBAL锁的应用场景。
+
+<p>3.按请求/释放锁持续时间划分</p>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="142">
+<p align="left">属性</p>
+</td>
+<td valign="top" width="142">
+<p align="left">含义</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">MDL_ STATEMENT</p>
+</td>
+<td valign="top" width="142">
+<p align="left">语句级别</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">MDL_TRANSACTION</p>
+</td>
+<td valign="top" width="142">
+<p align="left">事务级别</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="142">
+<p align="left">MDL_EXPLICIT</p>
+</td>
+<td valign="top" width="142">
+<p align="left">需要显示释放</p>
+</td>
+</tr>
+</tbody>
+</table>
+MDL另外一个属性是持有时间。如果是STATEMENT，则表示单个语句执行完毕后，MDL释放；TRANSACTION级别表示，事务结束后，MDL锁释放；前两者都是隐式锁，即请求锁和释放锁都是系统内部行为，用户无需发指令，而MDL_EXPLICIT表示MDL锁是显示请求和释放的。比如：flush table with read lock这个指令会显示上GLOBAL:MDL_EXPLICIT:SHARED和COMMIT:MDL_EXPLICIT:SHARED锁；需要通过UNLOCK TABLES指令显示释放。
+
+<p>4.举个栗子</p>
+<p>begin：</p>
+<p>update t3 set c1=1 where id=1;</p>
+<p>commit;</p>
+<table style="width: 445px; height: 552px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="40">
+<p align="left">流程</p>
+</td>
+<td valign="top" width="79">
+<p align="left">执行语句</p>
+</td>
+<td valign="top" width="162">
+<p align="left">执行内容</p>
+</td>
+<td valign="top" width="150">
+<p align="left">字典锁</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">1</p>
+</td>
+<td valign="top" width="79">
+<p align="left">begin</p>
+</td>
+<td valign="top" width="162">
+<p align="left">&nbsp;</p>
+</td>
+<td valign="top" width="150">
+<p align="left">释放MDL</p>
+<p align="left">release_transactional_locks</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">2</p>
+</td>
+<td rowspan="4" valign="top" width="79">
+<p align="left">update t3 set c1=1 where id=1;</p>
+<p align="left">&nbsp;</p>
+</td>
+<td valign="top" width="162">
+<p align="left">请求</p>
+<p align="left">STATEMENT&nbsp; MDL</p>
+</td>
+<td valign="top" width="150">
+<p align="left">GLOBAL:STATMENT</p>
+<p align="left">MDL_INTENTION_EXCLUSIVE</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">3</p>
+</td>
+<td valign="top" width="162">
+<p align="left">请求</p>
+<p align="left">TRANSACTION MDL</p>
+</td>
+<td valign="top" width="150">
+<p align="left">TABLE:TRANSACTION</p>
+<p align="left">MDL_SHARED_WRITE</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">6</p>
+</td>
+<td valign="top" width="162">
+<p align="left">执行更新</p>
+</td>
+<td valign="top" width="150">
+<p align="left">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">7</p>
+</td>
+<td valign="top" width="162">
+<p align="left">释放</p>
+<p align="left">STATEMENT MDL</p>
+</td>
+<td valign="top" width="150">
+<p align="left">GLOBAL:STATMENT</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">8</p>
+</td>
+<td rowspan="4" valign="top" width="79">
+<p align="left">commit;</p>
+<p align="left">&nbsp;</p>
+</td>
+<td valign="top" width="162">
+<p align="left">请求</p>
+<p align="left">COMMIT MDL</p>
+</td>
+<td valign="top" width="150">
+<p align="left">COMMIT: MDL_EXPLICIT</p>
+<p align="left">MDL_INTENTION_EXCLUSIVE</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">9</p>
+</td>
+<td valign="top" width="162">
+<p align="left">执行提交</p>
+</td>
+<td valign="top" width="150">
+<p align="left">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">11</p>
+</td>
+<td rowspan="2" valign="top" width="162">
+<p align="left">释放</p>
+<p align="left">COMMIT MDL</p>
+<p align="left">释放</p>
+<p align="left">TRANSACTION MDL</p>
+</td>
+<td valign="top" width="150">
+<p align="left">COMMIT: MDL_EXPLICIT</p>
+<p align="left">MDL_INTENTION_EXCLUSIVE</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40">
+<p align="left">12</p>
+</td>
+<td valign="top" width="150">
+<p align="left">release_transactional_locks</p>
+<p align="left">TABLE:TRANSACTION</p>
+</td>
+</tr>
+</tbody>
+</table> 
+
+<p>二、请求锁/释放锁原理</p>
+<p>锁兼容矩阵在metadata lock(二)已经有详细的介绍，仔细看代码发现MDL的锁兼容矩阵实际上包含两部分：活跃锁兼容矩阵，等待锁兼容矩阵。当请求锁时，需要保证两个矩阵对应的值都兼容，才能请求锁成功。为什么要设计等待锁兼容矩阵？我理解这里主要是优先保证DDL操作。因为如果DDL操作在等待一个查询操作时，其他查询还源源不断地进入，可能会导致DDL永远也拿不到锁，而实际情况下，DDL操作的重要性往往比查询或DML重要地多。</p>
+<ol>
+<li>请求锁兼容性检查：</li>
+</ol>
+<ol>
+<li><p>检查请求锁是否与已经存在的活跃锁冲突，若冲突，则等待；</p>
+</li>
+<li><p>检查请求锁是否与已经存在的等待锁冲突，若冲突，则等待。</p>
+</li>
+<li><p>请求锁成功。</p>
+</li>
+</ol>
+<ol start="2">
+<li>释放锁时机：</li>
+</ol>
+<ol>
+<li><p>语句执行结束后，释放STAMENT类型的锁</p>
+</li>
+<li><p>事务提交时，先后请求COMMIT类型和释放COMMIT类型的锁</p>
+</li>
+<li><p>事务提交后，释放TRANSACTION类型的锁</p>
+</li>
+</ol>
+<p>三、MDL应用场景分析</p>
+<p>MDL是Mysql层面很重要的锁，很多常见问题的源头以及功能实现都依赖于MDL，以下我会举几个常见的问题和功能进行分析。</p>
+<ol>
+<li>为什么查询也会被阻塞？</li>
+</ol>
+<p>我们在实际运维过程中，一个常见的场景是，接到手机threadrunning飙高告警，登上主机，show processlist看到一大片线程处于“Waiting for table metadata lock”状态，当然其中也包含查询。下面我通过一个简单的例子重新这个场景。</p>
+<table style="height: 723px; width: 568px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="55">
+<p>时间点</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>会话A</p>
+</td>
+<td valign="top" width="99">
+<p>会话B</p>
+</td>
+<td valign="top" width="80">
+<p>会话C</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>1</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>begin</p>
+<p>update t3 set c1=1 where id=1;</p>
+</td>
+<td valign="top" width="99">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="80">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>2</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>返回</p>
+</td>
+<td valign="top" width="99">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="80">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>3</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="99">
+<p>alter table t3 add column c3 int;</p>
+</td>
+<td valign="top" width="80">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>4</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="99">
+<p>等待</p>
+</td>
+<td valign="top" width="80">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>5</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="99">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="80">
+<p>select * from t3</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>6</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="99">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="80">
+<p>等待</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="55">
+<p>7</p>
+</td>
+<td colspan="2" valign="top" width="191">
+<p>show processlist</p>
+<p>返回结果</p>
+</td>
+<td valign="top" width="99">
+<p>&nbsp;</p>
+</td>
+<td valign="top" width="80">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td rowspan="3" valign="top" width="55">
+<p>8</p>
+</td>
+<td valign="top" width="103">
+<p>init&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td valign="top" width="89">
+<p>show processlist&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td rowspan="3" valign="top" width="99">
+<p>&nbsp;</p>
+</td>
+<td rowspan="3" valign="top" width="80">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="103">
+<p>Waiting for table metadata lock</p>
+</td>
+<td valign="top" width="89">
+<p>alter table t3 add column c3 int</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="103">
+<p>Waiting for table metadata lock</p>
+</td>
+<td valign="top" width="89">
+<p>select * from t3</p>
+</td>
+</tr>
+</tbody>
+</table>
+      从表2可以看到A会话未提交的事务堵住了回话B的DDL语句，而DDL语句进而又堵住了会话C，从第8步来看，会话B和会话C都处于“Waiting for table metadata lock”状态。从表1我们可以看到，会话A的DML操作会请求TABLE- TRANSACTION- MDL_SHARED_WRITE锁，由于没有执行COMMIT，会一直持有；会话B的DDL操作会请求TABLE-TRANSACTION-EXCLUSIVE锁，由于两把锁互斥，等待；会话C的查询操作会请求TABLE- TRANSACTION- MDL_SHARED_READ锁，虽然MDL_SHARED_READ与活跃锁MDL_SHARED_WRITE不冲突，但是与回话B的等待锁EXCLUSIVE冲突，因此也会等待。遇到这种情况，首先要看看是否存在堵住的DDL，如果存在DDL，然后查询是否有大查询或者未提交的事务，这两种情况都会导致DDL堵住，进而影响普通的查询和DML操作。
+
+<ol start="2">
+<li><p>Mysqldump与全局锁</p>
+<p>   在实际生产环境中，为了容灾和负载均衡，数据库服务一般由一主一备一对实例组成，主库对外提供读写服务，备库提供只读服务，或纯粹为了容灾使用。在这种体系下，通过mysqldump搭建新的实例时，需要获得一个一致性备份集，并且获得对应的位点(拉取主库binlog的依据)，通过全量+增量的方式复制一个数据库实例。Mysqldump中为了保证一致性备份和获取对应的位点，需要设置两个关键的参数–master-data=2 和–single-transaction。我们可以通过mysqld的trace功能，跟踪Mysqldump执行的语句。假设我们要备份chuck库，命令如下：</p>
+</li>
+</ol>
+<p> ./bin/mysqldump -uchuck -pchuck -P4006 –h127.0.0.1 –databases chuck mysql –master-data=2 –single-transaction –default-character-set=utf8 &gt; chuck_dump.sql 2&gt;chuck_dump.log<br>开启mysqld的trace功能</p>
+<p>–debug=d,query,general:O,/kkk/mysqld.trace<br>通过mysqld.trace，我大概整理了关键的语句，分析和结果如下图所示。可以看到，mysqldump获取增量位点主要是通过FLUSH TABLES WITH READ LOCK语句的两把字典锁来实现(GLOBAL LOCK和COMMIT LOCK)。整个过程持续时间不长(如果语句没有被阻塞)，获取位点后，立即将MDL锁释放。第2到第6步即为持有MDL锁的时间，这段时间内无法开启新事务，已有的事务也无法提交，保证位点的正确性。设置隔离级别为RR，则是获取一致性备份的关键，一致性备份的获取源于MVCC，关于MVCC的实现，后续可以单独写一篇文章。第8到第9步为一个表的备份过程， select语句会获取MDL锁(TABLE:TRANSACTION: MDL_SHARED_READ)，执行完毕后，通过rollback语句释放MDL锁。因此除了备份的当前表不能做DDL操作；当前表的DML，以及其它表的DDL和DML都不受影响，所以Mysqldump备份过程中，基本不会阻塞线上的其他语句执行。 </p>
+<table style="width: 520px; height: 1060px;" border="1" cellspacing="0" cellpadding="0" align="left">
+<tbody>
+<tr>
+<td valign="top" width="33">
+<p>步骤</p>
+</td>
+<td valign="top" width="196">
+<p>关键语句</p>
+</td>
+<td valign="top" width="135">
+<p>含义</p>
+</td>
+<td valign="top" width="81">
+<p>作用</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="33">
+<p>1</p>
+</td>
+<td valign="top" width="196">
+<p>FLUSH /*!40101 LOCAL */ TABLES<br>
+  &nbsp;&nbsp;&nbsp; </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>关闭打开表</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p>清空查询缓存</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p><span style="background-color: #ffffff;">2</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p><span style="background-color: #ffffff;">FLUSH TABLES WITH READ LOCK</span><br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p><span style="background-color: #ffffff;">上GLOBAL字典锁：</span></p>
+<p align="left"><span style="background-color: #ffffff;">GLOBAL:</span></p>
+<p align="left"><span style="background-color: #ffffff;">MDL_SHARED</span></p>
+<p align="left"><span style="background-color: #ffffff;">COMMIT:</span></p>
+<p align="left"><span style="background-color: #ffffff;">MDL_SHARED</span></p>
+<p><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p><span style="background-color: #ffffff;">阻塞新事务，以及活跃事务提交。</span></p>
+<p><span style="background-color: #ffffff;">为获取一致性位点做准备</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p><span style="background-color: #ffffff;">3</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p><span style="background-color: #ffffff;">SET SESSION TRANSACTION ISOLATION LEVEL
+  REPEATABLE READ</span><br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p><span style="background-color: #ffffff;">设置事务的隔离级别为RR</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p><span style="background-color: #ffffff;">保证快照读</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p><span style="background-color: #ffffff;">4</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p><span style="background-color: #ffffff;">START TRANSACTION /*!40100 WITH CONSISTENT
+  SNAPSHOT */</span><br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p><span style="background-color: #ffffff;">开启事务</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p><span style="background-color: #ffffff;">5</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p><span style="background-color: #ffffff;">SHOW MASTER STATUS</span><br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p><span style="background-color: #ffffff;">获取binlog 位点</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p><span style="background-color: #ffffff;">用来获取主库的增量的位点</span></p>
+<p><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>6</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>UNLOCK TABLES<br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>释放</p>
+<p>GLOBAL字典锁</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p>允许其它事务更新</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>7</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>SAVEPOINT sp</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>设置保存点</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p>后续可以逐个表</p>
+<p>释放MDL</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>8</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>SELECT /*!40001 SQL_NO_CACHE */ * FROM
+  `t1`</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>获取表t1的数据</p>
+<p>TABLE:TRANSACTION</p>
+<p>MDL_SHARED_READ</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td rowspan="2" valign="top" width="81">
+<p>一致性读</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>9</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>ROLLBACK TO SAVEPOINT sp</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>释放：</p>
+<p>TABLE:TRANSACTION</p>
+<p>MDL_SHARED_READ</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>10</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>SELECT /*!40001 SQL_NO_CACHE */ * FROM `t2`</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>获取表t2的数据</p>
+<p>TABLE:TRANSACTION</p>
+<p>MDL_SHARED_READ</p>
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td rowspan="2" valign="top" width="81">
+<p>一致性读</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>11</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>ROLLBACK TO SAVEPOINT sp</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>释放：</p>
+<p>TABLE:TRANSACTION</p>
+<p>MDL_SHARED_READ</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>12</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>……</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+<tr>
+<td valign="top" width="33">
+<p>13</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="196">
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="135">
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+<td valign="top" width="81">
+<p>备份完成</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  </td>
+
+
+
+
+
+
+
+
+
+
+
+
+ </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+<p>参考文章</p>
+<p><a target="_blank" rel="noopener" href="http://www.percona.com/blog/2010/04/24/how-fast-is-flush-tables-with-read-lock/">http://www.percona.com/blog/2010/04/24/how-fast-is-flush-tables-with-read-lock/</a></p>
+<p><a target="_blank" rel="noopener" href="http://blogread.cn/it/article/2338?f=hot1">http://blogread.cn/it/article/2338?f=hot1</a></p>
+<p><a target="_blank" rel="noopener" href="http://imysql.cn/2008_10_24_deep_into_mysqldump_options">http://imysql.cn/2008_10_24_deep_into_mysqldump_options</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySql/" rel="tag"># MySql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/04/17/%5B%E8%BD%AC%5D%20MySQL%E9%94%81%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93(%E4%BA%8C)/" rel="prev" title="[转]MySQL锁机制总结(二)">
+      <i class="fa fa-chevron-left"></i> [转]MySQL锁机制总结(二)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/05/05/CenOS%20%E8%AE%B0%E5%BD%95/" rel="next" title="CenOS 记录">
+      CenOS 记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="AWK是贝尔实验室1977年搞出来的文本出现神器，今年是蛇年，是AWK的本命年，而且年纪和我相仿，所以非常有必要为他写篇文章。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWK">
+<meta property="og:url" content="https://zecheng.github.io/2016/04/11/AWK/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="AWK是贝尔实验室1977年搞出来的文本出现神器，今年是蛇年，是AWK的本命年，而且年纪和我相仿，所以非常有必要为他写篇文章。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-11T00:32:47.000Z">
+<meta property="article:modified_time" content="2016-04-11T00:33:23.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="LINUX">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2016/04/11/AWK/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AWK | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2016/04/11/AWK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AWK
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2016-04-11 08:32:47 / 修改时间：08:33:23" itemprop="dateCreated datePublished" datetime="2016-04-11T08:32:47+08:00">2016-04-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>AWK是贝尔实验室1977年搞出来的文本出现神器，今年是蛇年，是AWK的本命年，而且年纪和我相仿，所以非常有必要为他写篇文章。</p>
+<span id="more"></span>
+
+
+<p>之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter Weinberger, 和 Brian Kernighan 的Family Name的首字符。要学AWK，就得提一提AWK的一本相当经典的书《The AWK Programming Language》，它在豆瓣上的评分是9.4分！在亚马逊上居然卖1022.30元。</p>
+<p>我在这里的教程并不想面面俱到，本文和我之前的Go语言简介一样，全是示例，基本无废话。</p>
+<p>我只想达到两个目的：</p>
+<p>1）你可以在乘坐公交地铁上下班，或是在坐马桶拉大便时读完（保证是一泡大便的工夫）。</p>
+<p>2）我只想让这篇博文像一个火辣的脱衣舞女挑起你的兴趣，然后还要你自己去下工夫去撸。</p>
+<p>废话少说，我们开始脱吧（注：这里只是topless）。</p>
+<p>起步上台<br>我从netstat命令中提取了如下信息作为用例：</p>
+<p>$ cat netstat.txt<br>Proto Recv-Q Send-Q Local-Address          Foreign-Address             State<br>tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN<br>tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN<br>tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN<br>tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT<br>tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2<br>tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED<br>tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED<br>tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT<br>tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED<br>tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1<br>tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED<br>tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT<br>tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED<br>tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2<br>tcp        0      0 :::22                  :::*                        LISTEN<br>下面是最简单最常用的awk示例，其输出第1列和第4例，</p>
+<p>其中单引号中的被大括号括着的就是awk的语句，注意，其只能被单引号包含。<br>其中的$1..$n表示第几例。注：$0表示整个行。</p>
+<p>$ awk ‘{print $1, $4}’ netstat.txt<br>Proto Local-Address<br>tcp 0.0.0.0:3306<br>tcp 0.0.0.0:80<br>tcp 127.0.0.1:9000<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp coolshell.cn:80<br>tcp :::22<br>我们再来看看awk的格式化输出，和C语言的printf没什么两样：</p>
+<p>$ awk ‘{printf “%-8s %-8s %-8s %-18s %-22s %-15s\n”,$1,$2,$3,$4,$5,$6}’ netstat.txt<br>Proto    Recv-Q   Send-Q   Local-Address      Foreign-Address        State<br>tcp      0        0        0.0.0.0:3306       0.0.0.0:*              LISTEN<br>tcp      0        0        0.0.0.0:80         0.0.0.0:*              LISTEN<br>tcp      0        0        127.0.0.1:9000     0.0.0.0:*              LISTEN<br>tcp      0        0        coolshell.cn:80    124.205.5.146:18245    TIME_WAIT<br>tcp      0        0        coolshell.cn:80    61.140.101.185:37538   FIN_WAIT2<br>tcp      0        0        coolshell.cn:80    110.194.134.189:1032   ESTABLISHED<br>tcp      0        0        coolshell.cn:80    123.169.124.111:49809  ESTABLISHED<br>tcp      0        0        coolshell.cn:80    116.234.127.77:11502   FIN_WAIT2<br>tcp      0        0        coolshell.cn:80    123.169.124.111:49829  ESTABLISHED<br>tcp      0        0        coolshell.cn:80    183.60.215.36:36970    TIME_WAIT<br>tcp      0        4166     coolshell.cn:80    61.148.242.38:30901    ESTABLISHED<br>tcp      0        1        coolshell.cn:80    124.152.181.209:26825  FIN_WAIT1<br>tcp      0        0        coolshell.cn:80    110.194.134.189:4796   ESTABLISHED<br>tcp      0        0        coolshell.cn:80    183.60.212.163:51082   TIME_WAIT<br>tcp      0        1        coolshell.cn:80    208.115.113.92:50601   LAST_ACK<br>tcp      0        0        coolshell.cn:80    123.169.124.111:49840  ESTABLISHED<br>tcp      0        0        coolshell.cn:80    117.136.20.85:50025    FIN_WAIT2<br>tcp      0        0        :::22              :::*                   LISTEN<br>脱掉外套<br>过滤记录<br>我们再来看看如何过滤记录（下面过滤条件为：第三列的值为0 &amp;&amp; 第6列的值为LISTEN）</p>
+<p>$ awk ‘$3==0 &amp;&amp; $6==”LISTEN” ‘ netstat.txt<br>tcp        0      0 0.0.0.0:3306               0.0.0.0:*              LISTEN<br>tcp        0      0 0.0.0.0:80                 0.0.0.0:*              LISTEN<br>tcp        0      0 127.0.0.1:9000             0.0.0.0:*              LISTEN<br>tcp        0      0 :::22                      :::*                   LISTEN<br>其中的“==”为比较运算符。其他比较运算符：!=, &gt;, &lt;, &gt;=, &lt;=</p>
+<p>我们来看看各种过滤记录的方式：</p>
+<p>$ awk ‘ $3&gt;0 {print $0}’ netstat.txt<br>Proto Recv-Q Send-Q Local-Address          Foreign-Address             State<br>tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED<br>tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1<br>tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK<br>如果我们需要表头的话，我们可以引入内建变量NR：</p>
+<p>$ awk ‘$3==0 &amp;&amp; $6==”LISTEN” || NR==1 ‘ netstat.txt<br>Proto Recv-Q Send-Q Local-Address          Foreign-Address             State<br>tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN<br>tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN<br>tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN<br>tcp        0      0 :::22                  :::*                        LISTEN<br>再加上格式化输出：</p>
+<p>$ awk ‘$3==0 &amp;&amp; $6==”LISTEN” || NR==1 {printf “%-20s %-20s %s\n”,$4,$5,$6}’ netstat.txt<br>Local-Address        Foreign-Address      State<br>0.0.0.0:3306         0.0.0.0:*            LISTEN<br>0.0.0.0:80           0.0.0.0:*            LISTEN<br>127.0.0.1:9000       0.0.0.0:*            LISTEN<br>:::22                :::*                 LISTEN<br>内建变量<br>说到了内建变量，我们可以来看看awk的一些内建变量：</p>
+<p>$0    当前记录（这个变量中存放着整个行的内容）<br>$1~$n    当前记录的第n个字段，字段间由FS分隔<br>FS    输入字段分隔符 默认是空格或Tab<br>NF    当前记录中的字段个数，就是有多少列<br>NR    已经读出的记录数，就是行号，从1开始，如果有多个文件话，这个值也是不断累加中。<br>FNR    当前记录数，与NR不同的是，这个值会是各个文件自己的行号<br>RS    输入的记录分隔符， 默认为换行符<br>OFS    输出字段分隔符， 默认也是空格<br>ORS    输出的记录分隔符，默认为换行符<br>FILENAME    当前输入文件的名字<br>怎么使用呢，比如：我们如果要输出行号：</p>
+<p>$ awk ‘$3==0 &amp;&amp; $6==”ESTABLISHED” || NR==1 {printf “%02s %s %-20s %-20s %s\n”,NR, FNR, $4,$5,$6}’ netstat.txt<br>01 1 Local-Address        Foreign-Address      State<br>07 7 coolshell.cn:80      110.194.134.189:1032 ESTABLISHED<br>08 8 coolshell.cn:80      123.169.124.111:49809 ESTABLISHED<br>10 10 coolshell.cn:80      123.169.124.111:49829 ESTABLISHED<br>14 14 coolshell.cn:80      110.194.134.189:4796 ESTABLISHED<br>17 17 coolshell.cn:80      123.169.124.111:49840 ESTABLISHED<br>指定分隔符</p>
+<p>$  awk  ‘BEGIN{FS=”:”} {print $1,$3,$6}’ /etc/passwd<br>root 0 /root<br>bin 1 /bin<br>daemon 2 /sbin<br>adm 3 /var/adm<br>lp 4 /var/spool/lpd<br>sync 5 /sbin<br>shutdown 6 /sbin<br>halt 7 /sbin<br>上面的命令也等价于：（-F的意思就是指定分隔符）</p>
+<p>$ awk  -F: ‘{print $1,$3,$6}’ /etc/passwd<br>注：如果你要指定多个分隔符，你可以这样来：</p>
+<p>awk -F ‘[;:]’<br>再来看一个以\t作为分隔符输出的例子（下面使用了/etc/passwd文件，这个文件是以:分隔的）：</p>
+<p>$ awk  -F: ‘{print $1,$3,$6}’ OFS=”\t” /etc/passwd<br>root    0       /root<br>bin     1       /bin<br>daemon  2       /sbin<br>adm     3       /var/adm<br>lp      4       /var/spool/lpd<br>sync    5       /sbin<br>脱掉衬衫<br>字符串匹配<br>我们再来看几个字符串匹配的示例：</p>
+<p>$ awk ‘$6 ~ /FIN/ || NR==1 {print NR,$4,$5,$6}’ OFS=”\t” netstat.txt<br>1       Local-Address   Foreign-Address State<br>6       coolshell.cn:80 61.140.101.185:37538    FIN_WAIT2<br>9       coolshell.cn:80 116.234.127.77:11502    FIN_WAIT2<br>13      coolshell.cn:80 124.152.181.209:26825   FIN_WAIT1<br>18      coolshell.cn:80 117.136.20.85:50025     FIN_WAIT2</p>
+<p>$ $ awk ‘$6 ~ /WAIT/ || NR==1 {print NR,$4,$5,$6}’ OFS=”\t” netstat.txt<br>1       Local-Address   Foreign-Address State<br>5       coolshell.cn:80 124.205.5.146:18245     TIME_WAIT<br>6       coolshell.cn:80 61.140.101.185:37538    FIN_WAIT2<br>9       coolshell.cn:80 116.234.127.77:11502    FIN_WAIT2<br>11      coolshell.cn:80 183.60.215.36:36970     TIME_WAIT<br>13      coolshell.cn:80 124.152.181.209:26825   FIN_WAIT1<br>15      coolshell.cn:80 183.60.212.163:51082    TIME_WAIT<br>18      coolshell.cn:80 117.136.20.85:50025     FIN_WAIT2<br>上面的第一个示例匹配FIN状态， 第二个示例匹配WAIT字样的状态。其实 ~ 表示模式开始。/ /中是模式。这就是一个正则表达式的匹配。</p>
+<p>其实awk可以像grep一样的去匹配第一行，就像这样：</p>
+<p>$ awk ‘/LISTEN/‘ netstat.txt<br>tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN<br>tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN<br>tcp        0      0 127.0.0.1:9000          0.0.0.0:*               LISTEN<br>tcp        0      0 :::22                   :::*                    LISTEN<br>我们可以使用 “/FIN|TIME/” 来匹配 FIN 或者 TIME :</p>
+<p>$ awk ‘$6 ~ /FIN|TIME/ || NR==1 {print NR,$4,$5,$6}’ OFS=”\t” netstat.txt<br>1       Local-Address   Foreign-Address State<br>5       coolshell.cn:80 124.205.5.146:18245     TIME_WAIT<br>6       coolshell.cn:80 61.140.101.185:37538    FIN_WAIT2<br>9       coolshell.cn:80 116.234.127.77:11502    FIN_WAIT2<br>11      coolshell.cn:80 183.60.215.36:36970     TIME_WAIT<br>13      coolshell.cn:80 124.152.181.209:26825   FIN_WAIT1<br>15      coolshell.cn:80 183.60.212.163:51082    TIME_WAIT<br>18      coolshell.cn:80 117.136.20.85:50025     FIN_WAIT2<br>再来看看模式取反的例子：</p>
+<p>$ awk ‘$6 !~ /WAIT/ || NR==1 {print NR,$4,$5,$6}’ OFS=”\t” netstat.txt<br>1       Local-Address   Foreign-Address State<br>2       0.0.0.0:3306    0.0.0.0:*       LISTEN<br>3       0.0.0.0:80      0.0.0.0:*       LISTEN<br>4       127.0.0.1:9000  0.0.0.0:*       LISTEN<br>7       coolshell.cn:80 110.194.134.189:1032    ESTABLISHED<br>8       coolshell.cn:80 123.169.124.111:49809   ESTABLISHED<br>10      coolshell.cn:80 123.169.124.111:49829   ESTABLISHED<br>12      coolshell.cn:80 61.148.242.38:30901     ESTABLISHED<br>14      coolshell.cn:80 110.194.134.189:4796    ESTABLISHED<br>16      coolshell.cn:80 208.115.113.92:50601    LAST_ACK<br>17      coolshell.cn:80 123.169.124.111:49840   ESTABLISHED<br>19      :::22   :::*    LISTEN<br>或是：</p>
+<p>1<br>awk ‘!/WAIT/‘ netstat.txt<br>折分文件</p>
+<p>awk拆分文件很简单，使用重定向就好了。下面这个例子，是按第6例分隔文件，相当的简单（其中的NR!=1表示不处理表头）。</p>
+<p>$ awk ‘NR!=1{print &gt; $6}’ netstat.txt</p>
+<p>$ ls<br>ESTABLISHED  FIN_WAIT1  FIN_WAIT2  LAST_ACK  LISTEN  netstat.txt  TIME_WAIT</p>
+<p>$ cat ESTABLISHED<br>tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED<br>tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED<br>tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED</p>
+<p>$ cat FIN_WAIT1<br>tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1</p>
+<p>$ cat FIN_WAIT2<br>tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2<br>tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2<br>tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2</p>
+<p>$ cat LAST_ACK<br>tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK</p>
+<p>$ cat LISTEN<br>tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN<br>tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN<br>tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN<br>tcp        0      0 :::22                  :::*                        LISTEN</p>
+<p>$ cat TIME_WAIT<br>tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT<br>tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT<br>tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT<br>你也可以把指定的列输出到文件：</p>
+<p>awk ‘NR!=1{print $4,$5 &gt; $6}’ netstat.txt<br>再复杂一点：（注意其中的if-else-if语句，可见awk其实是个脚本解释器）</p>
+<p>$ awk ‘NR!=1{if($6 ~ /TIME|ESTABLISHED/) print &gt; “1.txt”;<br>else if($6 ~ /LISTEN/) print &gt; “2.txt”;<br>else print &gt; “3.txt” }’ netstat.txt</p>
+<p>$ ls ?.txt<br>1.txt  2.txt  3.txt</p>
+<p>$ cat 1.txt<br>tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT<br>tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED<br>tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT<br>tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED<br>tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED<br>tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT<br>tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED</p>
+<p>$ cat 2.txt<br>tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN<br>tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN<br>tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN<br>tcp        0      0 :::22                  :::*                        LISTEN</p>
+<p>$ cat 3.txt<br>tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2<br>tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2<br>tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1<br>tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK<br>tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2<br>统计<br>下面的命令计算所有的C文件，CPP文件和H文件的文件大小总和。</p>
+<p>$ ls -l  *.cpp *.c *.h | awk ‘{sum+=$5} END {print sum}’<br>2511401<br>我们再来看一个统计各个connection状态的用法：（我们可以看到一些编程的影子了，大家都是程序员我就不解释了。注意其中的数组的用法）</p>
+<p>$ awk ‘NR!=1{a[$6]++;} END {for (i in a) print i “, “ a[i];}’ netstat.txt<br>TIME_WAIT, 3<br>FIN_WAIT1, 1<br>ESTABLISHED, 6<br>FIN_WAIT2, 3<br>LAST_ACK, 1<br>LISTEN, 4<br>再来看看统计每个用户的进程的占了多少内存（注：sum的RSS那一列）<br>$ ps aux | awk ‘NR!=1{a[$1]+=$6;} END { for(i in a) print i “, “ a[i]”KB”;}’<br>dbus, 540KB<br>mysql, 99928KB<br>www, 3264924KB<br>root, 63644KB<br>hchen, 6020KB<br>脱掉内衣<br>awk脚本<br>在上面我们可以看到一个END关键字。END的意思是“处理完所有的行的标识”，即然说到了END就有必要介绍一下BEGIN，这两个关键字意味着执行前和执行后的意思，语法如下：</p>
+<p>BEGIN{ 这里面放的是执行前的语句 }<br>END {这里面放的是处理完所有的行后要执行的语句 }<br>{这里面放的是处理每一行时要执行的语句}<br>为了说清楚这个事，我们来看看下面的示例：</p>
+<p>假设有这么一个文件（学生成绩表）：<br>$ cat score.txt<br>Marry   2143 78 84 77<br>Jack    2321 66 78 45<br>Tom     2122 48 77 71<br>Mike    2537 87 97 95<br>Bob     2415 40 57 62<br>我们的awk脚本如下（我没有写有命令行上是因为命令行上不易读，另外也在介绍另一种用法）：</p>
+<p>$ cat cal.awk<br>#!/bin/awk -f<br>#运行前<br>BEGIN {<br>    math = 0<br>    english = 0<br>    computer = 0</p>
+<pre><code>printf &quot;NAME    NO.   MATH  ENGLISH  COMPUTER   TOTAL\n&quot;
+printf &quot;---------------------------------------------\n&quot;
+</code></pre>
+<p>}<br>#运行中<br>{<br>    math+=$3<br>    english+=$4<br>    computer+=$5<br>    printf “%-6s %-6s %4d %8d %8d %8d\n”, $1, $2, $3,$4,$5, $3+$4+$5<br>}<br>#运行后<br>END {<br>    printf “———————————————\n”<br>    printf “  TOTAL:%10d %8d %8d \n”, math, english, computer<br>    printf “AVERAGE:%10.2f %8.2f %8.2f\n”, math/NR, english/NR, computer/NR<br>}<br>我们来看一下执行结果：（也可以这样运行 ./cal.awk score.txt）</p>
+<p>$ awk -f cal.awk score.txt<br>NAME    NO.   MATH  ENGLISH  COMPUTER   TOTAL</p>
+<hr>
+<p>Marry  2143     78       84       77      239<br>Jack   2321     66       78       45      189<br>Tom    2122     48       77       71      196<br>Mike   2537     87       97       95      279<br>Bob    2415     40       57       62      159</p>
+<hr>
+<p>  TOTAL:       319      393      350<br>AVERAGE:     63.80    78.60    70.00<br>环境变量<br>即然说到了脚本，我们来看看怎么和环境变量交互：（使用-v参数和ENVIRON，使用ENVIRON的环境变量需要export）<br>$ x=5</p>
+<p>$ y=10<br>$ export y</p>
+<p>$ echo $x $y<br>5 10</p>
+<p>$ awk -v val=$x ‘{print $1, $2, $3, $4+val, $5+ENVIRON[“y”]}’ OFS=”\t” score.txt<br>Marry   2143    78      89      87<br>Jack    2321    66      83      55<br>Tom     2122    48      82      81<br>Mike    2537    87      102     105<br>Bob     2415    40      62      72<br>几个花活<br>最后，我们再来看几个小例子：</p>
+<p>#从file文件中找出长度大于80的行<br>awk ‘length&gt;80’ file</p>
+<p>#按连接数查看客户端IP<br>netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sort | uniq -c | sort -nr</p>
+<p>#打印99乘法表<br>seq 9 | sed ‘H;g’ | awk -v RS=’’ ‘{for(i=1;i&lt;=NF;i++)printf(“%dx%d=%d%s”, i, NR, i*NR, i==NR?”\n”:”\t”)}’</p>
+<p><a target="_blank" rel="noopener" href="http://awk.readthedocs.org/en/latest/chapter-one.html">http://awk.readthedocs.org/en/latest/chapter-one.html</a><br><a target="_blank" rel="noopener" href="http://www.aslibra.com/doc/awk.htm">http://www.aslibra.com/doc/awk.htm</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LINUX/" rel="tag"># LINUX</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/04/08/location%E6%AD%A3%E5%88%99%E5%86%99%E6%B3%95/" rel="prev" title="location正则写法">
+      <i class="fa fa-chevron-left"></i> location正则写法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/04/14/Linux%C2%A0%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BF%AB%E6%8D%B7%E9%94%AE%20%E5%BE%88%E6%9C%89%E7%94%A8/" rel="next" title="Linux 命令行快捷键 很有用">
+      Linux 命令行快捷键 很有用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

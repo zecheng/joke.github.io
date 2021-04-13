@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="路虽遥,行必至.事虽难,做必成.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="泽宬的技术博客">
+<meta property="og:url" content="https://zecheng.github.io/page/19/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="路虽遥,行必至.事虽难,做必成.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/page/19/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/%E7%AE%80%E5%8D%95%E5%B8%B8%E7%94%A8JS%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88%E5%A4%A7%E5%85%A8107%E4%B8%AA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/%E7%AE%80%E5%8D%95%E5%B8%B8%E7%94%A8JS%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88%E5%A4%A7%E5%85%A8107%E4%B8%AA/" class="post-title-link" itemprop="url">简单常用JS函数集合大全107个</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:36:22" itemprop="dateCreated datePublished" datetime="2013-06-17T22:36:22+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">document</span>.write(<span class="string">&quot;&quot;</span>); 输出语句</span><br><span class="line"><span class="number">2.</span>JS中的注释为<span class="comment">//</span></span><br><span class="line"><span class="number">3.</span>传统的HTML文档顺序是:<span class="built_in">document</span>-&gt;html-&gt;(head,body)</span><br><span class="line"><span class="number">4.</span>一个浏览器窗口中的DOM顺序是:<span class="built_in">window</span>-&gt;(navigator,screen,history,location,<span class="built_in">document</span>)</span><br><span class="line"><span class="number">5.</span>得到表单中元素的名称和值:<span class="built_in">document</span>.getElementById(<span class="string">&quot;表单中元素的ID号&quot;</span>).name(或value)</span><br><span class="line"><span class="number">6.</span>一个小写转大写的JS: <span class="built_in">document</span>.getElementById(<span class="string">&quot;output&quot;</span>).value = <span class="built_in">document</span>.getElementById(<span class="string">&quot;input&quot;</span>).value.toUpperCase();</span><br><span class="line"><span class="number">7.</span>JS中的值类型:<span class="built_in">String</span>,<span class="built_in">Number</span>,<span class="built_in">Boolean</span>,Null,<span class="built_in">Object</span>,<span class="built_in">Function</span></span><br><span class="line"><span class="number">8.</span>JS中的字符型转换成数值型:<span class="built_in">parseInt</span>(),<span class="built_in">parseFloat</span>()</span><br><span class="line"><span class="number">9.</span>JS中的数字转换成字符型:(<span class="string">&quot;&quot;</span>+变量)</span><br><span class="line"><span class="number">10.</span>JS中的取字符串长度是:(length)</span><br><span class="line"><span class="number">11.</span>JS中的字符与字符相连接使用+号.</span><br><span class="line"><span class="number">12.</span>JS中的比较操作符有:==等于,!=不等于,&gt;,&gt;=,&lt;.&lt;=</span><br><span class="line"><span class="number">13.</span>JS中声明变量使用:<span class="keyword">var</span>来进行声明</span><br><span class="line"><span class="number">14.</span>JS中的判断语句结构:<span class="keyword">if</span>(condition)&#123;&#125;<span class="keyword">else</span>&#123;&#125;</span><br><span class="line"><span class="number">15.</span>JS中的循环结构:<span class="keyword">for</span>([initial e&amp;shy;xPRession];[condition];[upadte e&amp;shy;xpression]) &#123;inside loop&#125;</span><br><span class="line"><span class="number">16.</span>循环中止的命令是:<span class="keyword">break</span></span><br><span class="line"><span class="number">17.</span>JS中的函数定义:<span class="function"><span class="keyword">function</span> <span class="title">functionName</span>(<span class="params">[parameter],...</span>)</span>&#123;statement[s]&#125;</span><br><span class="line"><span class="number">18.</span>当文件中出现多个form表单时.可以用<span class="built_in">document</span>.forms[<span class="number">0</span>],<span class="built_in">document</span>.forms[<span class="number">1</span>]来代替.</span><br><span class="line"><span class="number">19.</span>窗口:打开窗口<span class="built_in">window</span>.open(), 关闭一个窗口:<span class="built_in">window</span>.close(), 窗口本身:self</span><br><span class="line"><span class="number">20.</span>状态栏的设置:<span class="built_in">window</span>.status=<span class="string">&quot;字符&quot;</span>;</span><br><span class="line"><span class="number">21.</span>弹出提示信息:<span class="built_in">window</span>.alert(<span class="string">&quot;字符&quot;</span>);</span><br><span class="line"><span class="number">22.</span>弹出确认框:<span class="built_in">window</span>.confirm();</span><br><span class="line"><span class="number">23.</span>弹出输入提示框:<span class="built_in">window</span>.prompt();</span><br><span class="line"><span class="number">24.</span>指定当前显示链接的位置:<span class="built_in">window</span>.location.href=<span class="string">&quot;URL&quot;</span></span><br><span class="line"><span class="number">25.</span>取出窗体中的所有表单的数量:<span class="built_in">document</span>.forms.length</span><br><span class="line"><span class="number">26.</span>关闭文档的输出流:<span class="built_in">document</span>.close();</span><br><span class="line"><span class="number">27.</span>字符串追加连接符:+=</span><br><span class="line"><span class="number">28.</span>创建一个文档元素:<span class="built_in">document</span>.createElement(),<span class="built_in">document</span>.createTextNode()</span><br><span class="line"><span class="number">29.</span>得到元素的方法:<span class="built_in">document</span>.getElementById()</span><br><span class="line"><span class="number">30.</span>设置表单中所有文本型的成员的值为空:</span><br><span class="line"><span class="keyword">var</span> form = <span class="built_in">window</span>.document.forms[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;form.elements.length;i++)&#123;</span><br><span class="line"><span class="keyword">if</span> (form.elements[i].type == <span class="string">&quot;text&quot;</span>)&#123;</span><br><span class="line">form.elements[i].value = <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">31.</span>复选按钮在JS中判断是否选中:<span class="built_in">document</span>.forms[<span class="number">0</span>].checkThis.checked (checked属性代表为是否选中返回TRUE或FALSE)</span><br><span class="line"><span class="number">32.</span>单选按钮组(单选按钮的名称必须相同):取单选按钮组的长度<span class="built_in">document</span>.forms[<span class="number">0</span>].groupName.length</span><br><span class="line"><span class="number">33.</span>单选按钮组判断是否被选中也是用checked.</span><br><span class="line"><span class="number">34.</span>下拉列表框的值:<span class="built_in">document</span>.forms[<span class="number">0</span>].selectName.options[n].value (n有时用下拉列表框名称加上.selectedIndex来确定被选中的值)</span><br><span class="line"><span class="number">35.</span>字符串的定义:<span class="keyword">var</span> myString = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&quot;This is lightsWord&quot;</span>);</span><br><span class="line"><span class="number">36.</span>字符串转成大写:string.toUpperCase(); 字符串转成小写:string.toLowerCase();</span><br><span class="line"><span class="number">37.</span>返回字符串<span class="number">2</span>在字符串<span class="number">1</span>中出现的位置:String1.indexOf(<span class="string">&quot;String2&quot;</span>)!=-<span class="number">1</span>则说明没找到.</span><br><span class="line"><span class="number">38.</span>取字符串中指定位置的一个字符:StringA.charAt(<span class="number">9</span>);</span><br><span class="line"><span class="number">39.</span>取出字符串中指定起点和终点的子字符串:stringA.substring(<span class="number">2</span>,<span class="number">6</span>);</span><br><span class="line"><span class="number">40.</span>数学函数:<span class="built_in">Math</span>.PI(返回圆周率),<span class="built_in">Math</span>.SQRT2(返回开方),<span class="built_in">Math</span>.max(value1,value2)返回两个数中的最在值,<span class="built_in">Math</span>.pow(value1,<span class="number">10</span>)返回value1的十次方,<span class="built_in">Math</span>.round(value1)四舍五入函数,<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*(n+<span class="number">1</span>))返回随机数</span><br><span class="line"><span class="number">41.</span>定义日期型变量:<span class="keyword">var</span> today = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="number">42.</span>日期函数列表:dateObj.getTime()得到时间,dateObj.getYear()得到年份,dateObj.getFullYear()得到四位的年份,dateObj.getMonth()得到月份,dateObj.getDate()得到日,dateObj.getDay()得到日期几,dateObj.getHours()得到小时,dateObj.getMinutes()得到分,dateObj.getSeconds()得到秒,dateObj.setTime(value)设置时间,dateObj.setYear(val)设置年,dateObj.setMonth(val)设置月,dateObj.setDate(val)设置日,dateObj.setDay(val)设置星期几,dateObj.setHours设置小时,dateObj.setMinutes(val)设置分,dateObj.setSeconds(val)设置秒 [注意:此日期时间从<span class="number">0</span>开始计]</span><br><span class="line"><span class="number">43.</span>FRAME的表示方式: [<span class="built_in">window</span>.]frames[n].ObjFuncVarName,frames[<span class="string">&quot;frameName&quot;</span>].ObjFuncVarName,frameName.ObjFuncVarName</span><br><span class="line"><span class="number">44.</span>parent代表父亲对象,top代表最顶端对象</span><br><span class="line"><span class="number">45.</span>打开子窗口的父窗口为:opener</span><br><span class="line"><span class="number">46.</span>表示当前所属的位置:<span class="built_in">this</span></span><br><span class="line"><span class="number">47.</span>当在超链接中调用JS函数时用:(javascript:)来开头后面加函数名</span><br><span class="line"><span class="number">48.</span>在老的浏览器中不执行此JS:&lt;!-- <span class="comment">//--&gt;</span></span><br><span class="line"><span class="number">49.</span>引用一个文件式的JS:<span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/Javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;aaa.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="number">50.</span>指定在不支持脚本的浏览器显示的HTML:<span class="xml"><span class="tag">&lt;<span class="name">noscript</span>&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span></span><br><span class="line"><span class="number">51.</span>当超链和ONCLICK事件都有时,则老版本的浏览器转向a.html,否则转向b.html.例:<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;a.html&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;location.href=&quot;</span><span class="attr">b.html</span>&quot;;<span class="attr">return</span> <span class="attr">false</span>&quot;&gt;</span>dfsadf<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="number">52.</span>JS的内建对象有:<span class="built_in">Array</span>,<span class="built_in">Boolean</span>,<span class="built_in">Date</span>,<span class="built_in">Error</span>,<span class="built_in">EvalError</span>,<span class="built_in">Function</span>,<span class="built_in">Math</span>,<span class="built_in">Number</span>,<span class="built_in">Object</span>,<span class="built_in">RangeError</span>,<span class="built_in">ReferenceError</span>,<span class="built_in">RegExp</span>,<span class="built_in">String</span>,<span class="built_in">SyntaxError</span>,<span class="built_in">TypeError</span>,<span class="built_in">URIError</span></span><br><span class="line"><span class="number">53.</span>JS中的换行:</span><br><span class="line"> </span><br><span class="line"><span class="number">54.</span>窗口全屏大小:<span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">fullScreen</span>(<span class="params"></span>)</span>&#123; <span class="built_in">this</span>.moveTo(<span class="number">0</span>,<span class="number">0</span>);<span class="built_in">this</span>.outerWidth=screen.availWidth;<span class="built_in">this</span>.outerHeight=screen.availHeight;&#125;<span class="built_in">window</span>.maximize=fullScreen;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="number">55.</span>JS中的all代表其下层的全部元素http:<span class="comment">//bizhi.knowsky.com/</span></span><br><span class="line"><span class="number">56.</span>JS中的焦点顺序:<span class="built_in">document</span>.getElementByid(<span class="string">&quot;表单元素&quot;</span>).tabIndex = <span class="number">1</span></span><br><span class="line"><span class="number">57.</span>innerHTML的值是表单元素的值:如&lt;p id=<span class="string">&quot;para&quot;</span>&gt;<span class="string">&quot;how are &lt;em&gt;you&lt;/em&gt;&quot;</span>&lt;<span class="regexp">/p&gt;,则innerHTML的值就是:how are &lt;em&gt;you&lt;/</span>em&gt;</span><br><span class="line"><span class="number">58.</span>innerTEXT的值和上面的一样,只不过不会把&lt;em&gt;这种标记显示出来.</span><br><span class="line"><span class="number">59.</span>contentEditable可设置元素是否可被修改,isContentEditable返回是否可修改的状态.</span><br><span class="line"><span class="number">60.</span>isDisabled判断是否为禁止状态.disabled设置禁止状态</span><br><span class="line"><span class="number">61.</span>length取得长度,返回整型数值</span><br><span class="line"><span class="number">62.</span>addBehavior()是一种JS调用的外部函数文件其扩展名为.htc</span><br><span class="line"><span class="number">63.</span><span class="built_in">window</span>.focus()使当前的窗口在所有窗口之前.</span><br><span class="line"><span class="number">64.</span>blur()指失去焦点.与FOCUS()相反.</span><br><span class="line"><span class="number">65.</span>select()指元素为选中状态.</span><br><span class="line"><span class="number">66.</span>防止用户对文本框中输入文本:onfocus=<span class="string">&quot;this.blur()&quot;</span></span><br><span class="line"><span class="number">67.</span>取出该元素在页面中出现的数量:<span class="built_in">document</span>.all.tags(<span class="string">&quot;div(或其它HTML标记符)&quot;</span>).length</span><br><span class="line"><span class="number">68.</span>JS中分为两种窗体输出:模态和非模态.window.showModaldialog(),<span class="built_in">window</span>.showModeless()</span><br><span class="line"><span class="number">69.</span>状态栏文字的设置:<span class="built_in">window</span>.status=<span class="string">&quot;文字&quot;</span>,默认的状态栏文字设置:<span class="built_in">window</span>.defaultStatus = <span class="string">&quot;文字.&quot;</span>;</span><br><span class="line"><span class="number">70.</span>添加到收藏夹:external.AddFavorite(<span class="string">&quot;http://www.xrss.cn&quot;</span>,<span class="string">&quot;jaskdlf&quot;</span>);</span><br><span class="line"><span class="number">71.</span>JS中遇到脚本错误时不做任何操作:<span class="built_in">window</span>.onerror = doNothing; 指定错误句柄的语法为:<span class="built_in">window</span>.onerror = handleError;</span><br><span class="line"><span class="number">72.</span>JS中指定当前打开窗口的父窗口:<span class="built_in">window</span>.opener,支持opener.opener...的多重继续.</span><br><span class="line"><span class="number">73.</span>JS中的self指的是当前的窗口</span><br><span class="line"><span class="number">74.</span>JS中状态栏显示内容:<span class="built_in">window</span>.status=<span class="string">&quot;内容&quot;</span></span><br><span class="line"><span class="number">75.</span>JS中的top指的是框架集中最顶层的框架</span><br><span class="line"><span class="number">76.</span>JS中关闭当前的窗口:<span class="built_in">window</span>.close();</span><br><span class="line"><span class="number">77.</span>JS中提出是否确认的框:<span class="keyword">if</span>(confirm(<span class="string">&quot;Are you sure?&quot;</span>))&#123;alert(<span class="string">&quot;ok&quot;</span>);&#125;<span class="keyword">else</span>&#123;alert(<span class="string">&quot;Not Ok&quot;</span>);&#125;</span><br><span class="line"><span class="number">78.</span>JS中的窗口重定向:<span class="built_in">window</span>.navigate(<span class="string">&quot;http://www.sina.com.cn&quot;</span>);</span><br><span class="line"><span class="number">79.</span>JS中的打印:<span class="built_in">window</span>.print()</span><br><span class="line"><span class="number">80.</span>JS中的提示输入框:<span class="built_in">window</span>.prompt(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;defaultReply&quot;</span>);</span><br><span class="line"><span class="number">81.</span>JS中的窗口滚动条:<span class="built_in">window</span>.scroll(x,y)</span><br><span class="line"><span class="number">82.</span>JS中的窗口滚动到位置:<span class="built_in">window</span>.scrollby</span><br><span class="line"><span class="number">83.</span>JS中设置时间间隔:<span class="built_in">setInterval</span>(<span class="string">&quot;expr&quot;</span>,msecDelay)或<span class="built_in">setInterval</span>(funcRef,msecDelay)或<span class="built_in">setTimeout</span></span><br><span class="line"><span class="number">84.</span>JS中的模态显示在IE4+行,在NN中不行:showModalDialog(<span class="string">&quot;URL&quot;</span>[,<span class="built_in">arguments</span>][,features]);</span><br><span class="line"><span class="number">85.</span>JS中的退出之前使用的句柄:<span class="function"><span class="keyword">function</span> <span class="title">verifyClose</span>(<span class="params"></span>)</span>&#123;event.returnValue=<span class="string">&quot;we really like you and hope you will stay longer.&quot;</span>;&#125;&#125; <span class="built_in">window</span>.onbeforeunload=verifyClose;</span><br><span class="line"><span class="number">86.</span>当窗体第一次调用时使用的文件句柄:onload()</span><br><span class="line"><span class="number">87.</span>当窗体关闭时调用的文件句柄:onunload()</span><br><span class="line"><span class="number">88.</span><span class="built_in">window</span>.location的属性: protocol(http:),hostname(www.example.com),port(<span class="number">80</span>),host(www.example.com:<span class="number">80</span>),pathname(<span class="string">&quot;/a/a.html&quot;</span>),hash(<span class="string">&quot;#giantGizmo&quot;</span>,指跳转到相应的锚记),href(全部的信息)</span><br><span class="line"><span class="number">89.</span><span class="built_in">window</span>.location.reload()刷新当前页面.</span><br><span class="line"><span class="number">89</span>-<span class="number">1.</span>parent.location.reload()刷新父亲对象（用于框架）</span><br><span class="line"><span class="number">89</span>-<span class="number">2.</span>opener.location.reload()刷新父窗口对象（用于单开窗口）</span><br><span class="line"><span class="number">89</span>-<span class="number">3.</span>top.location.reload()刷新最顶端对象（用于多开窗口）</span><br><span class="line"><span class="number">90.</span><span class="built_in">window</span>.history.back()返回上一页,<span class="built_in">window</span>.history.forward()返回下一页,<span class="built_in">window</span>.history.go(返回第几页,也可以使用访问过的URL)</span><br><span class="line"><span class="number">91.</span><span class="built_in">document</span>.write()不换行的输出,<span class="built_in">document</span>.writeln()换行输出</span><br><span class="line"><span class="number">92.</span><span class="built_in">document</span>.body.noWrap=<span class="literal">true</span>;防止链接文字折行.</span><br><span class="line"><span class="number">93.</span>变量名.charAt(第几位),取该变量的第几位的字符.</span><br><span class="line"><span class="number">94.</span><span class="string">&quot;abc&quot;</span>.charCodeAt(第几个),返回第几个字符的ASCii码值.</span><br><span class="line"><span class="number">95.</span>字符串连接:string.concat(string2),或用+=进行连接</span><br><span class="line"><span class="number">96.</span>变量.indexOf(<span class="string">&quot;字符&quot;</span>,起始位置),返回第一个出现的位置(从<span class="number">0</span>开始计算)</span><br><span class="line"><span class="number">97.</span>string.lastIndexOf(searchString[,startIndex])最后一次出现的位置.</span><br><span class="line"><span class="number">98.</span>string.match(regExpression),判断字符是否匹配.</span><br><span class="line"><span class="number">99.</span>string.replace(regExpression,replaceString)替换现有字符串.</span><br><span class="line"><span class="number">100.</span>string.split(分隔符)返回一个数组存储值.</span><br><span class="line"><span class="number">101.</span>string.substr(start[,length])取从第几位到指定长度的字符串.</span><br><span class="line"><span class="number">102.</span>string.toLowerCase()使字符串全部变为小写.</span><br><span class="line"><span class="number">103.</span>string.toUpperCase()使全部字符变为大写.</span><br><span class="line"><span class="number">104.</span><span class="built_in">parseInt</span>(string[,radix(代表进制)])强制转换成整型.</span><br><span class="line"><span class="number">105.</span><span class="built_in">parseFloat</span>(string[,radix])强制转换成浮点型.</span><br><span class="line"><span class="number">106.</span><span class="built_in">isNaN</span>(变量):测试是否为数值型.</span><br><span class="line"><span class="number">107.</span>定义常量的关键字:<span class="keyword">const</span>,定义变量的关键字:<span class="keyword">var</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/JS%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/JS%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">JS类型转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:36:01" itemprop="dateCreated datePublished" datetime="2013-06-17T22:36:01+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>145</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>+<span class="string">&quot;a&quot;</span>; <span class="comment">//数字 字符 =字符</span></span><br><span class="line"><span class="keyword">var</span> b=<span class="literal">false</span>+<span class="string">&quot;a&quot;</span>; <span class="comment">//布尔+字符=字符</span></span><br><span class="line"><span class="keyword">var</span> c=<span class="literal">true</span>+<span class="number">1</span>; <span class="comment">//布尔+数字=数字</span></span><br><span class="line">alert(<span class="keyword">typeof</span>(a));</span><br><span class="line">alert(<span class="keyword">typeof</span>(b));</span><br><span class="line">alert(<span class="keyword">typeof</span>(c)); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0__%E5%9F%BA%E7%A1%80__%E5%A4%A7%E5%B0%8F%E5%86%99%20and%20%E6%80%9D%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0__%E5%9F%BA%E7%A1%80__%E5%A4%A7%E5%B0%8F%E5%86%99%20and%20%E6%80%9D%E8%B7%AF/" class="post-title-link" itemprop="url">javascript学习笔记__基础__大小写 and 思路</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:35:40" itemprop="dateCreated datePublished" datetime="2013-06-17T22:35:40+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这些是我在网上看到的很简单的例子但是里面都是经验 就是作者写的时候大小写没有分给我带来了排错学习的机会一定要记得 js对大小写的严谨,还有就是解决问题的思路,先解决问题然后在优化,在优化,在优化.<br>此时想起了上大学利用 VB 写的一个用时间加密的小程序,用它得了95分顺利通过考试哈哈….高兴的是别人写了N行别的程序而我写了不到30行.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/06/17/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0__%E5%9F%BA%E7%A1%80__%E5%A4%A7%E5%B0%8F%E5%86%99%20and%20%E6%80%9D%E8%B7%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/javascript%20console/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/javascript%20console/" class="post-title-link" itemprop="url">javascript console</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:35:10" itemprop="dateCreated datePublished" datetime="2013-06-17T22:35:10+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(object[, object, ...])</span><br><span class="line">在控制台输出一条消息。如果有多个参数，输出时会用空格隔开这些参数。</span><br><span class="line"> </span><br><span class="line">第一个参数可以是一个包含格式化占位符输出的字符串，例如：</span><br><span class="line"><span class="built_in">console</span>.log(&amp;quot;The %s jumped over %d tall buildings&amp;quot;, animal, count);</span><br><span class="line"> </span><br><span class="line">上面的例子可以用下面的无格式化占位符输出的代码替换：</span><br><span class="line"><span class="built_in">console</span>.log( &amp;quot; The &amp;quot; , animal,  &amp;quot; jumped over &amp;quot; , count,  &amp;quot; tall buildings &amp;quot; );</span><br><span class="line"> </span><br><span class="line">并且，这两种方式是可以组合使用的。如果使用了格式化占位符，而提供的参数的个数多于占位符的个数，那么，多余的参数会以空格分隔的方式附加在字符串后面，就像：</span><br><span class="line"><span class="built_in">console</span>.log( &amp;quot; I am %s and I have: &amp;quot; , myName, thing1, thing2, thing3);</span><br><span class="line"> </span><br><span class="line">如果参数是一个Javascript对象，那么在控制台输出的就不是静态文字，而是一个可交互的超链接，点击超链接可以查看该对象的HTML, CSS, Script, DOM窗口，可用格式化字符串%o代替Javascript对象。</span><br><span class="line"><span class="built_in">console</span>.log( &amp;quot; Body tag is %o &amp;quot; , <span class="built_in">document</span>.body);</span><br><span class="line"> </span><br><span class="line">格式化字符串列表：</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">%s  字符串</span><br><span class="line">%d, %i  整型（暂不支持数字型）</span><br><span class="line">%f  浮点型 （暂不支持数字型） </span><br><span class="line">%o  链接对象</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.debug(object[, object, ...])</span><br><span class="line">在控制台输出一条消息，包含一个指向代码调用位置的超链接。假如是直接在控制台输入该命令，就不会出现超链接（和<span class="built_in">console</span>.log()一样）。</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.info(object[, object, ...])</span><br><span class="line">在控制台输出一条带有“信息”图标的消息和一个指向代码调用位置的超链接。</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.warn(object[, object, ...])</span><br><span class="line">在控制台输出一条带有“警告”图标的消息和一个指向代码调用位置的超链接。</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.error(object[, object, ...])</span><br><span class="line">在控制台输出一条带有“错误”图标的消息和一个指向代码调用位置的超链接。</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.assert(expression[, object, ...])</span><br><span class="line">测试表达式expression是否为真。如果不是真，会在控制台写一条消息并抛出异常</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.dir(object)</span><br><span class="line">以列表形式输出一个对象的所有属性，有点和你查看DOM窗口相类似。</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.dirxml(node)</span><br><span class="line">输出一个HTML或者XML元素的XML源代码。和你在HTML窗口看到的相似。</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.trace()</span><br><span class="line">Prints an interactive stack trace <span class="keyword">of</span> JavaScript execution at the point where it is called.</span><br><span class="line"> </span><br><span class="line">The stack trace details the functions on the stack, <span class="keyword">as</span> well <span class="keyword">as</span> the values that were passed <span class="keyword">as</span> <span class="built_in">arguments</span> to each <span class="keyword">function</span>. You can click each <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">take</span> <span class="title">you</span> <span class="title">to</span> <span class="title">its</span> <span class="title">source</span> <span class="title">in</span> <span class="title">the</span> <span class="title">Script</span> <span class="title">tab</span>, <span class="title">and</span> <span class="title">click</span> <span class="title">each</span> <span class="title">argument</span> <span class="title">value</span> <span class="title">to</span> <span class="title">inspect</span> <span class="title">it</span> <span class="title">in</span> <span class="title">the</span> <span class="title">DOM</span> <span class="title">or</span> <span class="title">HTML</span> <span class="title">tabs</span>.</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">group</span>(<span class="params">object[, object, ...]</span>)</span></span><br><span class="line"><span class="function">输出一条消息，并打开一个嵌套块，块中的内容都会缩进。调用<span class="title">console</span>.<span class="title">groupEnd</span>(<span class="params"></span>)关闭块。该命令可以嵌套使用。</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">groupEnd</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">关闭最近一个由<span class="title">console</span>.<span class="title">group</span>打开的块。</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">time</span>(<span class="params">name</span>)</span></span><br><span class="line"><span class="function">创建一个名字为<span class="title">name</span>的计时器，调用<span class="title">console</span>.<span class="title">timeEnd</span>(<span class="params">name</span>)停止计时器并输出所耗时间（毫秒）。</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">timeEnd</span>(<span class="params">name</span>)</span></span><br><span class="line"><span class="function">停止同名的计时器并输出所耗时间（毫秒）。</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">profile</span>(<span class="params">[title]</span>)</span></span><br><span class="line"><span class="function">打开<span class="title">Javascript</span>性能测试开关。可选参数<span class="title">title</span>会在打印性能测试报告时在报告的开头输出。</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">profileEnd</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">关闭<span class="title">Javascript</span>性能测试开关并输出报告。</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">count</span>(<span class="params">[title]</span>)</span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">Writes</span> <span class="title">the</span> <span class="title">number</span> <span class="title">of</span> <span class="title">times</span> <span class="title">that</span> <span class="title">the</span> <span class="title">line</span> <span class="title">of</span> <span class="title">code</span> <span class="title">where</span> <span class="title">count</span> <span class="title">was</span> <span class="title">called</span> <span class="title">was</span> <span class="title">executed</span>. <span class="title">The</span> <span class="title">optional</span> <span class="title">argument</span> <span class="title">title</span> <span class="title">will</span> <span class="title">print</span> <span class="title">a</span> <span class="title">message</span> <span class="title">in</span> <span class="title">addition</span> <span class="title">to</span> <span class="title">the</span> <span class="title">number</span> <span class="title">of</span> <span class="title">the</span> <span class="title">count</span>.﻿ </span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/js%E5%8A%A0%E5%87%8F%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/js%E5%8A%A0%E5%87%8F%E6%B3%95/" class="post-title-link" itemprop="url">js加减法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:34:42" itemprop="dateCreated datePublished" datetime="2013-06-17T22:34:42+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>875</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&#x27;text/html;charset=&quot;utf-8&quot;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">getRandom</span>(<span class="params"></span>) </span>&#123;<span class="comment">//孤风傲雪逗自己玩</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> rnd = <span class="built_in">Math</span>.random();</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> number = <span class="built_in">Math</span>.floor(rnd * <span class="number">10</span>);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> number;</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> a = getRandom();</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> b = getRandom();</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> aaa = a;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> bbb = b;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> aa = <span class="built_in">String</span>(a);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> bb = <span class="built_in">String</span>(b);</span></span><br><span class="line">        if (getRandom() % 2 == 0) &#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> c = a + b;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> password = prompt(aa + <span class="string">&quot;+&quot;</span> + bb + <span class="string">&quot;=&quot;</span> + <span class="string">&quot;?&quot;</span>, <span class="string">&quot;&quot;</span>);</span></span><br><span class="line">            if (password == c) &#123;</span><br><span class="line"></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;正确&quot;</span>);</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;错误&quot;</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> c = a - b;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> password = prompt(aa + <span class="string">&quot;-&quot;</span> + bb + <span class="string">&quot;=&quot;</span> + <span class="string">&quot;?&quot;</span>, <span class="string">&quot;&quot;</span>);</span></span><br><span class="line">            if (password == c) &#123;</span><br><span class="line"></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;正确&quot;</span>);</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;错误&quot;</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]javascript%E4%B8%AD%E7%9A%84eval%E5%87%BD%E6%95%B0%E5%8A%A8%E6%80%81%E6%89%A7%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/%5B%E8%BD%AC%5D%09javascript%E4%B8%AD%E7%9A%84eval%E5%87%BD%E6%95%B0%E5%8A%A8%E6%80%81%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">[转]Javascript中的eval函数动态执行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:34:00" itemprop="dateCreated datePublished" datetime="2013-06-17T22:34:00+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">定义和用法</span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span>() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</span><br><span class="line">语法</span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span>(string)</span><br><span class="line">参数	 描述</span><br><span class="line">string	 必需。要计算的字符串，其中含有要计算的 JavaScript 表达式或要执行的语句。</span><br><span class="line">返回值</span><br><span class="line"></span><br><span class="line">通过计算 string 得到的值（如果有的话）。</span><br><span class="line">说明</span><br><span class="line"></span><br><span class="line">该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。因此请不要为 <span class="built_in">eval</span>() 函数传递 <span class="built_in">String</span> 对象来作为参数。</span><br><span class="line">如果试图覆盖 <span class="built_in">eval</span> 属性或把 <span class="built_in">eval</span>() 方法赋予另一个属性，并通过该属性调用它，则 ECMAScript 实现允许抛出一个 <span class="built_in">EvalError</span> 异常。</span><br><span class="line">抛出</span><br><span class="line"></span><br><span class="line">如果参数中没有合法的表达式和语句，则抛出 <span class="built_in">SyntaxError</span> 异常。</span><br><span class="line">如果非法调用 <span class="built_in">eval</span>()，则抛出 <span class="built_in">EvalError</span> 异常。</span><br><span class="line">如果传递给 <span class="built_in">eval</span>() 的 Javascript 代码生成了一个异常，<span class="built_in">eval</span>() 将把该异常传递给调用者。</span><br><span class="line">提示和注释</span><br><span class="line"></span><br><span class="line">提示：虽然 <span class="built_in">eval</span>() 的功能非常强大，但在实际使用中用到它的情况并不多。</span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line">例子 <span class="number">1</span></span><br><span class="line"></span><br><span class="line">在本例中，我们将在几个字符串上运用 <span class="built_in">eval</span>()，并看看返回的结果：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;x=10;y=20;document.write(x*y)&quot;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.write(<span class="built_in">eval</span>(<span class="string">&quot;2+2&quot;</span>))</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> x=<span class="number">10</span></span><br><span class="line"><span class="built_in">document</span>.write(<span class="built_in">eval</span>(x+<span class="number">17</span>))</span><br><span class="line"> </span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">27</span></span><br><span class="line">例子 <span class="number">2</span></span><br><span class="line"></span><br><span class="line">看一下在其他情况中，<span class="built_in">eval</span>() 返回的结果：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;2+3&quot;</span>)<span class="comment">// 返回 5</span></span><br><span class="line"><span class="keyword">var</span> myeval = <span class="built_in">eval</span>;<span class="comment">// 可能会抛出 EvalError 异常</span></span><br><span class="line">myeval(<span class="string">&quot;2+3&quot;</span>);<span class="comment">// 可能会抛出 EvalError 异常</span></span><br><span class="line"></span><br><span class="line">可以使用下面这段代码来检测 <span class="built_in">eval</span>() 的参数是否合法：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="keyword">try</span>  &#123;</span><br><span class="line">     alert(<span class="string">&quot;Result:&quot;</span> + <span class="built_in">eval</span>(prompt(<span class="string">&quot;Enter an expression:&quot;</span>,<span class="string">&quot;&quot;</span>)));</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">catch</span>(exception) &#123;</span><br><span class="line">     alert(exception);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">本文的两个目的：</span><br><span class="line">（<span class="number">1</span>）介绍javascript中的<span class="built_in">eval</span>函数的用法</span><br><span class="line">（<span class="number">2</span>）如何在函数内执行全局代码 </span><br><span class="line">►先来说<span class="built_in">eval</span>的用法，内容比较简单，熟悉的可以跳过。</span><br><span class="line">    <span class="built_in">eval</span>函数接收一个参数s，如果s不是字符串，则直接返回s。否则执行s语句。如果s语句执行结果是一个值，则返回此值，否则返回<span class="literal">undefined</span>。</span><br><span class="line">    需要特别注意的是对象声明语法“&#123;&#125;”并不能返回一个值，需要用括号括起来才会返回值，简单示例如下：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> code1=<span class="string">&quot;&quot;</span>a<span class="string">&quot; + 2&quot;</span>;    <span class="comment">//表达式</span></span><br><span class="line"><span class="keyword">var</span> code2=<span class="string">&quot;&#123;a:2&#125;&quot;</span>;      <span class="comment">//语句</span></span><br><span class="line">alert(<span class="built_in">eval</span>(code1));     <span class="comment">//-&gt;&quot;a2&quot;</span></span><br><span class="line">alert(<span class="built_in">eval</span>(code2));     <span class="comment">//-&gt;undefined</span></span><br><span class="line">alert(<span class="built_in">eval</span>(<span class="string">&quot;(&quot;</span> + code2 + <span class="string">&quot;)&quot;</span>));    <span class="comment">//-&gt;[object Object] 例如JSON 对象就是利用这个</span></span><br><span class="line">    可以看到，对于对象声明语句来说，仅仅是执行，并不能返回值。为了返回常用的“&#123;&#125;”这样的对象声明语句，必须用括号括住，以将其转换为表达式，才能返回 其值。这也是使用<span class="built_in">JSON</span>来进行Ajax开发的基本原理之一。在例子中可以清楚的看到，第二个alert语句输出的是<span class="literal">undefined</span>，而第三个加了括 号后输出的是语句表示的对象。</span><br><span class="line">►现在来说本文的重点，如何在函数内执行全局代码。</span><br><span class="line">   为了说明这个问题，先看一个例子：</span><br><span class="line"><span class="keyword">var</span> s=<span class="string">&quot;global&quot;</span>;    <span class="comment">//定义一个全局变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">&quot;var s=&quot;</span>local<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">demo1();</span><br><span class="line">alert(s);    <span class="comment">//-&gt;global</span></span><br><span class="line">         很好理解，上面的demo1函数等价于：<span class="function"><span class="keyword">function</span> <span class="title">demo1</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> s=<span class="string">&quot;local&quot;</span>;&#125;，其中定义了一个局部变量s。</span><br><span class="line">        所以最后的输出是<span class="built_in">global</span>并不是什么奇怪的事情，毕竟大家都能很清楚的区分局部变量和全局变量。</span><br><span class="line">        仔细体会一下，可以发现<span class="built_in">eval</span>函数的特点，它总是在调用它的上下文变量空间（也称为：包，closure）内执行，无论是变量定义还是函数定义都是如此，所以如下的代码会产生函数未定义的错误：</span><br><span class="line"><span class="keyword">var</span> s=<span class="string">&quot;function test()&#123;return 1;&#125;&quot;</span>;     <span class="comment">//一个函数定义语句</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>(s);</span><br><span class="line">&#125;</span><br><span class="line">demo2();</span><br><span class="line">alert(test());    <span class="comment">//-&gt;error:test is not defined</span></span><br><span class="line">        这是因为test函数在局部空间定义，demo2函数内可以访问到，外面就访问不到了。</span><br><span class="line">         而在实际的Ajax开发中，有时我们需要从服务器动态获取代码来执行，以减轻一次载入代码过多的问题，或者是一些代码是通过Javascript自身生成的，希望用<span class="built_in">eval</span>函数来使其执行。</span><br><span class="line">但这样的动态获取代码的工作一般在函数内完成，比如：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadCode</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> code=getCode();</span><br><span class="line">    <span class="built_in">eval</span>(code);</span><br><span class="line">&#125;</span><br><span class="line">       可见<span class="built_in">eval</span>不可能在全局空间内执行，这就给开发带来了不少问题，也看到过很多人为此郁闷。</span><br><span class="line">        不过现在偶终于找到了解决办法，嘿嘿，可以同时兼容IE和Firefox，方法如下：</span><br><span class="line"><span class="keyword">var</span> X2=&#123;&#125;    <span class="comment">//my namespace:)</span></span><br><span class="line">X2.Eval=<span class="function"><span class="keyword">function</span>(<span class="params">code</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(!!(<span class="built_in">window</span>.attachEvent &amp;amp;&amp;amp; !<span class="built_in">window</span>.opera))&#123;</span><br><span class="line">  <span class="comment">//ie</span></span><br><span class="line">  execScript(code); </span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="comment">//not ie</span></span><br><span class="line">  <span class="built_in">window</span>.eval(code);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">        现在如果要想在函数内定义全局代码，就可以通过调用X2.Eval(code)方法，一个例子如下：</span><br><span class="line"><span class="keyword">var</span> s=<span class="string">&quot;global&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> X2.Eval(<span class="string">&quot;var s=&quot;</span>local<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">demo3();</span><br><span class="line">alert(s); <span class="comment">//-&gt;&quot;local&quot;</span></span><br><span class="line">        可见，在demo3函数内重新定义了全局变量s=<span class="string">&quot;local&quot;</span>。</span><br><span class="line">        需要注意的是X2.Eval并不返回值，如果要进行表达式的求值，还是用系统的<span class="built_in">eval</span>函数。X2.Eval设计为仅做全局代码定义用。</span><br><span class="line">        其实看到这里，或许有人感觉问题也太容易解决了点，呵呵，但发现这个办法倒是需要些运气和技巧的：</span><br><span class="line">（<span class="number">1</span>）对于IE浏览器，默认已经提供了这样的函数：execScript，用于在全局空间执行代码，只是知道的人还不多。</span><br><span class="line">（<span class="number">2</span>）对于Firefox浏览器，直接调用<span class="built_in">eval</span>函数，则在调用者的空间执行；如果调用       <span class="built_in">window</span>.eval则在全局空间执行。这个知道的人估计就更少了。毕竟alert(<span class="built_in">eval</span>==<span class="built_in">window</span>.eval)返回<span class="literal">true</span>！</span><br><span class="line">         Firefox的<span class="built_in">eval</span>函数的特点的确是很令人奇怪的，但从javascript规范中倒也能找到其来源：</span><br><span class="line">If value <span class="keyword">of</span> the <span class="built_in">eval</span> property is used <span class="keyword">in</span> any way other than a direct call (that is, other than by the explicit use <span class="keyword">of</span> its</span><br><span class="line">name <span class="keyword">as</span> an Identifier which is the MemberExpression <span class="keyword">in</span> a CallExpression), or <span class="keyword">if</span> the <span class="built_in">eval</span> property is assigned to,</span><br><span class="line">an <span class="built_in">EvalError</span> exception may be thrown.</span><br><span class="line">      意思大概就是说<span class="built_in">eval</span>函数的执行是和调用者相关的，但并没有说其执行上下文的问题。所以IE和Firefox孰是孰非也就很难说了，大家知道解决办法就好。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]JavaScript%20%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/%5B%E8%BD%AC%5D%09JavaScript%20%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">[转]JavaScript 全局函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:33:19" itemprop="dateCreated datePublished" datetime="2013-06-17T22:33:19+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>JavaScript 中包含以下 7 个全局函数，用于完成一些常用的功能（以后的章节中可能会用到）：escape( )、eval( )、isFinite( )、isNaN( )、parseFloat( )、parseInt( )、unescape( )。<br>1.　escape( )<br>escape( ) 函数以一个 string 对象或表达式为参数并返回一个 string 对象。参数指定的字符串中的所有非字母字符被转换成以 XX% 表示的等价数字，XX 是一个表示非字母字符的十六进制数。<br>以下示例显示了 escape( ) 函数的作用。<br>2.　eval( )<br>eval( ) 函数将通过参数传入的一个包含 JavaScript 语句的字符串作为一个 JavaScript 源代码执行。eval ( ) 返回执行 JavaScript 语句的返回值。<br>例如，在编写跨浏览器代码时，可以使用以下代码段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;SCRIPT LANGUAGE=<span class="string">&quot;JavaScript&quot;</span> TYPE=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">styleRef=<span class="string">&quot;.style&quot;</span></span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;document.all.[&quot;</span>something<span class="string">&quot;],&quot;</span>+styleRef+<span class="string">&quot;.visibility=&quot;</span>visible<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="comment">/* 以上函数调用相当于执行语句：document.all.[&quot;something&quot;].style.visibility=&quot;visible&quot; */</span></span><br><span class="line"><span class="comment">//--&gt;</span></span><br><span class="line">&lt;/SCRIPT&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>3.　isFinite( )<br>isFinite ( ) 函数用于确定一个变量是否有界，如果有界则返回 true，否则返回 false。所谓有界是指表达式的值界于 MAX_VALUE 和 MIN_VALUE 之间。<br>4.　isNaN( )<br>isNaN( ) 函数用于确定一个变量是否是 NaN，如果是，则返回 true，否则返回 false。NaN 代表 Not a Number，表示非数，即不是任何数。<br>例如，isNaN(12) 返回 false，isNaN(“a”) 返回 true，isNaN(true) 返回 false（因为此时 true 被当作数字 1）。<br>5.　parseFloat( )<br>parseFloat( ) 函数用于将字符串开头的整数或浮点数分解出来，若字符串不是以数字开头，则返回 NaN。<br>6.　parseInt( )<br>parseInt( ) 函数与 parseFloat( ) 函数类似，用于将字符串开头的整数分解出来，若字符串不是以数字开头，则返回 NaN。<br>例如，如果将刚才的 parseFloat( ) 函数示例中的所有 parseFloat 都用 parseInt 代替。<br>7.　unescape( )<br>unescape( ) 函数将参数传递来的字符串中的十六进制码转换成 ASCII 码并返回，它完成 escape( ) 函数的逆操作。例如，unescape(“Tom%20%26%20and%20Jerry%20show”) 的返回值为 “Tom &amp; Jerry show”。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]JavaScript%E8%B0%83%E7%94%A8swf%E4%B8%AD%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/%5B%E8%BD%AC%5D%09JavaScript%E8%B0%83%E7%94%A8swf%E4%B8%AD%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">[转]JavaScript调用swf中函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:32:54" itemprop="dateCreated datePublished" datetime="2013-06-17T22:32:54+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>The ExternalInterface API<br>之前我们使用flash调用javascript函数，一般使用这样的方法： </p>
+<p>代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getURL(“javascript:alert(‘hello zhang-chao.com’);”); <span class="comment">//注意字符串 双引号 里面加单引号</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是使用这种方法从flash调用javascript函数仍存在许多困难。特别是在处理多个javascript函数调用问题上。ExternalInterface API可以与javascript实现无缝调用，并且它的能力达到可以在flash时间线使用。<br>在我们正式进入它的使用方法之前，我们需要确保在flash时间上可用，就要导入它的类向这样： </p>
+<p>代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> flash.external.*; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>现在它已经允许我们做的第一件事就是可以调用javascript函数了。 </p>
+<p>Call 调用方法<br>call方法对于ExternalInterface对象来说是一个静态方法,也就是说我们不需要使用ExternalInterface对象的实例来调用方法，我们可以直接通过对象类来调用，向这样：<br>代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.call(functionName:<span class="built_in">String</span>,Parameters); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个方法有两个参数：<br>·    functionName – 你想要调用的javascript函数名要以字符串的形式<br>·    Parameters – 需要传递给javascript函数的参数，用逗号分开，是可选的。<br>这些是基本的内容，现在让我们来看一个例子：<br>1.创建一个flash文档命名为external1.fla.<br>2.创建两个层上面的层命为AS，下面的层命名为”内容”<br>3.在内容层里面，创建一个文本域，将它设置为输入文本域，打开显示边框以方便你能看到，并给它取个名字为alert_txt,将它放在场景的左边。<br>4.仍然在内容这一层上，拖动一个按钮组件于场景中并把它放在动态文本的右边，设置它的label为”Alert”并给它起个名字为alert_butn.<br>5.选择上方的as层在第一帧上输入代码，<br>6.调用alert<br>7.代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> flash.external.*; </span><br><span class="line">alert_butn.clickHandler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  ExternalInterface.call(<span class="string">&quot;alert&quot;</span>, alert_txt.text); </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>前面部分的代码是导入ExternalInterface类包。然后为按钮组件设置事件，当点击时调用javascript函数，并将文本中输入的文本通过externalInterface传递给javascript函数。<br>现在发布你的影片，将它和html放在服务器上，当你在服务器上测试时不论你在文本中输入什么信息，它都将显示在alert对话框中，但是如果你在本地测试，你可能就会发现当你点击按钮时，什么也没发生，这是由flashplayer的安全特性造成的。 </p>
+<p>演示文件</p>
+<p>上面这个范例是一个方法的例子，使用getURL方法也可以做到，然而externalinterface不只是能做到这些，除了发送信息给javascript，它还可以通过addCallback方法接收从javascript返回的信息。 </p>
+<p>addCallback 方法<br>AddCallback方法允许javascript调用flash时间上函数，基本的语法结构如下：<br>代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.addCallback(functionID:<span class="built_in">String</span>,<span class="attr">instance</span>:<span class="built_in">Object</span>,<span class="attr">functionName</span>:<span class="built_in">Function</span>); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>与call方法类似，它也是一个静态方法，它有三个参数<br>·functionID - 从 JavaScript 调用 ActionScript 函数时可使用的名称。此名称不必与 ActionScript 方法的实际名称匹配。<br>·instance - this 在该方法中被解析成的对象。此对象不一定是在其上可找到该方法的对象，您可以指定任何对象（或 null）。<br>·functionName - 要从 JavaScript 调用的 ActionScript 方法。<br>现在让我们开始一个例子，在这个例子中我们将使用flash调用javascript的命令来请示用户输入色值，当色值输入后点击ok，对象返回到flash并更改它的色彩，如下方法：<br>1.创建一个flash文档命名为external2.fla.<br>2.与第一个例子相同，创建两层上层命名为as.下层命名为“内容”。<br>3.在内容层拖动一个按钮组件至场景中，放在左上方，将label设为”变色”,实例名为change_butn.<br>4.确保当前在”内容层”,绘制一个色值为0x000000的盒子，大小为100*100,当然这个没有限制。<br>5.将这个方块转换为movieclip.实例名称命名为rec_mc.<br>6.在第一帧上输入代码如下： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> flash.external.*; </span><br><span class="line"><span class="comment">//改变方块的色彩 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onChange</span>(<span class="params">clr:<span class="built_in">Number</span></span>) </span>&#123; </span><br><span class="line"><span class="keyword">var</span> temp_color:Color = <span class="keyword">new</span> Color(rec_mc); </span><br><span class="line">  temp_color.setRGB(clr); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//允许javascript调用onChang函数 </span></span><br><span class="line">ExternalInterface.addCallback(<span class="string">&quot;onChange&quot;</span>, <span class="built_in">this</span>, onChange); </span><br><span class="line"><span class="comment">//打开命今窗口 </span></span><br><span class="line">change_butn.clickHandler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  ExternalInterface.call(<span class="string">&quot;callPrompt&quot;</span>, <span class="string">&quot;你想用什么的色彩？ (ex: 0xff0000)&quot;</span>); </span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在 代码的前边我们要先导入externalinterface类包，然后我们创建一个能改变场景中方块色彩的函数，完成后，我们调用addCallback 方法以使javascript可以调用flash的onChang函数。最后，我们针对按钮创建事件来调用javascript命令。<br>你需要发布swf和html，然后用编辑软件打开编辑器，如果你只是从flash调用javascirpt，那么你什么也不用做。但是如果你需要使用javascirpt调用flash函数，还有一些小的工作需要做。 </p>
+<p>在tilte标签的下方加入下面的javascript代码：如下：<br>代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">&quot;JavaScript&quot;</span>&gt; </span><br><span class="line"><span class="keyword">var</span> me; <span class="comment">//代表swf的id </span></span><br><span class="line"><span class="comment">//获取正确的引用 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getID</span>(<span class="params">swfID</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (navigator.appName.indexOf(<span class="string">&quot;Microsoft&quot;</span>) &gt; -<span class="number">1</span>) &#123; </span><br><span class="line">      me = <span class="built_in">window</span>[swfID]; </span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">      me = <span class="built_in">document</span>[swfID]; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//下面这段调用onChang函数并返回到flash. </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeCall</span>(<span class="params">str</span>)</span>&#123; </span><br><span class="line">  me.onChange(str); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//下面这个函数是被flash调用的。 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callPrompt</span>(<span class="params">str</span>)</span>&#123; </span><br><span class="line">  makeCall(prompt(str)); </span><br><span class="line">&#125; </span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>开 始，我们创建变量me来存放swf的引用。如果没有它，我们不能调用flash函数。然后我们使用函数getID通过条件针对不同的浏览器来设置引用，之 后，我们创建makeCall函数，用来调用flash函数，最后我们创建由flash来调用的函数callPromt().它将调用makeCall函 数来发送信息返回到flash.<br>在html的body标签的属性中加入onload,并设置它等于getID函数，如下：<br>代码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;body bgcolor=<span class="string">&quot;#ffffff&quot;</span> &gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意，当我们设函数给onload事件，我们传递给它swf的id.它可以在swf的嵌入位置找到,现在，当页初始化完成后，函数getID将被调用,变量me就会被设置，以使javascript可以调用flash函数。<br>将文件上传到服务器上，并进行测试，当你点击按钮并在提示中输入色彩值，flash中的方块色就会改变。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/%E5%8C%BA%E5%88%ABIE6%E4%B8%8EFF%EF%BC%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/%E5%8C%BA%E5%88%ABIE6%E4%B8%8EFF%EF%BC%9A/" class="post-title-link" itemprop="url">区别IE6与FF：</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:31:34" itemprop="dateCreated datePublished" datetime="2013-06-17T22:31:34+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>[css]区别IE6与FF：<br>background:orange;*background:blue;<br>区别IE6与IE7：<br>background:green !important;background:blue;<br>区别IE7与FF：<br>background:orange; *background:green;<br>区别FF，IE7，IE6：<br>background:orange;*background:green !important;*background:blue;</p>
+<p>针对 IE7 的 CSS Hack，具体就是：</p>
+<blockquote>
+<p>body<br>html*<br>*+html</p>
+</blockquote>
+<p>各浏览器适用的属性：<br>IE6        * html div; _property:value;<br>IE7        *+html div;<br>IE6、IE7   *property:value;<br>IE7、FF    body&gt;div; !important;</p>
+<p>color:#000000;                  /* FF,OP支持 <em>/<br>color:#0000FF;       /</em> IE8支持*/<br>[color:#000000; color:#00FF00;      /* SF,CH支持 */<br>color:#0000FF9; ;/<em>ie6,ie7,ie8</em>/<br><em>color:#FFFF00;/<em>ie7,ie6</em>/<br>_color:#FF0000;/<em>ie6</em>/<br>body:nth-of-type(1) .CH{<br>   color: #FF0000;/</em> 这是专门针对Chrome和Safari的CSS hack */<br>} </p>
+<p>IE6                       _property:value;      *html div{ property:value;}<br>IE7                       *+html div:{ property:value;}<br>IE6、IE7                  *property:value;<br>IE7、FF                   property:value !important;<br>IE8、Opera                property:value;<br>IE6、IE7、IE8             property:value9;<br>Safari、Chrome            [property:value;        body:nth-of-type(1) div{ property:value;}<br>Safari、Opera、Chrome     @media all and (min-width:0px){ div { property:value;}}<br>FF的专用                  *:lang(zh) select {font:12px  !important;}<br>safari可见                select:empty {font:12px  !important;} ???</p>
+<p>IE系列:</p>
+<p>selector { +property:value; } 在属性名前加上加号”+”,这个Hack只有IE系列可以识别.<br>selector { <em>property:value; } 在属性名前加上星号”</em>“,这个Hack只有IE系列可以识别.<br>selector { <em>property:value; } 在属性名前加上下划线”</em>“,这个Hack只有IE系列 (除IE7外) 识别. </p>
+<ul>
+<li>html selector{ property:value; } 在选择器上运用继承法 * html selector, 这个Hack只有IE系列 (除IE7外) 可以识别.<br>html/<strong>/ &gt;body  selector { property:value; } 在选择器上运用继承法 html/</strong>/ &gt;body  selector ,这个Hack只有IE系列 (除IE7外) 可以识别.<br>selector { property/<strong>/:value; } 在属性名和冒号”:”之间加入注释,屏蔽IE6用.<br>selector/</strong>/ { property/<strong>/:value; } 在选择器和花括号”{“之间以及在属性名和冒号”:”之间加入注释,屏蔽IE5和IE6用 (不屏蔽IE5.5) .<br>select/</strong>/ { property:value; } 在选择器和花括号”{“之间加入注释,屏蔽IE5用. </li>
+<li>+html  selector { property:value !important; } 在选择器上运用继承法 *+html selector 再加上 !important, 这个Hack只有IE7可以识别. </li>
+</ul>
+<p>Firefox:<br>*:lang(lang) selector { property:value !important; } 用伪类lang(语言)再加上!important进行定义的话,目前只有Firefox可以识别. </p>
+<p>Safari:<br>selector:empty { property:value !important; } 用伪类empty再加上!important进行定义的话,目前只有Safari可以识别. </p>
+<p>Opera:<br>@media all and (min-width: 0px){ selector { property:value; } } 利用特殊继承法进行定义的话,目前只有Opera可以识别.<br> [/css]</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/CSS%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%8D%81%E6%9D%A1%E9%80%9F%E8%AE%B0%E5%8F%A3%E8%AF%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/CSS%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%8D%81%E6%9D%A1%E9%80%9F%E8%AE%B0%E5%8F%A3%E8%AF%80/" class="post-title-link" itemprop="url">CSS学习中十条速记口诀</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:31:03" itemprop="dateCreated datePublished" datetime="2013-06-17T22:31:03+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>585</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果在用CSS设计布局时遇到BUG，请认真阅读以下内容，非常容易记忆的，不知道哪位高人把CSS BUG编成了顺口溜了！看看好不好记住呢？ 一、IE边框若显若无，须注意，定是高度设置已忘记； 二、浮动产生有缘故，若要父层包含住，紧跟浮动要清除，容器自然显其中<br>如果在用CSS设计布局时遇到BUG，请认真阅读以下内容，非常容易记忆的，不知道哪位高人把CSS BUG编成了顺口溜了！看看好不好记住呢？</p>
+<!--mero-->
+<p>===</p>
+<p>一、IE边框若显若无，须注意，定是高度设置已忘记；<br>二、浮动产生有缘故，若要父层包含住，紧跟浮动要清除，容器自然显其中；<br>三、三像素文本慢移不必慌，高度设置帮你忙；<br>四、兼容各个浏览须注意，默认设置行高可能是杀手；<br>五、独立清除浮动须铭记，行高设无，高设零，设计效果兼浏览；<br>六、学布局须思路，路随布局原理自然直，轻松驾驭html，流水布局少hack，代码清爽，兼容好，友好引擎喜欢迎。<br>七、所有标签皆有源，只是默认各不同，span是无极，无极生两仪—内联和块级，img较特殊，但也遵法理，其他只是改造各不同，一个*号全归原，层叠样式理须多练习，万物皆规律。<br>八、图片链接排版须小心，图片链接文字链接若对齐，padding和vertical-align:middle要设定，虽差微细倒无妨。<br>九、IE浮动双边距，请用display：inline拘。<br>十、列表横向排版，列表代码须紧靠，空隙自消须铭记   </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

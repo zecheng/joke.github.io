@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="说明1，红色代表重点参数2，“全局缓存”、“线程缓存”，全局缓存是所有线程共享，线程缓存是每个线程连接上数据时创建一个线程（如果没有设置线程池），假如有200连接、那就是200个线程，如果参数设定值是10M，那么参数值就是10*200&#x3D;2000M&#x3D;2G，很有可能吃垮内存，所以线程缓存并不是像全局缓存一样设定多少就占用多少，不可设置过大，一定注意 character-set-server&#x3D;utf8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL（my.ini）配置文件详解">
+<meta property="og:url" content="https://zecheng.github.io/2016/04/01/MySQL%EF%BC%88my.ini%EF%BC%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="说明1，红色代表重点参数2，“全局缓存”、“线程缓存”，全局缓存是所有线程共享，线程缓存是每个线程连接上数据时创建一个线程（如果没有设置线程池），假如有200连接、那就是200个线程，如果参数设定值是10M，那么参数值就是10*200&#x3D;2000M&#x3D;2G，很有可能吃垮内存，所以线程缓存并不是像全局缓存一样设定多少就占用多少，不可设置过大，一定注意 character-set-server&#x3D;utf8">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-01T05:52:03.000Z">
+<meta property="article:modified_time" content="2016-04-01T05:53:11.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="MySql">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2016/04/01/MySQL%EF%BC%88my.ini%EF%BC%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL（my.ini）配置文件详解 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2016/04/01/MySQL%EF%BC%88my.ini%EF%BC%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL（my.ini）配置文件详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2016-04-01 13:52:03 / 修改时间：13:53:11" itemprop="dateCreated datePublished" datetime="2016-04-01T13:52:03+08:00">2016-04-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>说明<br>1，红色代表重点参数<br>2，“全局缓存”、“线程缓存”，全局缓存是所有线程共享，线程缓存是每个线程连接上数据时创建一个线程（<strong>如果没有设置线程池</strong>），假如有200连接、那就是200个线程，如果参数设定值是10M，那么参数值就是10*200=2000M=2G，很有可能吃垮内存，所以线程缓存并不是像全局缓存一样设定多少就占用多少，不可设置过大，一定注意</strong></p>
+<p>character-set-server=utf8<span id="more"></span></p>
+<p><span style="color: #009900;">#服务器端字符集</span></p>
+<p>collation-server=utf8_bin<br><span style="color: #009900;">#字符集的校队规则，这里是个坑，新手得小心<br>#默认***_ci，ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;<br>***_bin是二进制数据编译存储，大小写敏感，</span></p>
+<p>lower_case_table_names = 0<br><span style="color: #009900;">#默认为0，数据库、表名大小写敏感<br></span><br>back_log = 600<br><span style="color: #009900;">#在MYSQL暂时停止响应新请求之前，短时间内的多少个请求可以被存在堆栈中。如果系统在短时间内有很多连接，则需要增大该参数的值，该参数值指定到来的TCP/IP连接的监听队列的大小。默认值50。</span></p>
+<p>max_connections = 3000<br><span style="color: #009900;">#MySQL允许最大的进程连接数，如果经常出现Too Many Connections的错误提示，则需要增大此值，但是该值越大，占用内存越大。</span></p>
+<p>max_connect_errors = 50<br><span style="color: #009900;">#设置每个主机的连接请求异常中断的最大次数，当超过该次数，MYSQL服务器将禁止host的连接请求，直到mysql服务器重启或通过flush hosts命令清空此host的相关信息。<br></span><br>wait_timeout=864000<br><span style="color: #009900;">#wait_timeout的初始值是28800，当应用程序持续8小时没有连接，会启动切断与应用程序连接池的关联，再连接时，会提示wait_timeout错误。<br></span><br>external-locking = FALSE<br><span style="color: #009900;">#使用–skip-external-locking MySQL选项以避免外部锁定。该选项默认开启</span></p>
+<p>max_allowed_packet = 32M<br><span style="color: #009900;">#设置在网络传输中一次消息传输量的最大值。系统默认值 为1MB，最大值是1GB，必须设置1024的倍数。</span></p>
+<p>skip-name-resolve<br><span style="color: #009900;">#禁用DNS反向解析，唯一的局限是之后GRANT语句中只能使用IP地址了，因此在添加这项设置到一个已有系统中必须注意</span><br>slow_query_log=on<br><span style="color: #009900;">#打开慢查询记录</span><br>slow_query_log_file=mysql-slow<br><span style="color: #009900;">#慢查询记录日志</span><br>long_query_time = 1<br><span style="color: #009900;">#记录执行时间超过N（秒）的查询</span></p>
+<p>&nbsp;</p>
+<p>server-id = 1<br><span style="color: #009900;">#主从复制时必须设置的参数，并且不能和其他机器重复</span><br>log-bin=mysql-bin<br><span style="color: #009900;">#二进制日志</span><br>binlog_cache_size = 4M<br><span style="color: #009900;">#<span style="color: #cc33cc;">【<strong>线程缓存</strong>】</span> 为每个session 分配的内存，在事务过程中用来存储二进制日志的缓存。</span><br><span style="color: #009900;">#show global status like ‘bin%’;<br>#上述语句我们可以得到当前 数据库binlog_cache_size的使用情况<br>#+———————–+——-+<br>#| Variable_name         | Value |<br>#+———————–+——-+<br>#| Binlog_cache_disk_use | ???<br>#| Binlog_cache_use      | ?????<br>#Binlog_cache_disk_use表示因为我们binlog_cache_size设计的内存不足导致缓存二进制日志用到了临时文件的次数<br>#Binlog_cache_use  表示 用binlog_cache_size缓存的次数<br>#当对应的Binlog_cache_disk_use 值比较大的时候 我们可以考虑适当的调高 binlog_cache_size 对应的值</span><br>max_binlog_cache_size =2M<br><span style="color: #009900;">#表示的是binlog 能够使用的最大cache 内存大小，这个默认就可以</span><br>max_binlog_size = 512M<br><span style="color: #009900;">#单binlog文件最大容量，超过则建立新binlog文件</span><br>expire_logs_days = 7<br><span style="color: #009900;">#二进制文件自动删除天数，默认为0，表示不删除<br>#mysql使用flush logs的操作来清除日志，下面几种情况会触发flush logs<br>#1. 重启<br>#2. BINLOG文件大小达到参数max_binlog_size限制<br>#3. 手工执行命令。</span></p>
+<p>&nbsp;</p>
+<p>default-storage-engine = InnoDB<br><span style="color: #009900;">#默认引擎</span></p>
+<p>transaction_isolation = READ-COMMITTED<br><span style="color: #009900;"># 设定默认的事务隔离级别.可用的级别如下:</p>
+<h1 id="READ-UNCOMMITTED-READ-COMMITTED-REPEATABLE-READ-SERIALIZABLE"><a href="#READ-UNCOMMITTED-READ-COMMITTED-REPEATABLE-READ-SERIALIZABLE" class="headerlink" title="READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE"></a>READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE</h1><h1 id="1-READ-UNCOMMITTED-读未提交2-READ-COMMITTE-读已提交3-REPEATABLE-READ-可重复读4-SERIALIZABLE-串行"><a href="#1-READ-UNCOMMITTED-读未提交2-READ-COMMITTE-读已提交3-REPEATABLE-READ-可重复读4-SERIALIZABLE-串行" class="headerlink" title="1.READ UNCOMMITTED-读未提交2.READ COMMITTE-读已提交3.REPEATABLE READ -可重复读4.SERIALIZABLE -串行"></a>1.READ UNCOMMITTED-读未提交2.READ COMMITTE-读已提交3.REPEATABLE READ -可重复读4.SERIALIZABLE -串行</span></h1><p>&nbsp;</p>
+<p>table_cache = 2000<br><span style="color: #009900;">#设置最大缓存表的个数。默认2000，全局性参数， 缓存表的信息，包括字段、索引等。 使用表缓存的好处是可以更快速地访问表中的内容。执行flush tables会清空缓存的内容。一般来说，可以通过show status like ‘open%tables%’查看数据库运行峰值时间的状态值 Open_tables和 Opened_tables ，判断是否需要增加 table_cache 的值（其中 open_tables 是当前打开的表的数量， Opened_tables 则是已经打开的表的数量）。即如果open_tables接近table_cache的时候，并且Opened_tables这个值在逐步增加，那就要考虑增加这个值的大小了。还有就是Table_locks_waited比较高的时候，也需要增加table_cache。</span><br>tmp_table_size = 20M<br><span style="color: #009900;">#<span style="color: #cc33cc;">【<strong>线程缓存</strong>】</span> 它规定了内部内存临时表的最大值，每个线程都要分配。（实际起限制作用的是tmp_table_size和max_heap_table_size的最小值。）如果临时表超出了限制，MySQL就会自动地把它转化为基于磁盘的MyISAM表，而内存表则不会。<br>#如果使用临时表情况少，可以默认</span><br>max_heap_table_size = 256M<br><span style="color: #009900;">#如果不使用内存表，可以默认</span></p>
+<p><span style="color: #cc0000;">thread_cache_size</span> = 64<br><span style="color: #009900;"># 服务器线程缓存这个值表示可以重新利用保存在缓存中线程的数量,当断开连接时如果缓存中还有空间,那么客户端的线程将被放到缓存中,如果线程重新被请求，那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，增加这个值可以改善系统性能.通过比较 Connections 和 Threads_created 状态的变量，可以看到这个变量的作用。设置规则如下：1GB 内存配置为8，2GB配置为16，3GB配置为32，4GB或更高内存，可配置更大。</span><br><span style="color: #999999;">thread_concurrency</span> = 8<br><span style="color: #009900;">#hread_concurrency变量是针对于Solaris 8及低版本的系统，设置了这个变量mysqld会调用thr_setconcurrency()函数。这个函数允许应用程序给同一时间运行的线程系统提示所需数量的线程。当前的Solaris 版本中这个参数已经没有作用了。这个参数在mysql 5.6.1中已经被标记为过时，在5.7.2版本的mysql中被移除。 </span></p>
+<p>query_cache_size = 64M<br><span style="color: #009900;">#【全局缓存】 前面的文章专门讲过这个参数，该参数不适合分配过大。而且在高并发，写入量大的系统，建议把该功能禁掉。</span><br>query_cache_limit = 4M<br><span style="color: #009900;">#指定单个查询能够使用的缓冲区大小，缺省为1M</span><br>query_cache_min_res_unit = 2k<br><span style="color: #009900;">#默认是4KB，设置值大对大数据查询有好处，但如果你的查询都是小数据查询，就容易造成内存碎片和浪费<br>#查询缓存碎片率 = Qcache_free_blocks / Qcache_total_blocks * 100%<br>#如果查询缓存碎片率超过20%，可以用FLUSH QUERY CACHE整理缓存碎片，或者试试减小query_cache_min_res_unit，如果你的查询都是小数据量的话。<br>#查询缓存利用率 = (query_cache_size – Qcache_free_memory) / query_cache_size * 100%<br>#查询缓存利用率在25%以下的话说明query_cache_size设置的过大，可适当减小;查询缓存利用率在80%以上而且Qcache_lowmem_prunes &gt; 50的话说明query_cache_size可能有点小，要不就是碎片太多。<br>#查询缓存命中率 = (Qcache_hits – Qcache_inserts) / Qcache_hits * 100%</span><br>read_buffer_size = 1M<br><span style="color: #009900;">#<span style="color: #cc33cc;">【<strong>线程缓存</strong>】 </span>MySql读入缓冲区大小。对表进行顺序扫描的请求将分配一个读入缓冲区，MySql会为它分配一段内存缓冲区。read_buffer_size变量控制这一缓冲区的大小。如果对表的顺序扫描请求非常频繁，并且你认为频繁扫描进行得太慢，可以通过增加该变量值以及内存缓冲区大小提高其性能。和sort_buffer_size一样，该参数对应的分配内存也是每个连接独享。</span><br>read_rnd_buffer_size = 16M<br><span style="color: #009900;">#<span style="color: #cc33cc;">【<strong>线程缓存</strong>】</span>MySql的随机读（查询操作）缓冲区大小。当按任意顺序读取行时(例如，按照排序顺序)，将分配一个随机读缓存区。进行排序查询时，MySql会首先扫描一遍该缓冲，以避免磁盘搜索，提高查询速度，如果需要排序大量数据，可适当调高该值。但MySql会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大。</span><br>sort_buffer_size = 2M<br><span style="color: #009900;">#<span style="color: #cc33cc;">【<strong>线程缓存</strong>】</span> Sort_Buffer_Size 是一个connection级参数，在每个connection（session）第一次需要使用这个buffer的时候，一次性分配设置的内存。</p>
+<h1 id="Sort-Buffer-Size-并不是越大越好，由于是connection级的参数，过大的设置-高并发可能会耗尽系统内存资源。例如：500个连接将会消耗-500-sort-buffer-size-8M-4G内存"><a href="#Sort-Buffer-Size-并不是越大越好，由于是connection级的参数，过大的设置-高并发可能会耗尽系统内存资源。例如：500个连接将会消耗-500-sort-buffer-size-8M-4G内存" class="headerlink" title="Sort_Buffer_Size 并不是越大越好，由于是connection级的参数，过大的设置+高并发可能会耗尽系统内存资源。例如：500个连接将会消耗 500*sort_buffer_size(8M)=4G内存"></a>Sort_Buffer_Size 并不是越大越好，由于是connection级的参数，过大的设置+高并发可能会耗尽系统内存资源。例如：500个连接将会消耗 500*sort_buffer_size(8M)=4G内存</h1><h1 id="Sort-Buffer-Size-超过2KB的时候，就会使用mmap-而不是-malloc-来进行内存分配，导致效率降低。"><a href="#Sort-Buffer-Size-超过2KB的时候，就会使用mmap-而不是-malloc-来进行内存分配，导致效率降低。" class="headerlink" title="Sort_Buffer_Size 超过2KB的时候，就会使用mmap() 而不是 malloc() 来进行内存分配，导致效率降低。"></a>Sort_Buffer_Size 超过2KB的时候，就会使用mmap() 而不是 malloc() 来进行内存分配，导致效率降低。</h1><h1 id="explain-select-from-table-where-order-limit；出现filesort"><a href="#explain-select-from-table-where-order-limit；出现filesort" class="headerlink" title="explain select*from table where order limit；出现filesort"></a>explain select*from table where order limit；出现filesort</span></h1><p>max_length_for_sort_data= 1024<br><span style="color: #009900;"># mysql排序使用sort_buffer_size和max_length_for_sort_data两种方式，如果查询列和orderby列的长度和值会大于1024，将使用max_length_for_sort_data，</p>
+<h1 id="可以默认"><a href="#可以默认" class="headerlink" title="可以默认"></a>可以默认</span></h1><p>join_buffer_size = 2M   <span style="color: #009900;"><br>#<span style="color: #cc33cc;">【<strong>线程缓存</strong>】</span> 用于表间关联缓存的大小，和sort_buffer_size一样，该参数对应的分配内存也是每个连接独享。</span><br>bulk_insert_buffer_size = 64M   <span style="color: #009900;"></p>
+<h1 id="多值的-INSERT-或者-LOAD-DATA-是往一个非空的数据表里增加记录，通过调整该参数可以有效提高插入效率，默认为8M"><a href="#多值的-INSERT-或者-LOAD-DATA-是往一个非空的数据表里增加记录，通过调整该参数可以有效提高插入效率，默认为8M" class="headerlink" title="多值的 INSERT 或者 LOAD DATA 是往一个非空的数据表里增加记录，通过调整该参数可以有效提高插入效率，默认为8M"></a>多值的 INSERT 或者 LOAD DATA 是往一个非空的数据表里增加记录，通过调整该参数可以有效提高插入效率，默认为8M</span></h1><p>&nbsp;</p>
+<p>key_buffer_size = 2048M<br><span style="color: #009900;"># <span style="color: #3333ff;">【全局缓存】</span> 针对MyISAM引擎，批定用于索引的缓冲区大小，增加它可以得到更好的索引处理性能，对于内存在4GB左右的服务器来说，该参数可设置为256MB或384MB。</span><br>myisam_sort_buffer_size = 128M<br><span style="color: #009900;"># MyISAM表发生变化时重新排序所需的缓冲</span><br>myisam_max_sort_file_size = 10G<br><span style="color: #009900;"># MySQL重建索引时所允许的最大临时文件的大小 (当 REPAIR, ALTER TABLE 或者 LOAD DATA INFILE).</p>
+<h1 id="如果文件大小比此值更大-索引会通过键值缓冲创建-更慢"><a href="#如果文件大小比此值更大-索引会通过键值缓冲创建-更慢" class="headerlink" title="如果文件大小比此值更大,索引会通过键值缓冲创建(更慢)"></a>如果文件大小比此值更大,索引会通过键值缓冲创建(更慢)</span></h1><p>myisam_max_extra_sort_file_size = 10G<br>myisam_repair_threads = 1<br><span style="color: #009900;"># 如果一个表拥有超过一个索引, MyISAM 可以通过并行排序使用超过一个线程去修复他们.</p>
+<h1 id="这对于拥有多个CPU以及大量内存情况的用户-是一个很好的选择"><a href="#这对于拥有多个CPU以及大量内存情况的用户-是一个很好的选择" class="headerlink" title="这对于拥有多个CPU以及大量内存情况的用户,是一个很好的选择."></a>这对于拥有多个CPU以及大量内存情况的用户,是一个很好的选择.</span></h1><p>myisam_recover<br><span style="color: #009900;">#自动检查和修复没有适当关闭的 MyISAM 表</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #cc0000;">innodb_buffer_pool_size </span> = 2048M<br><span style="color: #009900;">#<span style="color: #3333ff;">【全局缓存】</span> 这对Innodb表来说非常重要。Innodb相比MyISAM表对缓冲更为敏感。MyISAM可以在默认的 key_buffer_size 设置下运行的可以，然而Innodb在默认的innodb_buffer_pool_size 设置下却跟蜗牛似的。由于Innodb把数据和索引都缓存起来，无需留给操作系统太多的内存，因此如果只需要用Innodb的话则可以设置它高达 70-80% 的可用内存（注意，这里是<strong>可用</strong>，不是内存总量）。</span></p>
+<p>innodb_additional_mem_pool_size = 16M<br><span style="color: #009900;">#<span style="color: #3333ff;">【全局缓存】</span> 这个参数用来设置 InnoDB 存储的数据目录信息和其它内部数据结构的内存池大小，类似于Oracle的library cache。<br>#可以默认</span></p>
+<p>innodb_data_file_path = ibdata1:1024M:autoextend<br><span style="color: #009900;">#表空间文件 重要数据<br>#可以默认</span></p>
+<p>innodb_read_io_threads<br><span style="color: #009900;">#读线程数，默认为4</span></p>
+<p>innodb_write_io_threads<br><span style="color: #009900;">#写线程数，默认为4</span></p>
+<p>innodb_thread_concurrency =0<br><span style="color: #009900;">#并发线程数量，默认是0即不限制，取值范围0-1000，不可动态修改</span><span style="color: #cc0000;"><span style="color: #009900;"><br>#可以默认</span><br></span></p>
+<p><span style="color: #cc0000;">innodb_flush_log_at_trx_commit</span> = 1<br><span style="color: #009900;"># 如果将此参数设置为1，将在每次提交事务后将日志写入磁盘。为提供性能，可以设置为0或2，但要承担在发生故障时丢失数据的风险。</p>
+<h1 id="默认值1的意思是每一次事务提交或事务外的指令都需要把日志写入（flush）硬盘，这是很费时的。设成2对于很多运用，它的意思是不写入硬盘而是写入系统缓存。日志仍然会每秒flush到硬-盘，所以你一般不会丢失超过1-2秒的更新。"><a href="#默认值1的意思是每一次事务提交或事务外的指令都需要把日志写入（flush）硬盘，这是很费时的。设成2对于很多运用，它的意思是不写入硬盘而是写入系统缓存。日志仍然会每秒flush到硬-盘，所以你一般不会丢失超过1-2秒的更新。" class="headerlink" title="默认值1的意思是每一次事务提交或事务外的指令都需要把日志写入（flush）硬盘，这是很费时的。设成2对于很多运用，它的意思是不写入硬盘而是写入系统缓存。日志仍然会每秒flush到硬 盘，所以你一般不会丢失超过1-2秒的更新。"></a>默认值1的意思是每一次事务提交或事务外的指令都需要把日志写入（flush）硬盘，这是很费时的。设成2对于很多运用，它的意思是不写入硬盘而是写入系统缓存。日志仍然会每秒flush到硬 盘，所以你一般不会丢失超过1-2秒的更新。</h1><h1 id="设成0会更快一点，但安全方面比较差，即使MySQL挂了也可能会丢失事务的数据；设置成2只会在整个操作系统-挂了时才可能丢数据；设置成1是最安全的设置，性能也是相对最弱的。"><a href="#设成0会更快一点，但安全方面比较差，即使MySQL挂了也可能会丢失事务的数据；设置成2只会在整个操作系统-挂了时才可能丢数据；设置成1是最安全的设置，性能也是相对最弱的。" class="headerlink" title="设成0会更快一点，但安全方面比较差，即使MySQL挂了也可能会丢失事务的数据；设置成2只会在整个操作系统 挂了时才可能丢数据；设置成1是最安全的设置，性能也是相对最弱的。"></a>设成0会更快一点，但安全方面比较差，即使MySQL挂了也可能会丢失事务的数据；设置成2只会在整个操作系统 挂了时才可能丢数据；设置成1是最安全的设置，性能也是相对最弱的。</span></h1><p>innodb_log_buffer_size = 1M<br><span style="color: #009900;">#【全局缓存】 这项配置决定了为尚未执行的事务分配的缓存。其默认值（1MB）一般来说已经够用了，但是如果你的事务中包含有二进制大对象或者大文本字段的话，这点缓存很快就会被填满并触发额外的I/O操作。看看Innodb_log_waits状态变量，如果它不是0，增加innodb_log_buffer_size。MySQL开发人员建议设置为1－8M之间</span><span style="color: #cc0000;"><br></span></p>
+<p><span style="color: #cc0000;">innodb_log_file_size</span> = 500M<br><span style="color: #009900;">#redo日志的大小，redo日志被用于确保写操作快速而可靠并且在崩溃时恢复。一直到MySQL 5.5，redo日志的总尺寸被限定在4GB(默认可以有2个log文件)。这在MySQL 5.6里被提高。如果把innodb_log_file_size设置成512M(这样有1GB的redo日志)会使你有充裕的写操作空间。一般设置为256~512M</span></p>
+<p>innodb_log_files_in_group = 3<br><span style="color: #009900;">#为提高性能，MySQL可以以循环方式将日志文件写到多个文件。默认为2，推荐设置为3M</span></p>
+<p>innodb_max_dirty_pages_pct = 75<br><span style="color: #009900;"># Buffer_Pool中Dirty_Page（脏页）所占的数量，直接影响InnoDB的关闭时间。参数innodb_max_dirty_pages_pct 可以直接控制了Dirty_Page在Buffer_Pool中所占的比率，而且幸运的是innodb_max_dirty_pages_pct是可以动态改变的。所以，在关闭InnoDB之前先将innodb_max_dirty_pages_pct调小，强制数据块Flush一段时间，则能够大大缩短 MySQL关闭的时间。<br>#可以默认</span></p>
+<p>innodb_lock_wait_timeout = 50<br><span style="color: #009900;"># InnoDB 有其内置的死锁检测机制，能导致未完成的事务回滚。但是，如果结合InnoDB使用MyISAM的lock tables 语句或第三方事务引擎,则InnoDB无法识别死锁。为消除这种可能性，可以将innodb_lock_wait_timeout设置为一个整数值，指示 MySQL在允许其他事务修改那些最终受事务回滚的数据之前要等待多长时间(秒数)</p>
+<h1 id="当事务等待一个锁的时间-，如果超过时间则回滚"><a href="#当事务等待一个锁的时间-，如果超过时间则回滚" class="headerlink" title="当事务等待一个锁的时间 ，如果超过时间则回滚"></a>当事务等待一个锁的时间 ，如果超过时间则回滚</h1><h1 id="根据需要设置等待时间"><a href="#根据需要设置等待时间" class="headerlink" title="根据需要设置等待时间"></a>根据需要设置等待时间</span></h1><p><span style="color: #cc0000;">innodb_file_per_table</span> = 0<br><span style="color: #009900;">#独立表空间的设置，默认为0，则为共享表空间；如果为1，则为独立表空间<br>#建议打开, 尤其是在数据量比较大的，ibdata1文件只会增大，不会减小，大到一定程度会影响insert  update 速度，另外如果删表频繁的话，共享表空间产生的碎片会比较多，并且无法向OS回收空间。</span><br>[mysqldump]<br>quick<br>max_allowed_packet = 32M</p>
+<p>[mysqld_safe]<br>log-error=/data/3306/mysql_oldboy.err<br>pid-file=/data/3306/mysqld.pid<!--more--></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySql/" rel="tag"># MySql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/04/01/%E9%98%B2%E6%AD%A2MySql-update%7Cdelete%E6%B2%A1%E6%9C%89%E5%B8%A6where%E6%93%8D%E4%BD%9C%E5%A4%B1%E8%AF%AF/" rel="prev" title="防止MySql-update|delete没有带where操作失误">
+      <i class="fa fa-chevron-left"></i> 防止MySql-update|delete没有带where操作失误
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/04/07/ulimit%E8%AF%A6%E8%A7%A3/" rel="next" title="ulimit详解">
+      ulimit详解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#READ-UNCOMMITTED-READ-COMMITTED-REPEATABLE-READ-SERIALIZABLE"><span class="nav-number">1.</span> <span class="nav-text">READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-READ-UNCOMMITTED-%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A42-READ-COMMITTE-%E8%AF%BB%E5%B7%B2%E6%8F%90%E4%BA%A43-REPEATABLE-READ-%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB4-SERIALIZABLE-%E4%B8%B2%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">1.READ UNCOMMITTED-读未提交2.READ COMMITTE-读已提交3.REPEATABLE READ -可重复读4.SERIALIZABLE -串行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sort-Buffer-Size-%E5%B9%B6%E4%B8%8D%E6%98%AF%E8%B6%8A%E5%A4%A7%E8%B6%8A%E5%A5%BD%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%98%AFconnection%E7%BA%A7%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%8C%E8%BF%87%E5%A4%A7%E7%9A%84%E8%AE%BE%E7%BD%AE-%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8F%AF%E8%83%BD%E4%BC%9A%E8%80%97%E5%B0%BD%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E8%B5%84%E6%BA%90%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A500%E4%B8%AA%E8%BF%9E%E6%8E%A5%E5%B0%86%E4%BC%9A%E6%B6%88%E8%80%97-500-sort-buffer-size-8M-4G%E5%86%85%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">Sort_Buffer_Size 并不是越大越好，由于是connection级的参数，过大的设置+高并发可能会耗尽系统内存资源。例如：500个连接将会消耗 500*sort_buffer_size(8M)&#x3D;4G内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sort-Buffer-Size-%E8%B6%85%E8%BF%872KB%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%B0%B1%E4%BC%9A%E4%BD%BF%E7%94%A8mmap-%E8%80%8C%E4%B8%8D%E6%98%AF-malloc-%E6%9D%A5%E8%BF%9B%E8%A1%8C%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%EF%BC%8C%E5%AF%BC%E8%87%B4%E6%95%88%E7%8E%87%E9%99%8D%E4%BD%8E%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">Sort_Buffer_Size 超过2KB的时候，就会使用mmap() 而不是 malloc() 来进行内存分配，导致效率降低。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#explain-select-from-table-where-order-limit%EF%BC%9B%E5%87%BA%E7%8E%B0filesort"><span class="nav-number">5.</span> <span class="nav-text">explain select*from table where order limit；出现filesort</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E9%BB%98%E8%AE%A4"><span class="nav-number">6.</span> <span class="nav-text">可以默认</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E7%9A%84-INSERT-%E6%88%96%E8%80%85-LOAD-DATA-%E6%98%AF%E5%BE%80%E4%B8%80%E4%B8%AA%E9%9D%9E%E7%A9%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E8%A1%A8%E9%87%8C%E5%A2%9E%E5%8A%A0%E8%AE%B0%E5%BD%95%EF%BC%8C%E9%80%9A%E8%BF%87%E8%B0%83%E6%95%B4%E8%AF%A5%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E6%9C%89%E6%95%88%E6%8F%90%E9%AB%98%E6%8F%92%E5%85%A5%E6%95%88%E7%8E%87%EF%BC%8C%E9%BB%98%E8%AE%A4%E4%B8%BA8M"><span class="nav-number">7.</span> <span class="nav-text">多值的 INSERT 或者 LOAD DATA 是往一个非空的数据表里增加记录，通过调整该参数可以有效提高插入效率，默认为8M</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E6%AF%94%E6%AD%A4%E5%80%BC%E6%9B%B4%E5%A4%A7-%E7%B4%A2%E5%BC%95%E4%BC%9A%E9%80%9A%E8%BF%87%E9%94%AE%E5%80%BC%E7%BC%93%E5%86%B2%E5%88%9B%E5%BB%BA-%E6%9B%B4%E6%85%A2"><span class="nav-number">8.</span> <span class="nav-text">如果文件大小比此值更大,索引会通过键值缓冲创建(更慢)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E5%AF%B9%E4%BA%8E%E6%8B%A5%E6%9C%89%E5%A4%9A%E4%B8%AACPU%E4%BB%A5%E5%8F%8A%E5%A4%A7%E9%87%8F%E5%86%85%E5%AD%98%E6%83%85%E5%86%B5%E7%9A%84%E7%94%A8%E6%88%B7-%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BE%88%E5%A5%BD%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">9.</span> <span class="nav-text">这对于拥有多个CPU以及大量内存情况的用户,是一个很好的选择.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%80%BC1%E7%9A%84%E6%84%8F%E6%80%9D%E6%98%AF%E6%AF%8F%E4%B8%80%E6%AC%A1%E4%BA%8B%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%88%96%E4%BA%8B%E5%8A%A1%E5%A4%96%E7%9A%84%E6%8C%87%E4%BB%A4%E9%83%BD%E9%9C%80%E8%A6%81%E6%8A%8A%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%EF%BC%88flush%EF%BC%89%E7%A1%AC%E7%9B%98%EF%BC%8C%E8%BF%99%E6%98%AF%E5%BE%88%E8%B4%B9%E6%97%B6%E7%9A%84%E3%80%82%E8%AE%BE%E6%88%902%E5%AF%B9%E4%BA%8E%E5%BE%88%E5%A4%9A%E8%BF%90%E7%94%A8%EF%BC%8C%E5%AE%83%E7%9A%84%E6%84%8F%E6%80%9D%E6%98%AF%E4%B8%8D%E5%86%99%E5%85%A5%E7%A1%AC%E7%9B%98%E8%80%8C%E6%98%AF%E5%86%99%E5%85%A5%E7%B3%BB%E7%BB%9F%E7%BC%93%E5%AD%98%E3%80%82%E6%97%A5%E5%BF%97%E4%BB%8D%E7%84%B6%E4%BC%9A%E6%AF%8F%E7%A7%92flush%E5%88%B0%E7%A1%AC-%E7%9B%98%EF%BC%8C%E6%89%80%E4%BB%A5%E4%BD%A0%E4%B8%80%E8%88%AC%E4%B8%8D%E4%BC%9A%E4%B8%A2%E5%A4%B1%E8%B6%85%E8%BF%871-2%E7%A7%92%E7%9A%84%E6%9B%B4%E6%96%B0%E3%80%82"><span class="nav-number">10.</span> <span class="nav-text">默认值1的意思是每一次事务提交或事务外的指令都需要把日志写入（flush）硬盘，这是很费时的。设成2对于很多运用，它的意思是不写入硬盘而是写入系统缓存。日志仍然会每秒flush到硬 盘，所以你一般不会丢失超过1-2秒的更新。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E6%88%900%E4%BC%9A%E6%9B%B4%E5%BF%AB%E4%B8%80%E7%82%B9%EF%BC%8C%E4%BD%86%E5%AE%89%E5%85%A8%E6%96%B9%E9%9D%A2%E6%AF%94%E8%BE%83%E5%B7%AE%EF%BC%8C%E5%8D%B3%E4%BD%BFMySQL%E6%8C%82%E4%BA%86%E4%B9%9F%E5%8F%AF%E8%83%BD%E4%BC%9A%E4%B8%A2%E5%A4%B1%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%9B%E8%AE%BE%E7%BD%AE%E6%88%902%E5%8F%AA%E4%BC%9A%E5%9C%A8%E6%95%B4%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%8C%82%E4%BA%86%E6%97%B6%E6%89%8D%E5%8F%AF%E8%83%BD%E4%B8%A2%E6%95%B0%E6%8D%AE%EF%BC%9B%E8%AE%BE%E7%BD%AE%E6%88%901%E6%98%AF%E6%9C%80%E5%AE%89%E5%85%A8%E7%9A%84%E8%AE%BE%E7%BD%AE%EF%BC%8C%E6%80%A7%E8%83%BD%E4%B9%9F%E6%98%AF%E7%9B%B8%E5%AF%B9%E6%9C%80%E5%BC%B1%E7%9A%84%E3%80%82"><span class="nav-number">11.</span> <span class="nav-text">设成0会更快一点，但安全方面比较差，即使MySQL挂了也可能会丢失事务的数据；设置成2只会在整个操作系统 挂了时才可能丢数据；设置成1是最安全的设置，性能也是相对最弱的。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%93%E4%BA%8B%E5%8A%A1%E7%AD%89%E5%BE%85%E4%B8%80%E4%B8%AA%E9%94%81%E7%9A%84%E6%97%B6%E9%97%B4-%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%B6%85%E8%BF%87%E6%97%B6%E9%97%B4%E5%88%99%E5%9B%9E%E6%BB%9A"><span class="nav-number">12.</span> <span class="nav-text">当事务等待一个锁的时间 ，如果超过时间则回滚</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AE%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="nav-number">13.</span> <span class="nav-text">根据需要设置等待时间</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

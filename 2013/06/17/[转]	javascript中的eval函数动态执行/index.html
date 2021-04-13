@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]Javascript中的eval函数动态执行">
+<meta property="og:url" content="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]javascript%E4%B8%AD%E7%9A%84eval%E5%87%BD%E6%95%B0%E5%8A%A8%E6%80%81%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-06-17T14:34:00.000Z">
+<meta property="article:modified_time" content="2013-06-17T14:34:00.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]javascript%E4%B8%AD%E7%9A%84eval%E5%87%BD%E6%95%B0%E5%8A%A8%E6%80%81%E6%89%A7%E8%A1%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>[转]Javascript中的eval函数动态执行 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]javascript%E4%B8%AD%E7%9A%84eval%E5%87%BD%E6%95%B0%E5%8A%A8%E6%80%81%E6%89%A7%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [转]Javascript中的eval函数动态执行
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:34:00" itemprop="dateCreated datePublished" datetime="2013-06-17T22:34:00+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">定义和用法</span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span>() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</span><br><span class="line">语法</span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span>(string)</span><br><span class="line">参数	 描述</span><br><span class="line">string	 必需。要计算的字符串，其中含有要计算的 JavaScript 表达式或要执行的语句。</span><br><span class="line">返回值</span><br><span class="line"></span><br><span class="line">通过计算 string 得到的值（如果有的话）。</span><br><span class="line">说明</span><br><span class="line"></span><br><span class="line">该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。因此请不要为 <span class="built_in">eval</span>() 函数传递 <span class="built_in">String</span> 对象来作为参数。</span><br><span class="line">如果试图覆盖 <span class="built_in">eval</span> 属性或把 <span class="built_in">eval</span>() 方法赋予另一个属性，并通过该属性调用它，则 ECMAScript 实现允许抛出一个 <span class="built_in">EvalError</span> 异常。</span><br><span class="line">抛出</span><br><span class="line"></span><br><span class="line">如果参数中没有合法的表达式和语句，则抛出 <span class="built_in">SyntaxError</span> 异常。</span><br><span class="line">如果非法调用 <span class="built_in">eval</span>()，则抛出 <span class="built_in">EvalError</span> 异常。</span><br><span class="line">如果传递给 <span class="built_in">eval</span>() 的 Javascript 代码生成了一个异常，<span class="built_in">eval</span>() 将把该异常传递给调用者。</span><br><span class="line">提示和注释</span><br><span class="line"></span><br><span class="line">提示：虽然 <span class="built_in">eval</span>() 的功能非常强大，但在实际使用中用到它的情况并不多。</span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line">例子 <span class="number">1</span></span><br><span class="line"></span><br><span class="line">在本例中，我们将在几个字符串上运用 <span class="built_in">eval</span>()，并看看返回的结果：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;x=10;y=20;document.write(x*y)&quot;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.write(<span class="built_in">eval</span>(<span class="string">&quot;2+2&quot;</span>))</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> x=<span class="number">10</span></span><br><span class="line"><span class="built_in">document</span>.write(<span class="built_in">eval</span>(x+<span class="number">17</span>))</span><br><span class="line"> </span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">27</span></span><br><span class="line">例子 <span class="number">2</span></span><br><span class="line"></span><br><span class="line">看一下在其他情况中，<span class="built_in">eval</span>() 返回的结果：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;2+3&quot;</span>)<span class="comment">// 返回 5</span></span><br><span class="line"><span class="keyword">var</span> myeval = <span class="built_in">eval</span>;<span class="comment">// 可能会抛出 EvalError 异常</span></span><br><span class="line">myeval(<span class="string">&quot;2+3&quot;</span>);<span class="comment">// 可能会抛出 EvalError 异常</span></span><br><span class="line"></span><br><span class="line">可以使用下面这段代码来检测 <span class="built_in">eval</span>() 的参数是否合法：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="keyword">try</span>  &#123;</span><br><span class="line">     alert(<span class="string">&quot;Result:&quot;</span> + <span class="built_in">eval</span>(prompt(<span class="string">&quot;Enter an expression:&quot;</span>,<span class="string">&quot;&quot;</span>)));</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">catch</span>(exception) &#123;</span><br><span class="line">     alert(exception);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">本文的两个目的：</span><br><span class="line">（<span class="number">1</span>）介绍javascript中的<span class="built_in">eval</span>函数的用法</span><br><span class="line">（<span class="number">2</span>）如何在函数内执行全局代码 </span><br><span class="line">►先来说<span class="built_in">eval</span>的用法，内容比较简单，熟悉的可以跳过。</span><br><span class="line">    <span class="built_in">eval</span>函数接收一个参数s，如果s不是字符串，则直接返回s。否则执行s语句。如果s语句执行结果是一个值，则返回此值，否则返回<span class="literal">undefined</span>。</span><br><span class="line">    需要特别注意的是对象声明语法“&#123;&#125;”并不能返回一个值，需要用括号括起来才会返回值，简单示例如下：</span><br><span class="line">?</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> code1=<span class="string">&quot;&quot;</span>a<span class="string">&quot; + 2&quot;</span>;    <span class="comment">//表达式</span></span><br><span class="line"><span class="keyword">var</span> code2=<span class="string">&quot;&#123;a:2&#125;&quot;</span>;      <span class="comment">//语句</span></span><br><span class="line">alert(<span class="built_in">eval</span>(code1));     <span class="comment">//-&gt;&quot;a2&quot;</span></span><br><span class="line">alert(<span class="built_in">eval</span>(code2));     <span class="comment">//-&gt;undefined</span></span><br><span class="line">alert(<span class="built_in">eval</span>(<span class="string">&quot;(&quot;</span> + code2 + <span class="string">&quot;)&quot;</span>));    <span class="comment">//-&gt;[object Object] 例如JSON 对象就是利用这个</span></span><br><span class="line">    可以看到，对于对象声明语句来说，仅仅是执行，并不能返回值。为了返回常用的“&#123;&#125;”这样的对象声明语句，必须用括号括住，以将其转换为表达式，才能返回 其值。这也是使用<span class="built_in">JSON</span>来进行Ajax开发的基本原理之一。在例子中可以清楚的看到，第二个alert语句输出的是<span class="literal">undefined</span>，而第三个加了括 号后输出的是语句表示的对象。</span><br><span class="line">►现在来说本文的重点，如何在函数内执行全局代码。</span><br><span class="line">   为了说明这个问题，先看一个例子：</span><br><span class="line"><span class="keyword">var</span> s=<span class="string">&quot;global&quot;</span>;    <span class="comment">//定义一个全局变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">&quot;var s=&quot;</span>local<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">demo1();</span><br><span class="line">alert(s);    <span class="comment">//-&gt;global</span></span><br><span class="line">         很好理解，上面的demo1函数等价于：<span class="function"><span class="keyword">function</span> <span class="title">demo1</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> s=<span class="string">&quot;local&quot;</span>;&#125;，其中定义了一个局部变量s。</span><br><span class="line">        所以最后的输出是<span class="built_in">global</span>并不是什么奇怪的事情，毕竟大家都能很清楚的区分局部变量和全局变量。</span><br><span class="line">        仔细体会一下，可以发现<span class="built_in">eval</span>函数的特点，它总是在调用它的上下文变量空间（也称为：包，closure）内执行，无论是变量定义还是函数定义都是如此，所以如下的代码会产生函数未定义的错误：</span><br><span class="line"><span class="keyword">var</span> s=<span class="string">&quot;function test()&#123;return 1;&#125;&quot;</span>;     <span class="comment">//一个函数定义语句</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>(s);</span><br><span class="line">&#125;</span><br><span class="line">demo2();</span><br><span class="line">alert(test());    <span class="comment">//-&gt;error:test is not defined</span></span><br><span class="line">        这是因为test函数在局部空间定义，demo2函数内可以访问到，外面就访问不到了。</span><br><span class="line">         而在实际的Ajax开发中，有时我们需要从服务器动态获取代码来执行，以减轻一次载入代码过多的问题，或者是一些代码是通过Javascript自身生成的，希望用<span class="built_in">eval</span>函数来使其执行。</span><br><span class="line">但这样的动态获取代码的工作一般在函数内完成，比如：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadCode</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> code=getCode();</span><br><span class="line">    <span class="built_in">eval</span>(code);</span><br><span class="line">&#125;</span><br><span class="line">       可见<span class="built_in">eval</span>不可能在全局空间内执行，这就给开发带来了不少问题，也看到过很多人为此郁闷。</span><br><span class="line">        不过现在偶终于找到了解决办法，嘿嘿，可以同时兼容IE和Firefox，方法如下：</span><br><span class="line"><span class="keyword">var</span> X2=&#123;&#125;    <span class="comment">//my namespace:)</span></span><br><span class="line">X2.Eval=<span class="function"><span class="keyword">function</span>(<span class="params">code</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(!!(<span class="built_in">window</span>.attachEvent &amp;amp;&amp;amp; !<span class="built_in">window</span>.opera))&#123;</span><br><span class="line">  <span class="comment">//ie</span></span><br><span class="line">  execScript(code); </span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="comment">//not ie</span></span><br><span class="line">  <span class="built_in">window</span>.eval(code);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">        现在如果要想在函数内定义全局代码，就可以通过调用X2.Eval(code)方法，一个例子如下：</span><br><span class="line"><span class="keyword">var</span> s=<span class="string">&quot;global&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> X2.Eval(<span class="string">&quot;var s=&quot;</span>local<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">demo3();</span><br><span class="line">alert(s); <span class="comment">//-&gt;&quot;local&quot;</span></span><br><span class="line">        可见，在demo3函数内重新定义了全局变量s=<span class="string">&quot;local&quot;</span>。</span><br><span class="line">        需要注意的是X2.Eval并不返回值，如果要进行表达式的求值，还是用系统的<span class="built_in">eval</span>函数。X2.Eval设计为仅做全局代码定义用。</span><br><span class="line">        其实看到这里，或许有人感觉问题也太容易解决了点，呵呵，但发现这个办法倒是需要些运气和技巧的：</span><br><span class="line">（<span class="number">1</span>）对于IE浏览器，默认已经提供了这样的函数：execScript，用于在全局空间执行代码，只是知道的人还不多。</span><br><span class="line">（<span class="number">2</span>）对于Firefox浏览器，直接调用<span class="built_in">eval</span>函数，则在调用者的空间执行；如果调用       <span class="built_in">window</span>.eval则在全局空间执行。这个知道的人估计就更少了。毕竟alert(<span class="built_in">eval</span>==<span class="built_in">window</span>.eval)返回<span class="literal">true</span>！</span><br><span class="line">         Firefox的<span class="built_in">eval</span>函数的特点的确是很令人奇怪的，但从javascript规范中倒也能找到其来源：</span><br><span class="line">If value <span class="keyword">of</span> the <span class="built_in">eval</span> property is used <span class="keyword">in</span> any way other than a direct call (that is, other than by the explicit use <span class="keyword">of</span> its</span><br><span class="line">name <span class="keyword">as</span> an Identifier which is the MemberExpression <span class="keyword">in</span> a CallExpression), or <span class="keyword">if</span> the <span class="built_in">eval</span> property is assigned to,</span><br><span class="line">an <span class="built_in">EvalError</span> exception may be thrown.</span><br><span class="line">      意思大概就是说<span class="built_in">eval</span>函数的执行是和调用者相关的，但并没有说其执行上下文的问题。所以IE和Firefox孰是孰非也就很难说了，大家知道解决办法就好。</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/06/17/%5B%E8%BD%AC%5D%09JavaScript%20%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/" rel="prev" title="[转]JavaScript 全局函数">
+      <i class="fa fa-chevron-left"></i> [转]JavaScript 全局函数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2013/06/17/js%E5%8A%A0%E5%87%8F%E6%B3%95/" rel="next" title="js加减法">
+      js加减法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CentOS源使用的范围很广泛。这次我们要来讲一下如何用CentOS源安装LAMP。为了方便大家的理解，我们使用了很简单的安装方法。希望大家可以很好的理解。昨天又换了VPS，来自DiaHosting。这次最主要的目的是用作Web服务器。为了习惯，还是决定先用Apache。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用CentOS源安装LAMP全过程">
+<meta property="og:url" content="https://zecheng.github.io/2013/06/27/%E4%BD%BF%E7%94%A8CentOS%E6%BA%90%E5%AE%89%E8%A3%85LAMP%E5%85%A8%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="CentOS源使用的范围很广泛。这次我们要来讲一下如何用CentOS源安装LAMP。为了方便大家的理解，我们使用了很简单的安装方法。希望大家可以很好的理解。昨天又换了VPS，来自DiaHosting。这次最主要的目的是用作Web服务器。为了习惯，还是决定先用Apache。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-06-27T02:32:18.000Z">
+<meta property="article:modified_time" content="2013-08-28T07:33:24.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="LINUX">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2013/06/27/%E4%BD%BF%E7%94%A8CentOS%E6%BA%90%E5%AE%89%E8%A3%85LAMP%E5%85%A8%E8%BF%87%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用CentOS源安装LAMP全过程 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/27/%E4%BD%BF%E7%94%A8CentOS%E6%BA%90%E5%AE%89%E8%A3%85LAMP%E5%85%A8%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用CentOS源安装LAMP全过程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-27 10:32:18" itemprop="dateCreated datePublished" datetime="2013-06-27T10:32:18+08:00">2013-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2013-08-28 15:33:24" itemprop="dateModified" datetime="2013-08-28T15:33:24+08:00">2013-08-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>CentOS源使用的范围很广泛。这次我们要来讲一下如何用CentOS源安装LAMP。为了方便大家的理解，我们使用了很简单的安装方法。希望大家可以很好的理解。昨天又换了VPS，来自DiaHosting。这次最主要的目的是用作Web服务器。为了习惯，还是决定先用Apache。</p><span id="more"></span>
+<p><strong>首先做一些准备工作，准备好CentOS源安装包：<br />
+cd /usr/local/src<br />
+</strong>wget http://mysql.easynet.be/Downloads/MySQL-5.1/mysql-5.1.44.tar.gz<br />
+wget http://apache.etoak.com/httpd/httpd-2.2.13.tar.gz<br />
+wget http://cn.php.net/distributions/php-5.2.13.tar.gz<br />
+wget http://ncu.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/3.2.5/phpMyAdmin-3.2.5-all-languages.tar.gz</p>
+<p><strong>接着CentOS源安装编译器，运行库等需要的东西：<br />
+</strong>yum install make<br />
+yum install gcc gcc-c++<br />
+yum install libxml2 libxml2-devel<br />
+yum install libmcrypt libmcrypt-devel<br />
+yum install libtool-ltdl<br />
+yum install apr apr-*<br />
+yum install ncurses ncurses-*</p>
+<p><strong>CentOS源安装sendmail</strong>：<br />
+yum install sendmail sendmail-*<br />
+service sendmail start</p>
+<p><strong>接下来开始CentOS源安装配置MySQL：</strong><br />
+cd /usr/local/src<br />
+tar zxvf mysql-5.1.44.tar.gz<br />
+cd mysql-5.1.44<br />
+./configure --prefix=/usr/local/mysql<br />
+make<br />
+make install<br />
+cp support-files/my-medium.cnf /etc/my.cnf<br />
+cd /usr/local/mysql<br />
+groupadd mysql<br />
+useradd -g mysql -d /usr/local/mysql/var mysql<br />
+chown -R mysql .<br />
+chgrp -R mysql .<br />
+bin/mysql_install_db --user=mysql<br />
+chown -R mysql var</p>
+<p><strong>将MySQL注册为服务，开机自启动：</strong><br />
+cp /usr/local/src/mysql-5.1.44/support-files/mysql.server <br />
+/etc/rc.d/init.d/mysql<br />
+chmod +x /etc/rc.d/init.d/mysql<br />
+chkconfig --add mysql<br />
+service mysql start</p>
+<p><strong>MySQL启动之后，设置root密码：</strong><br />
+/usr/local/mysql/bin/mysqladmin -u root <br />
+-p password newpassword</p>
+<p><strong>下一步安装Apache：<br />
+</strong>cd /usr/local/src<br />
+tar zxvf httpd-2.2.13.tar.gz<br />
+cd httpd-2.2.13<br />
+./configure --prefix=/usr/local/apache <br />
+--with-mysql=/usr/local/mysql <br />
+--enable-rewrite=shared <br />
+--enable-module=so <br />
+--enable-shared=max<br />
+make<br />
+make install</p>
+<p><strong>最后CentOS源安装PHP：</strong><br />
+cd /usr/local/src<br />
+tar zxvf php-5.2.13.tar.gz<br />
+cd php-5.2.13<br />
+./configure --prefix=/usr/local/php <br />
+--with-mysql=/usr/local/mysql <br />
+--with-apxs2=/usr/local/apache/bin/apxs <br />
+--with-mcrypt <br />
+--enable-mbstring<br />
+make<br />
+make install<br />
+cp php.ini-dist /usr/local/php/lib/php.ini</p>
+<p><strong>配置httpd.conf：</strong><br />
+vi /usr/local/apache/conf/httpd.conf<br />
+找到“AddType application/x-gzip .tgz”这一行，在下面添加：<br />
+AddType application/x-httpd-php .php<br />
+AddType application/x-httpd-php-source .phps<br />
+找到“DirectoryIndex index.html”，改为：<br />
+DirectoryIndex index.php index.html<br />
+找到“#ServerName”，去掉注释的#号。</p>
+<p><strong>将所有“AllowOverride None”，改为：</strong><br />
+AllowOverride All</p>
+<p><strong>注册服务，并启动Apache：</strong><br />
+cp /usr/local/apache/bin/apachectl <br />
+/etc/rc.d/init.d/httpd<br />
+vi /etc/rc.d/init.d/httpd</p>
+<p><strong>找到“#!/bin/sh”，另起一行，增加：</strong><br />
+# chkconfig: 35 70 30<br />
+# description: Apache<br />
+继续：<br />
+chkconfig --add httpd<br />
+service httpd start</p>
+<p><strong>LAMP安装完成，新建一个测试页面：</strong><br />
+vi /usr/local/apache/htdocs/index.php<br />
+写入：<br />
+打开浏览器，http://localhost/index.php。</p>
+<p><strong>下面根据需要，CentOS源安装phpMyAdmin：</strong><br />
+cd /usr/local/src<br />
+tar zxvf phpMyAdmin-3.2.5-all-languages.tar.gz<br />
+mv phpMyAdmin-3.2.5-all-languages /usr/local/apache/htdocs/phpmyadmin<br />
+配置phpMyAdmin：<br />
+cd /usr/local/apache/htdocs/phpmyadmin<br />
+cp config.sample.inc.php config.inc.php<br />
+vi config.inc.php<br />
+找到“blowfish_secret”，在后面的单引号之间添加任意字符串。<br />
+访问 http://localhosst/phpmyadmin，以MySQL用户登陆，CentOS源安装LAMP成功。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LINUX/" rel="tag"># LINUX</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/06/27/CentOS%206.3%E4%B8%8B%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85LAMP(Linux+Apache+Mysql+Php)%E7%8E%AF%E5%A2%83/" rel="prev" title="CentOS 6.3下源码安装LAMP(Linux+Apache+Mysql+Php)环境">
+      <i class="fa fa-chevron-left"></i> CentOS 6.3下源码安装LAMP(Linux+Apache+Mysql+Php)环境
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2013/06/27/%E8%A7%81%E4%B8%8E%E4%B8%8D%E8%A7%81/" rel="next" title="见与不见">
+      见与不见 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="我的服务器是500G。最重要的是&#x2F;var分区一定要大(不论postfix邮件，还是LAMP的WEB 服务器等）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux最新分区方案">
+<meta property="og:url" content="https://zecheng.github.io/2013/09/02/linux%E6%9C%80%E6%96%B0%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="我的服务器是500G。最重要的是&#x2F;var分区一定要大(不论postfix邮件，还是LAMP的WEB 服务器等）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-09-02T05:51:33.000Z">
+<meta property="article:modified_time" content="2013-09-02T05:51:33.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="LINUX">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2013/09/02/linux%E6%9C%80%E6%96%B0%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>linux最新分区方案 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/09/02/linux%E6%9C%80%E6%96%B0%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux最新分区方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-09-02 13:51:33" itemprop="dateCreated datePublished" datetime="2013-09-02T13:51:33+08:00">2013-09-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我的服务器是500G。最重要的是/var分区一定要大(不论postfix邮件，还是LAMP的WEB 服务器等）。<span id="more"></span><br>最好是400G以上。具体的/boot 只要100M就足够了。<br>下面是我的分区方案：<br>硬盘500G</p>
+<p>服务器分区的方案：<br>分区类型 分区的实际大小<br>/ 1G-2G (最少要150–250MB)<br>/boot 32M-100M (启动分区，最多只要100M左右)<br>/opt 100M-1G (附加应用程序)<br>/tmp 40M-1000M (最大可以设为1G左右,如果加载ISO镜像文件就设为4G左右吧<br>，一般不用那么多)<br>/home 2G-10G (每个用户100M左右，具体自定。用户目录。)<br>/usr 3G-10G (最耗用空间的部份。最少要500M左右，一般宽松的服务器要<br>分到4-6G)<br>/usr/local 3G-15G (自已安装程序安装在此)<br>/var &gt;2G–硬盘余下全部空间 ( 最少300M-500M，一般2-3G,做服务器的话把上面余下<br>的空间都分给它)</p>
+<p>桌面分区方案<br>/ 1G<br>/boot 32M<br>/opt 100M<br>/tmp 50M<br>/home 1G-10G<br>/usr 3G-6G<br>/usr/local 3G-5G<br>/var 500M以上<br>最节省的分区方案（服务器不推荐）：<br>文件目录 最少 一般 安装后大小CentOS5.2<br>/ 150M-250M 500M-2G (378M)<br>/boot 32M-100M 64M (13M)<br>/opt 30M-100M 50M (19M)<br>/tmp 40-100M 50M (37M)<br>/home 100M-5G 1G (483M)<br>/usr &gt;500M 4-6G 2.5G (2.0G)<br>/usr/local 500M 2-5G 2G (1.2G)<br>/var 300-500M 2-3G 500M (296M)<br>/var目录，如果是服务器，就把依上面的把其他的分区分完之后的空间全部给/var<br>即分为最大的分区。http服务器目录/var/www,postfix服务器/var/mail.<br>一般都在/var目录里面.</p>
+<p>附：Debian官方安装指南的部份说明。</p>
+<p>目录 内容<br>bin 基本命令执行文件<br>boot boot loader 的静态链接文件<br>dev 设备文件<br>etc 主机特定的系统配置<br>home 用户目录<br>lib 基本共享库以及内核模块<br>media 用于移动介质的挂载点<br>mnt 用于临时挂载文件系统<br>proc 系统信息的虚拟目录(2.4 和 2.6 内核)<br>root root 用户的目录<br>sbin 基本系统命令执行文件<br>sys 系统信息的虚拟目录(2.6 内核)<br>tmp 临时文件<br>usr 第二级目录<br>var 不断变化的数据<br>srv 系统提供的用于 service 的数据<br>opt 附加的应用程序软件包<br>根分区 / 必须总是物理地包含 /etc、/bin、/sbin、/lib 和 /dev，否则您将不能启动系统。典型的<br>根分区需要 150–250MB 大小空间。<br>/usr：包含所有的用户程序(/usr/bin)，库文件(/usr/lib)，文档(/usr/share/doc)，等等。这是文件<br>系统中耗费空间最多的部分。您需要提供至少 500MB 磁盘空间。总容量会依据您要安装的软件包数量<br>和类型增长。宽松的工作站或服务器安装应该需要 4–6GB。<br>/var：所有的可变数据，如新闻组文章、电子邮件、网站、数据库、软件包系统的缓存等等，将被放入<br>这个目录。这个目录的大小取决于您计算机的用途，但是对大多数人来说，将主要用于软件包系统的管<br>理工具。如果您准备一次性地做一个全面的安装，包含 Debian 提供的所有程序，/var 下面 2 或 3GB<br>的空间应该够用。如果您准备逐个安装(也就是说，安装服务程序和工具，然后是文本处理工具，然后<br>是 X，…)，您准备 300–500 MB 就行。要是硬盘空间很紧张，并且不准备做主版本的系统升级，可<br>以为其准备 30 或 40MB 大小。<br>/tmp: 程序创建的临时数据大都存到这个目录。通常 40–100 MB 应该足够。一些应用程序 — 包括归<br>档处理程序、CD/DVD 制作工具和多媒体软件 — 可能会使用 /tmp 临时保存映像文件。如果要使用这<br>些程序，应该相应地调整 /tmp 目录的大小。<br>/home：每个用户将放置他的私有数据到这个目录的子目录下。其大小取决于将有多少用户使用系统，<br>以及有什么样文件放在他们的目录下。根据规划的用途，应该为每个用户准备 100MB 空间，不过应该<br>按您的需求调整。假如您在 home 目录下计划保存大量的多媒体文件(图片、MP3、电影)，该预备更多<br>的空间。<br>我的服务器的实际分法及实际使用的大小,还没有实际投入使用。所以/var目录没有用那么多。<br>一般WEB存放网页的目录是/var/www<br>postfix邮件的存放邮件的目录是：/var/mail<br>#df -TH<br>文件系统 类型 容量 已用 可用 已用% 挂载点<br>/dev/hdb2 ext3 11G 315M 9.4G 4% /<br>/dev/hdb10 ext3 10G 157M 9.3G 2% /opt<br>/dev/hdb9 ext3 11G 158M 9.5G 2% /home<br>/dev/hdb8 ext3 11G 158M 9.5G 2% /tmp<br>/dev/hdb7 ext3 11G 2.5G 7.3G 26% /usr<br>/dev/hdb6 ext3 16G 3.2G 12G 22% /usr/local<br>/dev/hdb5 ext3 417G 340M 395G 1% /var<br>/dev/hdb1 ext2 104M 7.3M 91M 8% /boot<br>tmpfs tmpfs 1.1G 0 1.1G 0% /dev/shm</p>
+<p>所以实际的分法还是我在上面提到的方法比较好 !</p>
+<p>linux分区详解 </p>
+<p>什么是硬盘分区，分区用来做什么？<br>分区就是硬盘的“段落”。Windows分区有自己的盘符（C：，D：等等），这些分区看起来都好像是一个独立的硬盘。 </p>
+<p>最简单的情况下就是将整个硬盘作为一个唯一的分区。如果您购买了一台已经预装了window的机器，基本上都是这种情况。 </p>
+<p>如果您希望在机器上安装更多的操作系统，将需要更多的分区。您更不能在这个单独的分区里面再安装linux。如果您要同时安装Windows ME和 Windows2000，那么您将需要两个分区。原因是不用的操作系统原则上采用不同的文件系统。如果几个操作系统都支持相同的文件系统，通常为了避免在一个分区下有相同的系统目录，也将他们安装在不同的磁盘分区。 </p>
+<p>在Linux下是不同的情况，它本身又有更多的分区–比如，根分区 “/” 和交换分区“swap”。 </p>
+<p>提示：说的更清楚一点：您在安装Linux时考虑的并不是windows分区下还有多少空间，因为windows分区下的空间Linux不能使用。您需要在Windows分区外建立新的分区。<br>分区类型<br>硬盘分区一共有三种：主分区，扩展分区和逻辑分区。 </p>
+<p>在一块硬盘上最多只能有四个主分区。您可以另外建立一个扩展分区来代替四个主分区的其中一个，然后在扩展分区下您可以建立更多的逻辑分区。 </p>
+<p>扩展分区只不过是逻辑分区的“容器”。实际上只有主分区和逻辑分区进行数据存储。<br>提示：Windows9x/ME下自带的分区程序fdisk只能定义一个主分区。也就是说，在Windows9x/ME下您只能定义最多一个主分区，一个扩展分区和扩展分区下更多的逻辑分区。如果你想要使用更多的主分区，必须在Linux下进行分区。<br>分区和格式化<br>每个操作系统下都有自己的用来改变硬盘分区的工Windows9x/M下是非常有名的FDISK,在Windows NT/2000/XP中带有一个非常方便的图形界面的工具，他的位置在不同的Windows版本下也稍微有所不同（比如在2000下 控制面板—管理工具—计算机管理—磁盘管理）。在Linux下进行分区既可以使用FDISK，或者一个相同功能的图形界面程序。 </p>
+<p>每个主分区和逻辑分区都回被存储一个识别文件系统的附加信息。操作系统（Windows或者Linux等等）能通过这些信息非常容易的识别和确认，应该使用哪个分区。不能识别的操作系统分区将会被忽略。 </p>
+<p>通过分区当然不能产生任何文件系统。在分区之后只是对硬盘上的磁盘空间进行了保留，还不能直接使用。在此之后分区必须要进行格式化。在Windows下可以通过资源管理器下的文件菜单或者FOMATE程序来执行，在Linux下大多数情况下由mke2fs来完成。 </p>
+<p>提示：Linux支持不同的文件系统。应用最广泛的是ext2。ext2就是有我们上面提到的mke2fs程序来建立的。Linux当然也支持reiserfs文件系统 </p>
+<p>注意：进行任何磁盘分区或大小的改动工作，都会丢失以前的数据。一次在分区直前一定要对数据进行备份。<br>Dos/Windows下的分区名称<br>在Windows下操作系统使用的分区将用盘符来表示。A：和B：为软驱保留，其他应盘上的主分区和逻辑分区将从C：开始依次排列。（扩展分区没有任何盘符，而且是看不到的。在我indowsx下同样也看不到Linux分区） </p>
+<p>如果一台机器有很多的硬盘，光驱，软驱等，磁盘分区的命名将产生混乱。在这种情况下，第一块硬盘上的主分区和逻辑分区将首先得到命名盘符；然后是第二块，第三块等等。比如您有三块硬盘，每一快硬盘上同时又有一个主分区和两个逻辑分区，那么第一块硬盘的命名将是C：，F：，G：，第二块为D：，H：，I：，第三块为E：，J：，K：。 </p>
+<p>在WindowsNT/2000/XP下可以改变这些系统自动命名的名称。比如你可以将一个光驱命名为X，这样在添加新的分区的时候他的名称就不会改变了。 </p>
+<p>陌生文件系统的分区将不会被命名，在大多数程序里面（比如资源管理器）是看不到的。、这些分区将只能在磁盘分区工具（Windows9x/ME下的FDISK，Win2000下的计算机管理-命令解释器）下面显示。<br>Linux下的分区名称<br>Linux下的分区命名比Windows下面将更加清晰详细，但是由此而来的名称不容易记住。不同于Windows下的盘符，Linux通常采用设备-名称（device-name）。一般的硬盘（比如IDE硬盘）将采用/dev/hdxy来命名。X表示硬盘（a是第一块硬盘，b是第二块硬盘，依次类推），y是分区的号码（从0开始，1，2，3等等）。SCSI硬盘将用/dev/sdxy来命名。光驱（不管是IDE类型或者SCSI）将和硬盘一样来命名。 </p>
+<p>提示：IDE（集成电路设备）和SCSI（小型计算机系统接口）是两个目前最流行的连接计算机硬盘，光驱或者软驱的系统。SCSI比IDE速度要快，但是同样价钱也要贵一些。SCSI通常可以用于文件服务器和数据库服务器。Linux支持这两种系统（当然可以同时在一台机器上拥有IDE和SCSI设备） </p>
+<p>IDE硬盘和光驱设备将由内部连接来区分区定。/dev/hda表示第一个IDE信道的第一个设备（master），/dev/hdb表示第一个IDE信道的第二个设备（slave）。按照这个原则，/dev/hdc和/dev/hdd为第二个IDE信道的master和slave设备。被命名为/dev/had和/dev/hdc的两个设备在理论上是同样可以的，在这里不使用/dev/hdb。（这种情况下，设备被作为master连接在第一和第二个IDE信道上） </p>
+<p>SCSI硬盘或者光驱设备依赖于设备的ID号码，不考虑遗漏的ID号码。比如三个SCSI设备的ID号码分别是0，2，5，设备名称分别是/dev/sda，/dev/sdb，/dev/sdc。如果现在再添加一个ID号码为3的设备，那么这个设备将被以/dev/sdc来命名，ID号码为5的设备将被称为/dev/sdd。 </p>
+<p>分区的号码不依赖于IDE或者SCSI设备的命名，号码1到4位主分区或者扩展分区保留，从5开始才用来为逻辑分区命名。由于这个原因，经常会有号码漏洞。（比如1，2，5，6，在这里3和4就是号码漏洞）比如：第一块硬盘的主分区为hda1，扩展分区为hda2，扩展分区下的一个逻辑分区为hda5。 </p>
+<p>下面还有一些例子帮助大家来理解 </p>
+<p>/dev/hda          表示整个IDE硬盘<br>/dev/hda1         表示第一块IDE硬盘的第一个主分区<br>/dev/hda2         表示第一块IDE硬盘的扩展分区<br>/dev/hda5         表示第一块IDE硬盘的第一个逻辑分区<br>/dev/hda8         表示第一块IDE硬盘的第四个逻辑分区<br>/dev/hdb          表示第二个IDE硬盘<br>/dev/hdb1         表示第二块IDE硬盘的第一个主分区<br>/dev/sda           表示第一个SCSI硬盘<br>/dev/sda1          表示第一个SCSI硬盘的第一个主分区<br>/dev/sdd3          表示第四个SCSI硬盘的第三个主分区 </p>
+<p>Linux web服务器分区方案</p>
+<p>  看到大家非常关心LINUX下WEB服务器的分区方案,很久没有写原创文章了,今天也加班贡献一次,下边是正文:Linux服务器的最大应用领域在WEB服务器,很多朋友在第一次安装LINUX服务器时最先想到的就是如何分区,一个合理的分区可以省去您许多的麻烦,尤其是在个人服务器很少添加硬件的情况下,最初的分区方案是否合理直接决定着您以后是否能安心的维护您的服务器,由于根据您的硬件配置不同,所以分区的具体方案也不同,以下的一个实例仅供参考,不同的硬件配置按照解释说明按比例划分自己的分区,还有一些为LINUX服务器添加新分区或添件新硬盘的文章请大家直接到Linux联盟网站上查询,不是这篇文章介绍的内容.<br>        分区的考虑因素其实还有很多,比如说你的服务器有几块硬盘,需要安装哪些软件,我们主要说的是WEB服务器,SWAP分区,作为交换分区有人推荐用内存的两倍,但是由于现在内存的容量明显很大，所以单独划分太多是没有必要的,比如我的内存是2G,那规划2G的SWAP分区就足够了,当然1G的内存我也喜欢用1G的SWAP,另外在WEB服务器中几个需要单独分区的目录:/var /tmp /usr /home,其中/var和/temb分区是数据变化频繁的,前者有许多系统日志,还有一些版本的LINUX把WEB目录放在了这里这些都要注意,后者对一些大站来说有大量的临时文件和碎片,一些大型站点和多硬盘服务器给这二位配上单独的硬盘也是可以的./home目录更不必说，现在大部分的发行版本都要求这个尽可能的大,另外还有人喜欢把/boot单独分区,/usr的目录下安装了大部分的软件,所以要考虑软件安装的大小进行分区.以下是我的单硬盘分区方案,仅供参考:</p>
+<p>/        (128MB)<br>/boot (100MB)<br>swap  2G (2G RAM)<br>/tmp   (2G)<br>/var    (2G)<br>/usr    (10G)<br>/home (剩下的所有空间)</p>
+<p>以上平均化方案我的站基本上是能够满足需求了，根据您的实际配置注意以上几个分区进行合理的调整就可以了,欢迎大家留言说一说自己的服务器分区方案.</p>
+<p>Linux分区方案：</p>
+<p>创建三个分区</p>
+<p>1、/boot     启动分区     存放内核和启动程序<br>                   空间分配:100M     类型：ext3</p>
+<p>2、/swap     交换分区     虚拟内存<br>                   空间分配：物理内存的2倍</p>
+<p>3、/             根分区         存放所有文件<br>                    空间大小：至少3个G     类型：ext3<br>                    （ / 相当于Windows 中的 c:&gt; ）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LINUX/" rel="tag"># LINUX</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/08/03/PHP%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" rel="prev" title="PHP的一些常用函数">
+      <i class="fa fa-chevron-left"></i> PHP的一些常用函数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2013/09/02/CentOS%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E9%BB%98%E8%AE%A4%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%BC%96%E7%A0%81/" rel="next" title="CentOS修改系统默认语言与编码">
+      CentOS修改系统默认语言与编码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

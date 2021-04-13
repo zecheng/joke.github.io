@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="JavaScript_Date对象说明 Date中文为”日期”的意思，Date继承自Object对象，此对象提供操作，显示日期与时间的函数 引用网址:http:&#x2F;&#x2F;www.dreamdu.com&#x2F;javascript&#x2F;object_date&#x2F;Date对象构造函数 Date对象具有多种构造函数。 12345678910newDate()newDate(milliseconds)newDate(dat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]JavaScript Date 对象与函数">
+<meta property="og:url" content="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]JavaScript%20Date%20%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="JavaScript_Date对象说明 Date中文为”日期”的意思，Date继承自Object对象，此对象提供操作，显示日期与时间的函数 引用网址:http:&#x2F;&#x2F;www.dreamdu.com&#x2F;javascript&#x2F;object_date&#x2F;Date对象构造函数 Date对象具有多种构造函数。 12345678910newDate()newDate(milliseconds)newDate(dat">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-06-17T13:52:11.000Z">
+<meta property="article:modified_time" content="2013-06-17T13:52:11.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]JavaScript%20Date%20%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%87%BD%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>[转]JavaScript Date 对象与函数 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/[%E8%BD%AC]JavaScript%20Date%20%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [转]JavaScript Date 对象与函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 21:52:11" itemprop="dateCreated datePublished" datetime="2013-06-17T21:52:11+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JavaScript_Date对象说明</p>
+<p>Date中文为”日期”的意思，Date继承自Object对象，此对象提供操作，显示日期与时间的函数</p>
+<p>引用网址:<a target="_blank" rel="noopener" href="http://www.dreamdu.com/javascript/object_date/">http://www.dreamdu.com/javascript/object_date/</a><br>Date对象构造函数</p>
+<p>Date对象具有多种构造函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">newDate()</span><br><span class="line">newDate(milliseconds)</span><br><span class="line">newDate(datestring)</span><br><span class="line">newDate(year,month)</span><br><span class="line">newDate(year,month,day)</span><br><span class="line">newDate(year,month,day,hours)</span><br><span class="line">newDate(year,month,day,hours,minutes)</span><br><span class="line">newDate(year,month,day,hours,minutes,seconds)</span><br><span class="line">newDate(year,month,day,hours,minutes,seconds,microseconds)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Date对象构造函数参数说明</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">milliseconds - 距离JavaScript内部定义的起始时间<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日的毫秒数</span><br><span class="line">datestring - 字符串代表的日期与时间。此字符串可以使用<span class="built_in">Date</span>.parse()转换</span><br><span class="line">year - 四位数的年份，如果取值为<span class="number">0</span>-<span class="number">99</span>，则在其之上加上<span class="number">1900</span></span><br><span class="line">month - <span class="number">0</span>(代表一月)-<span class="number">11</span>(代表十二月)之间的月份</span><br><span class="line">day - <span class="number">1</span>-<span class="number">31</span>之间的日期</span><br><span class="line">hours - <span class="number">0</span>(代表午夜)-<span class="number">23</span>之间的小时数</span><br><span class="line">minutes - <span class="number">0</span>-<span class="number">59</span>之间的分钟数</span><br><span class="line">seconds - <span class="number">0</span>-<span class="number">59</span>之间的秒数</span><br><span class="line">microseconds - <span class="number">0</span>-<span class="number">999</span>之间的毫秒数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Date对象返回值</p>
+<p>如果没有任何参数，将返回当前日期<br>如果参数为一个数字，将数字视为毫秒值，转换为日期<br>如果参数为一个字符串，将字符串视为日期的字符串表示，转换为日期<br>还可以使用六个构造函数精确定义，并返回时间</p>
+<p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vard1=newDate();</span><br><span class="line"><span class="built_in">document</span>.write(d1.toString());</span><br><span class="line">vard2=newDate(<span class="string">&quot;2009-08-08 12:12:12);</span></span><br><span class="line"><span class="string">document.write(d2.toString());</span></span><br><span class="line"><span class="string">vard3=newDate(2009,8,8);</span></span><br><span class="line"><span class="string">document.write(d3.toString());</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+<p>Date做为JavaScript的一种内置对象，必须使用new的方式创建。<br>Date对象在JavaScript内部的表示方式是，距1970年1月1日午夜(GMT时间)的毫秒数(时间戳)，我们在这里也把 Date的内部表示形式称为时间戳。可以使用getTime()将Date对象转换为Date的时间戳，方法setTime()可以把Date的时间戳转 换为Date的标准形式。</p>
+<p>Date函数使用语法<br>date.方法名(参数1,参数2,…);Date.方法名();<br>date代表一个日期对象的实例，Date代表日期对象，date.方法名调用的为对象的成员函数<br>Date.方法名调用的为对象的静态函数<br>示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vard=newDate();vard2=<span class="built_in">Date</span>.UTC();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>JavaScript_Date函数按功能分类<br>日期获取类函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>() 函数 -- <span class="built_in">Date</span>对象的构造函数</span><br><span class="line">getDate() 函数 -- 返回date对象中的月份中的天数(<span class="number">1</span>-<span class="number">31</span>)</span><br><span class="line">getDay()函数 -- 返回date对象中的星期中的天数(<span class="number">0</span>-<span class="number">6</span>)</span><br><span class="line">getFullYear() 函数 -- 返回date对象中的四位数年份</span><br><span class="line">getHours()函数 -- 返回date对象中的小时数(<span class="number">0</span>-<span class="number">23</span>)</span><br><span class="line">getMilliseconds() 函数 -- 返回date对象中的毫秒数(<span class="number">0</span>-<span class="number">999</span>)</span><br><span class="line">getMinutes() 函数 -- 返回date对象中的分钟数(<span class="number">0</span>-<span class="number">59</span>)</span><br><span class="line">getMonth() 函数 -- 返回date对象中的月份数(<span class="number">0</span>-<span class="number">11</span>)</span><br><span class="line">getSeconds() 函数 -- 返回date对象中的秒数(<span class="number">0</span>-<span class="number">59</span>)</span><br><span class="line">getTime() 函数 -- 返回date对象的时间戳表示法(毫秒表示)</span><br><span class="line">getTimezoneOffset() 函数 -- 返回本地时间与用UTC表示当前日期的时间差，以分钟为单位</span><br><span class="line">getUTCDate() 函数 -- 返回date对象中用世界标准时间(UTC)表示的月份中的一天(<span class="number">1</span>-<span class="number">31</span>)</span><br><span class="line">getUTCDay() 函数 -- 返回date对象中用世界标准时间(UTC)表示的周中的一天(<span class="number">0</span>-<span class="number">6</span>)</span><br><span class="line">getUTCFullYear() 函数 -- 返回date对象中用世界标准时间(UTC)表示的四位年份</span><br><span class="line">getUTCHours() 函数 -- 返回date对象中用世界标准时间(UTC)表示的小时数(<span class="number">0</span>-<span class="number">23</span>)</span><br><span class="line">getUTCMilliseconds() 函数 -- 返回date对象中用世界标准时间(UTC)表示的毫秒数(<span class="number">0</span>-<span class="number">999</span>)</span><br><span class="line">getUTCMinutes() 函数 -- 返回date对象中用世界标准时间(UTC)表示的分钟数(<span class="number">0</span>-<span class="number">59</span>)</span><br><span class="line">getUTCMonth() 函数 -- 返回date对象中用世界标准时间(UTC)表示的月份数(<span class="number">0</span>-<span class="number">11</span>)</span><br><span class="line">getUTCSeconds() 函数 -- 返回date对象中用世界标准时间(UTC)表示的秒数(<span class="number">0</span>-<span class="number">59</span>)</span><br><span class="line">getYear() 函数 -- 返回date对象的年份(真实年份减去<span class="number">1900</span>)</span><br><span class="line"><span class="built_in">Date</span>.UTC()函数 -- 返回date对象距世界标准时间(UTC)<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>日期设置类函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">setDate() 函数 -- 设置date对象中月份的一天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setFullYear() 函数 -- 设置date对象中的年份，月份和天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setHours() 函数 -- 设置date对象的小时，分钟，秒和毫秒，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setMilliseconds() 函数 -- 设置date对象的毫秒数，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setMinutes() 函数 -- 设置date对象的分钟，秒，毫秒，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setMonth() 函数 -- 设置date对象中月份，天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setSeconds() 函数 -- 设置date对象中月份的一天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setTime() 函数 -- 使用毫秒数设置date对象，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCDate() 函数 -- 设置date对象中用世界标准时间(UTC)表示的月份的一天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCFullYear() 函数 -- 设置date对象中用世界标准时间(UTC)表示的年份，月份和天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCHours() 函数 --- 设置date对象中用世界标准时间(UTC)表示的小时，分钟，秒和毫秒，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCMilliseconds() 函数 -- 设置date对象中用世界标准时间(UTC)表示的毫秒数，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCMinutes() 函数 -- 设置date对象中用世界标准时间(UTC)表示的分钟，秒，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCMonth() 函数 -- 设置date对象中用世界标准时间(UTC)表示的月份，天，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setUTCSeconds() 函数 -- 设置date对象中用世界标准时间(UTC)表示的秒，毫秒，并返回date对象距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line">setYear() 函数 -- 设置date对象的年份(真实年份减去<span class="number">1900</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>日期打印类函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">toDateString() 函数 -- 返回date对象的日期部分的字符串表示</span><br><span class="line">toGMTString() 函数 -- 返回date对象的格林威治时间(GMT)的字符串表示</span><br><span class="line">toLocaleDateString函数 -- 返回date对象的日期部分的本地化字符串</span><br><span class="line">toLocaleTimeString函数 -- 返回date对象的时间部分的本地化字符串</span><br><span class="line">toTimeString()函数 -- 返回date对象的时间部分的字符串</span><br><span class="line">toUTCString函数 -- 返回date对象的世界标准时间(UTC)的字符串表示</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>日期解析类函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>.parse() 函数 -- 解析一个日期的字符串，并返回该日期距<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>日午夜之间的毫秒数(时间戳)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/06/17/php%E4%B9%B1%E7%A0%81%E8%BD%AC%E6%8D%A2/" rel="prev" title="php乱码转换">
+      <i class="fa fa-chevron-left"></i> php乱码转换
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2013/06/17/PHP%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1OOP%E8%AE%B0%E5%BD%95/" rel="next" title="PHP 面向对象OOP记录">
+      PHP 面向对象OOP记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

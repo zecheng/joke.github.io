@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="路虽遥,行必至.事虽难,做必成.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="泽宬的技术博客">
+<meta property="og:url" content="https://zecheng.github.io/page/14/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="路虽遥,行必至.事虽难,做必成.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/page/14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/27/CentOS%206.3%E4%B8%8B%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85LAMP(Linux+Apache+Mysql+Php)%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/27/CentOS%206.3%E4%B8%8B%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85LAMP(Linux+Apache+Mysql+Php)%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">CentOS 6.3下源码安装LAMP(Linux+Apache+Mysql+Php)环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2013-06-27 10:31:18 / 修改时间：10:32:40" itemprop="dateCreated datePublished" datetime="2013-06-27T10:31:18+08:00">2013-06-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>什么是LAMP</strong><br>LAMP是一种Web网络应用和开发环境，是Linux, Apache, MySQL, Php/Perl的缩写，每一个字母代表了一个组件，每个组件就其本身而言都是在它所代表的方面功能非常强大的组件。<br>LAMP这个词的由来最早始于德国杂志“c’t Magazine”，Michael Kunze在1990年最先把这些项目组合在一起创造了LAMP的缩写字。这些组件并不是开始就设计为一起使用的，但是，这些软件都是开源的，可以很方便的随时获得并免费使用，这就导致了这些组件经常在一起使用。这些组件的兼容性也在不断完善，为了改善不同组件之间的协作，已经创建了某些扩展功能，在一起的应用情形变得非常普便，因而成为目前最流行的web应用基础架构。</p>
+<p><strong>LAMP的组件</strong><br>平台由四个组件组成，呈分层结构，每一层都提供了整个架构的一个关键部分：<br><strong>   Linux</strong><strong>：</strong>Linux 处在最底层，提供操作系统。它的灵活性和可定制化的特点意味着它能够产生一种高度定制的平台，让其它组件在上面运行。其它组件运行于Linux 之上，但是并不一定局限于 Linux，也可以在 Microsoft Windows, Mac OS X 或 UNIX上运行。<br><strong>   Apache</strong><strong>：</strong>Apache位于第二层，它是一个Web 服务平台，提供可让用户获得 Web 页面的机制。Apache 是一款功能强大、稳定、可支撑关键任务的Web服务器，Internet 上超过 50％ 的网站都使用它作为 Web 服务器。<br><strong>   MySQL</strong><strong>：</strong>MySQL 是最流行的开源关系数据库管理系统，是LAMP的数据存储端。在 Web 应用程序中，所有帐户信息、产品信息、客户信息、业务数据和其他类型的信息都存储于数据库中，通过 SQL 语言可以很容易地查询这些信息。<br><strong>   PHP/Perl</strong><strong>：</strong>Perl是一种灵活的语言，特别是在处理文本要素的时候，这种灵活性使Perl很容易处理通过 CGI接口提供的数据，灵活地运用文本文件和简单数据库支持动态要素。PHP 是一种被广泛应用的开放源代码的多用途脚本语言，它可嵌入到 HTML中，尤其适合 web 开发。可以使用 PHP 编写能访问 MySQL 数据库中的数据和 Linux 提供的一些特性的动态内容。</p>
+<p><strong>二、系统环境</strong></p>
+<p>系统平台：CentOS release 5.8 (Final)</p>
+<p>Apache版本：httpd-2.2.9.tar.gz</p>
+<p>Mysql 版本：mysql-5.0.41.tar.gz</p>
+<p>Php版本：php-5.2.6.tar.gz</p>
+<p><strong>三、安装前准备</strong></p>
+<p><strong>1、<strong>库文件准备</strong><br></strong></p>
+<p>在安装PHP之前，应先安装PHP5需要的最新版本库文件，例如libxml2、libmcrypt以及GD2库等文件。安装GD2库是为了让PHP5支 持GIF、PNG和JPEG图片格式，所以在安装GD2库之前还要先安装最新的zlib、libpng、freetype和jpegsrc等库文件。而且中间还会穿插安装一些软件，读者可以按照本节提供的顺序安装。</p>
+<p>autoconf-2.61.tar.gz</p>
+<p>freetype-2.3.5.tar.gz</p>
+<p>gd-2.0.35.tar.gz</p>
+<p>jpegsrc.v6b.tar.gz</p>
+<p>libmcrypt-2.5.8.tar.gz</p>
+<p>libpng-1.2.31.tar.gz</p>
+<p>libxml2-2.6.30.tar.gz</p>
+<p>zlib-1.2.3.tar.gz</p>
+<p>ZendOptimizer-3.2.6-linux-glibc21-i386.tar.gz</p>
+<p>phpMyAdmin-3.0.0-rc1-all-languages.tar.gz</p>
+<p><strong>2、安装gcc、gcc-c++编译器</strong></p>
+<p>用gcc -v 命令检查安装时使用的编译工作是否存在</p>
+<img alt="" src="http://pic002.cnblogs.com/images/2012/370046/2012112010273696.jpg" />
+
+<p>如系统未安装，在系统联网的情况下使用yum install gcc和yum install gcc-c++安装</p>
+<p><strong>3、卸载默认的低版本环境</strong></p>
+<div>目前发行的Linux操作系统版本中，如果选择默认全部安装，就已经安装了LAMP环境，但是版本相对都比较低。我们可以再安装一个LAMP环境和原来的并存，但是这样做没有必要，因为同时只能开启一个LAMP环境。所要我们要在安装之前，先应检查一下系统中是否已经安装了低版本的环境，如果已经安装过了，停止原来的服务运行，或者把原来的环境卸载掉。</div>
+<strong>a. 卸载Apache</strong>
+<div>
+
+<h1 id="rpm-qa-grep-httpd"><a href="#rpm-qa-grep-httpd" class="headerlink" title="rpm -qa | grep httpd"></a>rpm -qa | grep httpd</h1><p>说明：检查是否安装了httpd软件包</p>
+<img alt="" src="http://pic002.cnblogs.com/images/2012/370046/2012112010590951.jpg" />
+
+<h1 id="rpm-e-httpd-2-2-3-63-el5-centos-–nodeps"><a href="#rpm-e-httpd-2-2-3-63-el5-centos-–nodeps" class="headerlink" title="rpm -e httpd-2.2.3-63.el5.centos –nodeps"></a>rpm -e httpd-2.2.3-63.el5.centos –nodeps</h1><p>说明：卸载软件包， –nodeps 如果有连带关系，也强制卸载</p>
+<h1 id="cd-etc-httpd"><a href="#cd-etc-httpd" class="headerlink" title="cd /etc/httpd/"></a>cd /etc/httpd/</h1><h1 id="rm-rf"><a href="#rm-rf" class="headerlink" title="rm -rf *"></a>rm -rf *</h1><p>说明：到原来的apache安装目录下，将其所有的安装目录和文件都删掉</p>
+<p><strong>b. 卸载Mysql</strong></p>
+<h1 id="rpm-qa-grep-mysql"><a href="#rpm-qa-grep-mysql" class="headerlink" title="rpm -qa | grep mysql"></a>rpm -qa | grep mysql</h1><h1 id="rpm-e-mysql-5-0-77-4-el5-4-2-–nodeps"><a href="#rpm-e-mysql-5-0-77-4-el5-4-2-–nodeps" class="headerlink" title="rpm -e mysql-5.0.77-4.el5_4.2 –nodeps"></a>rpm -e mysql-5.0.77-4.el5_4.2 –nodeps</h1><p>说明：卸载mysql</p>
+<p><strong>c. 卸载Php</strong></p>
+<h1 id="rpm-qa-grep-php"><a href="#rpm-qa-grep-php" class="headerlink" title="rpm -qa | grep php"></a>rpm -qa | grep php</h1><h1 id="rpm-e-php-common-5-1-6-27-el5-–nodeps"><a href="#rpm-e-php-common-5-1-6-27-el5-–nodeps" class="headerlink" title="rpm -e php-common-5.1.6-27.el5 –nodeps"></a>rpm -e php-common-5.1.6-27.el5 –nodeps</h1><h1 id="rpm-e-php-ldap-5-1-6-27-el5-–nodeps"><a href="#rpm-e-php-ldap-5-1-6-27-el5-–nodeps" class="headerlink" title="rpm -e php-ldap-5.1.6-27.el5 –nodeps"></a>rpm -e php-ldap-5.1.6-27.el5 –nodeps</h1><h1 id="rpm-e-php-cli-5-1-6-27-el5-–nodeps"><a href="#rpm-e-php-cli-5-1-6-27-el5-–nodeps" class="headerlink" title="rpm -e php-cli-5.1.6-27.el5 –nodeps"></a>rpm -e php-cli-5.1.6-27.el5 –nodeps</h1><h1 id="rpm-e-php-5-1-6-27-el5-–nodeps"><a href="#rpm-e-php-5-1-6-27-el5-–nodeps" class="headerlink" title="rpm -e php-5.1.6-27.el5 –nodeps"></a>rpm -e php-5.1.6-27.el5 –nodeps</h1><p>说明：卸载PHP</p>
+<p><strong>4、关闭selinux，清空防火墙规则</strong></p>
+<p><strong>5、使用ssh shell将windows下的13个源码包上传到/usr/local/src</strong></p>
+<p><strong>6、解包</strong></p>
+<p>编写一个shell脚本tar.sh进行解包。</p>
+<div>
+<div><a title="复制代码" target="_blank" rel="noopener" href="http://www.cnblogs.com/mchina/archive/2012/11/28/2778779.html"><img alt="复制代码" src="http://common.cnblogs.com/images/copycode.gif" /></a></div>
+<pre>#!/bin/sh  
+cd /usr/local/src
+ls *.tar.gz > ls.list        
+for TAR in `cat ls.list`  
+do
+tar -zxvf $TAR
+done
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div&gt;&lt;a title=<span class="string">&quot;复制代码&quot;</span> href=<span class="string">&quot;http://www.cnblogs.com/mchina/archive/2012/11/28/2778779.html&quot;</span>&gt;&lt;img alt=<span class="string">&quot;复制代码&quot;</span> src=<span class="string">&quot;http://common.cnblogs.com/images/copycode.gif&quot;</span> /&gt;&lt;<span class="string">/a</span>&gt;&lt;<span class="string">/div</span>&gt;</span><br><span class="line">&lt;<span class="string">/div</span>&gt;</span><br><span class="line">执行脚本tar.sh进行解包</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;7、将源码包*<span class="string">.tar.gz</span>全都删除&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112011423274.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="string">/div</span>&gt;</span><br><span class="line">&lt;strong&gt;四、安装LAMP&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;1、安装libxml2&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/libxml2-2.6.30</span></span><br><span class="line"><span class="comment"># ./configure --prefix=/usr/local/libxml2</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;2、安装libmcrypt&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/libmcrypt-2.5.8</span></span><br><span class="line"><span class="comment"># ./configure --prefix=/usr/local/libmcrypt</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;3、安装zlib&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/zlib-1.2.3</span></span><br><span class="line"><span class="comment"># ./configure</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;4、安装libpng&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/libpng-1.2.31</span></span><br><span class="line"><span class="comment"># ./configure --prefix=/usr/local/libpng</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;5、安装jpeg6&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">这个软件包安装有些特殊，其它软件包安装时如果目录不存在，会自动创建，但这个软件包安装时需要手动创建。</span><br><span class="line"></span><br><span class="line"><span class="comment"># mkdir /usr/local/jpeg6</span></span><br><span class="line"><span class="comment"># mkdir /usr/local/jpeg6/bin</span></span><br><span class="line"><span class="comment"># mkdir /usr/local/jpeg6/lib</span></span><br><span class="line"><span class="comment"># mkdir /usr/local/jpeg6/include</span></span><br><span class="line"><span class="comment"># mkdir -p /usr/local/jpeg6/man/man1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/jpeg-6b</span></span><br><span class="line"><span class="comment"># ./configure --prefix=/usr/local/jpeg6/ --enable-shared --enable-static</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;6、安装freetype&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/freetype-2.3.5</span></span><br><span class="line"><span class="comment"># ./configure --prefix=/usr/local/freetype</span></span><br><span class="line"><span class="comment"># make</span></span><br><span class="line"><span class="comment"># make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;7、安装autoconf&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/autoconf-2.61</span></span><br><span class="line"><span class="comment"># ./configure</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;8、安装GD库&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/gd-2.0.35</span></span><br><span class="line"><span class="comment"># ./configure \</span></span><br><span class="line"><span class="params">--prefix=/usr/local/gd2/</span> \</span><br><span class="line"><span class="params">--enable-m4_pattern_allow</span> \</span><br><span class="line"><span class="params">--with-zlib=/usr/local/zlib/</span> \</span><br><span class="line"><span class="params">--with-jpeg=/usr/local/jpeg6/</span> \</span><br><span class="line"><span class="params">--with-png=/usr/local/libpng/</span> \</span><br><span class="line"><span class="params">--with-freetype=/usr/local/freetype/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># make</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;出现错误：&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">make[2]: *** [gd_png.lo] Error 1</span><br><span class="line">make[2]: Leaving directory `<span class="string">/usr/local/src/gd-2.0.35</span>&#x27;</span><br><span class="line">make[1]: *** [all-recursive] Error 1</span><br><span class="line">make[1]: Leaving directory `<span class="string">/usr/local/src/gd-2.0.35</span>&#x27;</span><br><span class="line">make: *** [all] Error 2</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://images.cnitblog.com/blog/370046/201303/04150013-634a98a0882c4cb38ae1035a8fc81ae2.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;分析：&lt;<span class="string">/strong</span>&gt;这个问题是因为gd库中的gd_png.c这个源文件中包含png.h时，png.h没有找到导致的。</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;解决：&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">在编译文件里</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi gd_png.c</span></span><br><span class="line"></span><br><span class="line">将include “png.h” 改成 include “<span class="string">/usr/local/libpng/include/png.h</span>”</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://images.cnitblog.com/blog/370046/201303/04150117-5407c0fc8e9f4aa195edf6e0be2df122.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">其中<span class="string">/usr/local/libpng/</span>为libpng安装路径。</span><br><span class="line"></span><br><span class="line"><span class="comment"># make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;9、安装Apache&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/httpd-2.2.9</span></span><br><span class="line"><span class="comment"># ./configure \</span></span><br><span class="line"><span class="params">--prefix=/usr/local/apache2</span> \</span><br><span class="line"><span class="params">--sysconfdir=/etc/httpd</span> \</span><br><span class="line"><span class="params">--with-z=/usr/local/zlib</span> \</span><br><span class="line"><span class="params">--with-included-apr</span> \</span><br><span class="line"><span class="params">--enable-so</span> \</span><br><span class="line"><span class="params">--enable-deflate=shared</span> \</span><br><span class="line"><span class="params">--enable-expires=shared</span> \</span><br><span class="line"><span class="params">--enable-rewrite=shared</span> \</span><br><span class="line"><span class="params">--enable-static-support</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;10、配置Apache&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">启动Apache</span><br><span class="line"><span class="comment"># /usr/local/apache2/bin/apachectl start</span></span><br><span class="line"></span><br><span class="line">关闭Apache</span><br><span class="line"><span class="comment"># /usr/local/apache2/bin/apachectl stop</span></span><br><span class="line"></span><br><span class="line">查看80端口是否开启</span><br><span class="line"><span class="comment"># netstat -tnl|grep 80</span></span><br><span class="line"></span><br><span class="line">访问Apache服务器</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112013390510.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">添加自启动</span><br><span class="line"><span class="comment"># echo &quot;/usr/local/apache2/bin/apachectl start&quot; &gt;&gt; /etc/rc.d/rc.local</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;11、安装Mysql&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">添加一个mysql标准组</span><br><span class="line"><span class="comment"># groupadd mysql</span></span><br><span class="line"></span><br><span class="line">添加mysql用户并加到mysql组中</span><br><span class="line"><span class="comment"># useradd -g mysql mysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/mysql-5.0.41</span></span><br><span class="line"><span class="comment"># ./configure \</span></span><br><span class="line"><span class="params">--prefix=/usr/local/mysql/</span> \</span><br><span class="line"><span class="params">--with-extra-charsets=all</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;出现错误：&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">checking for tgetent in -lncurses.<span class="string">..</span> no</span><br><span class="line">checking for tgetent in -lcurses.<span class="string">..</span> no</span><br><span class="line">checking for tgetent in -ltermcap.<span class="string">..</span> no</span><br><span class="line">checking for tgetent in -ltinfo.<span class="string">..</span> no</span><br><span class="line">checking for termcap functions library.<span class="string">..</span> configure: error: No curses/termcap library found</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://images.cnitblog.com/blog/370046/201303/04160325-58efbf0c43f44f3ca9aaea7580e6f7e1.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;分析：&lt;<span class="string">/strong</span>&gt;缺少ncurses安装包</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;解决：&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum install ncurses-devel</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;12、配置Mysql&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">创建MySQL数据库服务器的配置文件</span><br><span class="line"><span class="comment"># cp support-files/my-medium.cnf /etc/my.cnf</span></span><br><span class="line"></span><br><span class="line">用mysql用户创建授权表，创建成功后，会在<span class="string">/usr/local/mysql</span>目录下生成一个var目录</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysql_install_db --user=mysql</span></span><br><span class="line"></span><br><span class="line">将文件的所有属性改为root用户</span><br><span class="line"><span class="comment"># chown -R root /usr/local/mysql</span></span><br><span class="line"></span><br><span class="line">将数据目录的所有属性改为mysql用户</span><br><span class="line"><span class="comment"># chown -R mysql /usr/local/mysql/var</span></span><br><span class="line"></span><br><span class="line">将组属性改为mysql组</span><br><span class="line"><span class="comment"># chgrp -R mysql /usr/local/mysql</span></span><br><span class="line"></span><br><span class="line">启动数据库</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysqld_safe --user=mysql &amp;amp;</span></span><br><span class="line"></span><br><span class="line">查看3306端口是否开启</span><br><span class="line"><span class="comment"># netstat -tnl|grep 3306</span></span><br><span class="line"></span><br><span class="line">简单的测试</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysqladmin version</span></span><br><span class="line"></span><br><span class="line">查看所有mysql参数</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysqladmin variables</span></span><br><span class="line"></span><br><span class="line">设置Mysql开机自启动</span><br><span class="line"><span class="comment"># cp /usr/local/src/mysql-5.0.41/support-files/mysql.server /etc/rc.d/init.d/mysqld</span></span><br><span class="line"><span class="comment"># chown root.root /etc/rc.d/init.d/mysqld</span></span><br><span class="line"><span class="comment"># chmod 755 /etc/rc.d/init.d/mysqld</span></span><br><span class="line"><span class="comment"># chkconfig --add mysqld</span></span><br><span class="line"><span class="comment"># chkconfig --list mysqld</span></span><br><span class="line"><span class="comment"># chkconfig --levels 245 mysqld off</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;13、Mysql安全性设置&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">没有密码可以直接登录本机服务器</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysql -u root</span></span><br><span class="line"></span><br><span class="line">查看mysql用户权限信息</span><br><span class="line">mysql&gt; select * from mysql.user;</span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112014475213.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">删除非localhost的主机</span><br><span class="line">mysql&gt; DELETE FROM mysql.user WHERE Host=&#x27;localhost&#x27; AND User=&#x27;&#x27;;</span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112014502137.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">刷新授权表</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112014515397.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">为root用户添加密码</span><br><span class="line">mysql&gt; SET PASSWORD FOR &#x27;root&#x27;@&#x27;localhost&#x27; = PASSWORD<span class="params">(&#x27;abc123&#x27;)</span>;</span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112015163569.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">再次进入Mysql客户端</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysql -u root -h localhost -p</span></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112015455738.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">关闭MySQL数据库</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysqladmin -u root -p shutdown</span></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112015461760.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;14、安装PHP&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/php-5.2.6</span></span><br><span class="line"><span class="comment"># ./configure \</span></span><br><span class="line"><span class="params">--prefix=/usr/local/php</span> \</span><br><span class="line"><span class="params">--with-config-file-path=/usr/local/php/etc</span> \</span><br><span class="line"><span class="params">--with-apxs2=/usr/local/apache2/bin/apxs</span> \</span><br><span class="line"><span class="params">--with-mysql=/usr/local/mysql/</span> \</span><br><span class="line"><span class="params">--with-libxml-dir=/usr/local/libxml2/</span> \</span><br><span class="line"><span class="params">--with-png-dir=/usr/local/libpng/</span> \</span><br><span class="line"><span class="params">--with-jpeg-dir=/usr/local/jpeg6/</span> \</span><br><span class="line"><span class="params">--with-freetype-dir=/usr/local/freetype/</span> \</span><br><span class="line"><span class="params">--with-gd=/usr/local/gd2/</span> \</span><br><span class="line"><span class="params">--with-zlib-dir=/usr/local/zlib/</span> \</span><br><span class="line"><span class="params">--with-mcrypt=/usr/local/libmcrypt/</span> \</span><br><span class="line"><span class="params">--with-mysqli=/usr/local/mysql/bin/mysql_config</span> \</span><br><span class="line"><span class="params">--enable-soap</span>  \</span><br><span class="line"><span class="params">--enable-mbstring=all</span> \</span><br><span class="line"><span class="params">--enable-sockets</span></span><br><span class="line"><span class="comment"># make &amp;amp;&amp;amp; make install</span></span><br><span class="line"></span><br><span class="line">&lt;strong&gt;15、配置PHP&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line">创建配置文件</span><br><span class="line"><span class="comment"># cp php.ini-dist /usr/local/php/etc/php.ini</span></span><br><span class="line"></span><br><span class="line">使用vi编辑apache配置文件</span><br><span class="line"><span class="comment"># vi /etc/httpd/httpd.conf</span></span><br><span class="line"></span><br><span class="line">添加这一条代码</span><br><span class="line">Addtype application/x-httpd-php <span class="string">.php</span> <span class="string">.phtml</span></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016070936.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">重启Apache</span><br><span class="line"><span class="comment"># /usr/local/apache2/bin/apachectl restart</span></span><br><span class="line"></span><br><span class="line">以上安装步骤可以写成一个shell script，详细参考&lt;a href=<span class="string">&quot;http://files.cnblogs.com/mchina/lamp.rar&quot;</span> target=<span class="string">&quot;_blank&quot;</span>&gt;http:<span class="string">//files.cnblogs.com/mchina/lamp.rar</span>&lt;<span class="string">/a</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;16、安装Zend加速器&lt;<span class="string">/strong</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd /usr/local/src/ZendOptimizer-3.2.6-linux-glibc21-i386/</span></span><br><span class="line"><span class="comment"># ./install.sh</span></span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016381120.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016363118.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016364425.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016370948.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016372021.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=<span class="string">&quot;&quot;</span> src=<span class="string">&quot;http://pic002.cnblogs.com/images/2012/370046/2012112016372927.jpg&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;strong&gt;17、安装phpMyAdmin&lt;<span class="string">/strong</span>&gt;</span><br><span class="line">&lt;div&gt;拷贝目录到指定位置并改名为phpmyadmin&lt;<span class="string">/div</span>&gt;</span><br><span class="line">&lt;div&gt;<span class="comment"># cp -a  phpMyAdmin-3.0.0-rc1-all-languages /usr/local/apache2/htdocs/phpmyadmin&lt;/div&gt;</span></span><br><span class="line">&lt;div&gt;<span class="comment"># cd /usr/local/apache2/htdocs/phpmyadmin/&lt;/div&gt;</span></span><br><span class="line">&lt;div&gt;<span class="comment"># cp config.sample.inc.php config.inc.php&lt;/div&gt;</span></span><br><span class="line">&lt;strong&gt;18、配置phpMyAdmin&lt;<span class="string">/strong</span>&gt;</span><br><span class="line">&lt;div&gt;<span class="comment"># vi /usr/local/apache2/htdocs/phpmyadmin/config.inc.php&lt;/div&gt;</span></span><br><span class="line">&lt;div&gt;将auth_type 改为http&lt;<span class="string">/div</span>&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;pre&gt;$cfg[&#x27;Servers&#x27;][$i][&#x27;auth_type&#x27;] = &#x27;http&#x27;;</span><br></pre></td></tr></table></figure>
+
+</div>
+<strong>五、测试</strong>
+
+<p><strong>1、编写info.php文件，查看php配置详细</strong></p>
+<h1 id="vi-usr-local-apache2-htdocs-info-php"><a href="#vi-usr-local-apache2-htdocs-info-php" class="headerlink" title="vi /usr/local/apache2/htdocs/info.php"></a>vi /usr/local/apache2/htdocs/info.php</h1><div>
+<pre><?php
+phpinfo();
+?>
+```
+
+</div>
+通过浏览器访问http://10.0.0.154/info.php，获得php的详细配置信息
+
+<img alt="" src="http://pic002.cnblogs.com/images/2012/370046/2012112017004744.jpg" />
+
+<p><strong>2、Zend加速器信息</strong></p>
+<img alt="" src="http://pic002.cnblogs.com/images/2012/370046/2012112017013138.jpg" />
+
+<p><strong>3、访问phpMyAdmin</strong></p>
+<img alt="" src="http://pic002.cnblogs.com/images/2012/370046/2012112016521612.jpg" width="900" height="361" />
+
+<p>至此LAMP环境配置完毕。</p>
+</div>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/27/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8BLinux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/27/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8BLinux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%EF%BC%9F/" class="post-title-link" itemprop="url">如何查看Linux操作系统版本？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-27 10:28:57" itemprop="dateCreated datePublished" datetime="2013-06-27T10:28:57+08:00">2013-06-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>转<a href="http://yulp2010.blog.51cto.com/983828/317398" title="如何查看linux系统版本?" target="_blank">如何查看linux系统版本?</a></p>
+<ol>
+<li>查看内核版本命令：<br>chen@mylinuxserver:~&gt; cat /proc/version<br>Linux version 2.6.5-7.244-smp (geeko@buildhost) (gcc version 3.3.3 (SuSE Linux)) #1 SMP Mon Dec 12 18:32:25 UTC 2005<br>/proc 目录的作用？<br>chen@mylinuxserver:/proc&gt; uname -a<br>Linux mylinuxserver 2.6.5-7.244-smp #1 SMP Mon Dec 12 18:32:25 UTC 2005 i686 i686 i386 GNU/Linux<br>chen@mylinuxserver:/proc&gt; uname -r</li>
+<li>6.5-7.244-smp<br>uname命令的作用？</li>
+<li>查看Linux版本：</li>
+</ol>
+<ol>
+<li>登录到服务器执行 lsb_release -a ,即可列出所有版本信息,例如:<br>chen@mylinuxserver:/proc&gt; lsb_release -a<br>LSB Version:    core-2.0-noarch:core-3.0-noarch:core-2.0-ia32:core-3.0-ia32:graphics-2.0-ia32:graphics-2.0-noarch:graphics-3.0-ia32:graphics-3.0-noarch<br>Distributor ID: SUSE LINUX<br>Description:    SUSE LINUX Enterprise Server 9 (i586)<br>Release:        9<br>Codename:       n/a<br>注:这个命令适用于所有的linux，包括Redhat、SuSE、Debian等发行版。</li>
+<li>登录到linux执行cat /etc/issue,例如如下:<br>chen@mylinuxserver:/proc&gt; cat /etc/issue<br>Welcome to SUSE LINUX Enterprise Server 9 (i586) - Kernel<br>(l).</li>
+<li>登录到linux执行cat /etc/redhat-release ,例如如下:<br>chen@mylinuxserver:/proc&gt; cat /etc/<em>release</em><br>LSB_VERSION=”core-2.0-noarch:core-3.0-noarch:core-2.0-ia32:core-3.0-ia32”<br>cat: /etc/lsb-release.d: 是一个目录<br>SUSE LINUX Enterprise Server 9 (i586)<br>VERSION = 9<br>PATCHLEVEL = 3</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/26/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9F%A5%E7%9C%8Blinux%E4%B8%AD%E7%9A%84%E8%BD%AF%E8%BF%9E%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%97%A0%E6%95%88%E7%9A%84%E8%BD%AF%E8%BF%9E%E6%8E%A5%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/26/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9F%A5%E7%9C%8Blinux%E4%B8%AD%E7%9A%84%E8%BD%AF%E8%BF%9E%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%97%A0%E6%95%88%E7%9A%84%E8%BD%AF%E8%BF%9E%E6%8E%A5%EF%BC%81/" class="post-title-link" itemprop="url">一句话查看linux中的软连接以及无效的软连接！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2013-06-26 13:43:34 / 修改时间：13:43:45" itemprop="dateCreated datePublished" datetime="2013-06-26T13:43:34+08:00">2013-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>293</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="http://blog.chinaunix.net/uid-21808213-id-3024373.html" title="一句话查看linux中的软连接以及无效的软连接！ " target="_blank">转载地址</a><br>一句话查看linux中的软连接以及无效的软连接！ 2011-11-21 13:33:12<br>分类： LINUX<br>如何能很好的查看linux中的软连接呢，使用find命令就可以很好的实现我们需要的功能。</p>
+<p>1、查看系统中的软连接，比如：find /usr/lib -type l|xargs ls -l ；<br>2、查看系统中无效的软连接，也就是闪闪发光的软连接哈。。。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">find . -type l  -print |xargs lsattr -d 2&gt;&amp;amp;1|grep &quot;No such file or directory&quot;| awk &#x27;&#123;print $11&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/20/PHP%E5%AE%9E%E7%8E%B0%E5%90%84%E7%A7%8D%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/20/PHP%E5%AE%9E%E7%8E%B0%E5%90%84%E7%A7%8D%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">PHP实现各种经典算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-20 12:40:29" itemprop="dateCreated datePublished" datetime="2013-06-20T12:40:29+08:00">2013-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2014-06-27 08:47:46" itemprop="dateModified" datetime="2014-06-27T08:47:46+08:00">2014-06-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>以下是代码片段：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/06/20/PHP%E5%AE%9E%E7%8E%B0%E5%90%84%E7%A7%8D%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/20/php%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/20/php%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">php经典算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2013-06-20 12:38:12 / 修改时间：12:40:49" itemprop="dateCreated datePublished" datetime="2013-06-20T12:38:12+08:00">2013-06-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre><code>1.冒泡算法,排序算法，由于在排序过程中总是小数往前放，大数往后放，相当于气泡往上升，所以称作冒泡排序
+ 
+</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$array</span> = <span class="keyword">array</span>(a,f,c,b,e,h,j,i,g);</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">maopao_fun</span>(<span class="params"><span class="variable">$array</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span>(<span class="variable">$len</span> &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="variable">$count</span> = count(<span class="variable">$array</span>);</span><br><span class="line">       <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="variable">$count</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="variable">$count</span>-<span class="number">1</span>;<span class="variable">$j</span>&gt;<span class="variable">$i</span>;<span class="variable">$j</span>--)&#123;</span><br><span class="line">               <span class="keyword">if</span>(<span class="variable">$array</span>[<span class="variable">$j</span>] &gt; <span class="variable">$array</span>[<span class="variable">$j</span>-<span class="number">1</span>])&#123;</span><br><span class="line">                   <span class="variable">$tmp</span> = <span class="variable">$array</span>[<span class="variable">$j</span>];</span><br><span class="line">                   <span class="variable">$array</span>[<span class="variable">$j</span>] = <span class="variable">$array</span>[<span class="variable">$j</span>-<span class="number">1</span>];</span><br><span class="line">                   <span class="variable">$array</span>[<span class="variable">$j</span>-<span class="number">1</span>] = <span class="variable">$tmp</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="variable">$array</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/06/20/php%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/20/%E8%84%91%E5%AD%90%E5%91%B5%E5%91%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/20/%E8%84%91%E5%AD%90%E5%91%B5%E5%91%B5/" class="post-title-link" itemprop="url">脑子呵呵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2013-06-20 11:16:35 / 修改时间：11:20:55" itemprop="dateCreated datePublished" datetime="2013-06-20T11:16:35+08:00">2013-06-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/post-format-image/" itemprop="url" rel="index"><span itemprop="name">post-format-image</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://www.ioqx.com/wp-content/uploads/2013/06/Light-Bot.swf">点击打开练脑子的游戏</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/18/%E5%9C%A8TMD%E5%8F%91%E5%B2%9B%E5%9B%BD%E4%BF%A1%E6%81%AF,%E6%88%91%E5%B0%B1MD...../">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/18/%E5%9C%A8TMD%E5%8F%91%E5%B2%9B%E5%9B%BD%E4%BF%A1%E6%81%AF,%E6%88%91%E5%B0%B1MD...../" class="post-title-link" itemprop="url">在TMD发岛国信息,我就MD.....</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-18 22:56:50" itemprop="dateCreated datePublished" datetime="2013-06-18T22:56:50+08:00">2013-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/post-format-image/" itemprop="url" rel="index"><span itemprop="name">post-format-image</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>19</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="http://i2.dpfile.com/groups/grouppic/2012-04-08/sanshunmomo_5918502_8848079_m.jpg" alt="" />
+<strong>在TMD发岛国信息,我就MD.....</strong>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/18/[%E6%95%99%E7%A8%8B]%E7%94%A8PhoenixSuit%20%E5%88%B7NAND%20%E5%8F%8A%E8%B0%83%E6%95%B4NAND%E7%A9%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/18/%5B%E6%95%99%E7%A8%8B%5D%E7%94%A8PhoenixSuit%20%E5%88%B7NAND%20%E5%8F%8A%E8%B0%83%E6%95%B4NAND%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">[教程]用PhoenixSuit刷NAND及调整NAND空间</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2013-06-18 13:21:53 / 修改时间：13:28:09" itemprop="dateCreated datePublished" datetime="2013-06-18T13:21:53+08:00">2013-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CubieBoard/" itemprop="url" rel="index"><span itemprop="name">CubieBoard</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>软工具: PhoenixSuit,超级在终端(xp自带 “开始-&gt;附件” 里有)<br>安装法请看:hipboi的帖子<a target="_blank" rel="noopener" href="http://cn.cubieboard.org/forum.php?mod=viewthread&amp;tid=327">http://cn.cubieboard.org/forum.php?mod=viewthread&amp;tid=327</a></p>
+<p>镜像文件:<br><a target="_blank" rel="noopener" href="http://tom.linux-sunxi.org/cubieboard_linux_nano_livesuit.img.zip%E6%9C%AC%E6%96%87%E7%94%A8%E7%9A%84%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%AA">http://tom.linux-sunxi.org/cubieboard_linux_nano_livesuit.img.zip本文用的就是这个</a><br>(可以刷到NAND里面的镜像还有cubiebox_tvbox_rel2.2.img这个是 TV的镜像)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/06/18/%5B%E6%95%99%E7%A8%8B%5D%E7%94%A8PhoenixSuit%20%E5%88%B7NAND%20%E5%8F%8A%E8%B0%83%E6%95%B4NAND%E7%A9%BA%E9%97%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/xp%E5%BF%AB%E6%8D%B7%E7%AE%AD%E5%A4%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/xp%E5%BF%AB%E6%8D%B7%E7%AE%AD%E5%A4%B4/" class="post-title-link" itemprop="url">xp快捷箭头</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 23:07:18" itemprop="dateCreated datePublished" datetime="2013-06-17T23:07:18+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>113</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>cmd /k reg delete “HKEY_CLASSES_ROOTlnkfile” /v IsShortcut /f &amp; taskkill /f /im explorer.exe &amp; start explorer.exe 运行win+r</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/htaccess%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/06/17/htaccess%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">htaccess 分布式配置文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 23:07:01" itemprop="dateCreated datePublished" datetime="2013-06-17T23:07:01+08:00">2013-06-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-11 18:35:39" itemprop="dateModified" datetime="2021-04-11T18:35:39+08:00">2021-04-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>htaccess - htaccess<br>.htaccess文件(或者”分布式配置文件”提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/06/17/htaccess%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

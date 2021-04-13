@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zecheng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux用户管理">
+<meta property="og:url" content="https://zecheng.github.io/2013/06/17/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="泽宬的技术博客">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-06-17T14:44:03.000Z">
+<meta property="article:modified_time" content="2013-06-17T14:44:03.000Z">
+<meta property="article:author" content="泽宬">
+<meta property="article:tag" content="LINUX">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zecheng.github.io/2013/06/17/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>linux用户管理 | 泽宬的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">泽宬的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zecheng.github.io/2013/06/17/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="泽宬">
+      <meta itemprop="description" content="路虽遥,行必至.事虽难,做必成.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="泽宬的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux用户管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-06-17 22:44:03" itemprop="dateCreated datePublished" datetime="2013-06-17T22:44:03+08:00">2013-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line"> 1用户管理配置文件</span><br><span class="line"> Linux用户分为三种:</span><br><span class="line">  超级用户(root uid=0的用户) UID为0的用户就拥有root权限</span><br><span class="line">  普通用户(UID 500-60000)</span><br><span class="line">  伪用户 (UID 1-499) </span><br><span class="line">  伪用户与系统和程序服务相关 </span><br><span class="line">    bin,daemon,shutdown,halt等，任务Linux系统默认都有这些伪用户</span><br><span class="line">    mail,news,games,apache,ftp,mysql及sshd等，与Linux系统的进程相关</span><br><span class="line">    伪用户通常不需要或无法登陆系统</span><br><span class="line">    可以没有宿主目录</span><br><span class="line">  用户组</span><br><span class="line">   每个用户都至少属于一个用户组</span><br><span class="line">   每个用户组可以包括多个用户</span><br><span class="line">   同一个用户组的用户享有该组共有的权限</span><br><span class="line"> </span><br><span class="line"> 用户信息文件:/etc/password</span><br><span class="line">   root:x:0:0:root:/root:/bin/bash</span><br><span class="line">   用户名:密码位:用户标识号UID:缺省组标识号GID:注释性描述(例如存放用户全名等信息):宿主目录(用户登录系统后的缺省目录):命令解释器(用户使用的Shell)</span><br><span class="line">       </span><br><span class="line"> </span><br><span class="line"> 密码文件:/etc/shadow</span><br><span class="line">   liubin:$1$nWLsUG06$wF5FRtUwwsvsYQd4w2s130:15710:0:99999:7::: </span><br><span class="line">   用户名:加密的密码:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:帐号闲置时间:失效时间:标志</span><br><span class="line"> </span><br><span class="line"> 修改/etc/passwd文件来增加用户</span><br><span class="line"> 添加一个密码为空的用户名为hosanter的用户</span><br><span class="line"> 1.vim /etc/passwd</span><br><span class="line"> 2.添加一行 例如 hosanter::502:502:project zhangsan:/home/hosanter:/bin/bash</span><br><span class="line"> 3.mkdir /home/hosanter</span><br><span class="line"> 4.ls -ld /home/hosanter</span><br><span class="line"> 5.chown hosanter /home/hosander</span><br><span class="line"> 6 vim /etc/shadow</span><br><span class="line"> 8 添加一行: hosanter::15710:0:99999:7:::</span><br><span class="line"> 9 cd /etc/skel  新用户信息文件</span><br><span class="line"> 10 cp -rf .* /home/hosanter</span><br><span class="line"> </span><br><span class="line"> 用户组文件:/etc/group</span><br><span class="line"> 用户组密码文件：/etc/gshadow</span><br><span class="line"> 用户配置文件: /etc/login.defs        </span><br><span class="line">              /etc/default/useradd</span><br><span class="line"> </span><br><span class="line">为什么普通用户可以修改密码？</span><br><span class="line"> </span><br><span class="line">ls -l /usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 22942 2008-01-03 /usr/bin/passwd</span><br><span class="line"> </span><br><span class="line"> setUID的定义，当一个可执行程序具有SetUID权限，用户执行这个程序时，将以这个程序所有者的身份执行</span><br><span class="line">SetUID = 4</span><br><span class="line">chmod u+s     u-s</span><br><span class="line">      4755    755</span><br><span class="line">SetGID = 2                   6755 </span><br><span class="line">chmod g+s      g-s</span><br><span class="line">      2755     755</span><br><span class="line">ls -ld /tmp</span><br><span class="line">drwxrwxrwxt 7 root root 4096 12-23 03:12 /tmp</span><br><span class="line"> </span><br><span class="line">粘着位 = 1 其他人 t</span><br><span class="line"> </span><br><span class="line">chmod o+t</span><br><span class="line">      1777</span><br><span class="line"> </span><br><span class="line">如果一个权限为777目录具有粘着位，每一个用户都可以在这个目录下创建文件，但是只能删除自己是所有者的文件</span><br><span class="line"> </span><br><span class="line"> 例如 将touch命令授予SetUID权限  chmod u+s /bin/touch </span><br><span class="line">      当vi命令被授权SetUID权限 </span><br><span class="line">      查找SetUID程序: find / -perm -4000 -o -perm -2000</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">新用户信息文件: /etc/skel</span><br><span class="line"> 存放了新用户在创建时的最基本的配置文件</span><br><span class="line">   </span><br><span class="line">登陆信息:/etc/motd</span><br><span class="line"> </span><br><span class="line">sys::3:root,bin,adm</span><br><span class="line">组名 用户登陆时所在的租</span><br><span class="line">组密码 一般不使用(可以让不是这个组的成员添加到组)</span><br><span class="line">GID 组标识号</span><br><span class="line">组内用户列表 属于该组的所有用户列表</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">添加用户组  groupadd +组名</span><br><span class="line">            groupadd -g 888 webadmin  指定组的ID</span><br><span class="line">             </span><br><span class="line">查看用户组  group + 组名  /etc/group</span><br><span class="line"> </span><br><span class="line">删除用户组 groupdel 组名</span><br><span class="line"> </span><br><span class="line">修改用户信息  groupmod -n apapche webadmin 修改webadmin组名为apache</span><br><span class="line"> </span><br><span class="line">添加一个用户指定用户组</span><br><span class="line">useradd -u 1888 -g webadmin -G sys,root -d /backup -s /bin/bash -c &quot;Market wangwu&quot; -e 2011-01-19 liubin</span><br><span class="line"> </span><br><span class="line">useradd设置选项用户名-D 查看缺省参数</span><br><span class="line">u:UID  指定uid</span><br><span class="line">g:缺省所属用户组GID</span><br><span class="line">G:指定用户所属多个组</span><br><span class="line">d:宿主目录</span><br><span class="line">s:命令解释器Shell</span><br><span class="line">c:描述信息 描述信息有空格需要是使用双引号</span><br><span class="line">e:指定用户失效时间</span><br><span class="line"> </span><br><span class="line">passwd sam</span><br><span class="line"> </span><br><span class="line">手工添加用户</span><br><span class="line"> </span><br><span class="line">usermod 修改用户信息 和 把用户添加到组中</span><br><span class="line"> </span><br><span class="line">usrrmod -l samlee -d /home/samlee -g lampbrother liming</span><br><span class="line"> 将用户liming的登录名改为samlee 并添加到lampbrother组中 用户目录改为home/samlee</span><br><span class="line">usermod -G sys tomgao  把用户tomgao添加到sys组中</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">newgrp 切换到用户组</span><br><span class="line"> </span><br><span class="line">gpasswd设置组密码及管理组内成员</span><br><span class="line"> </span><br><span class="line">gpasswd 为组设置密码</span><br><span class="line"> </span><br><span class="line">-a  添加用户到用户组   </span><br><span class="line">gpasswd -a tomgao sys   添加tomgao到sys组</span><br><span class="line"> </span><br><span class="line">-d  从用户组中删除用户</span><br><span class="line">gpasswd -d tomgao sys   删除tomgao在sys组</span><br><span class="line"> </span><br><span class="line">-A  设置用户组管理员</span><br><span class="line">gpasswd -A tomgao sys    设置tomgao为sys组的管理员</span><br><span class="line"> </span><br><span class="line">-r  删除用户组密码</span><br><span class="line">gpasswd -r sys   删除sys组的密码</span><br><span class="line"> </span><br><span class="line">-R  禁止用户切换为改组</span><br><span class="line"> </span><br><span class="line">pwck        检测/etc/passwd文件(锁定文件)</span><br><span class="line">vipw        编辑 /etc/passwd文件</span><br><span class="line">id          查看用户id和组信息</span><br><span class="line">finger      查看用户详细信息</span><br><span class="line">su      切换用户 (su - 环境变量切换)</span><br><span class="line">passwd -S   查看用户密码状态</span><br><span class="line">who , w     查看当前登录用户信息</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">禁用和恢复用户</span><br><span class="line"> </span><br><span class="line">禁用 </span><br><span class="line">usermod -L username</span><br><span class="line">passwd -l username</span><br><span class="line"> </span><br><span class="line">恢复</span><br><span class="line">usermod -U username</span><br><span class="line">passwd -u username</span><br><span class="line"> </span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">groups 查看用户隶属与那些用户组</span><br><span class="line"> </span><br><span class="line">newgrp 切换用户组</span><br><span class="line"> </span><br><span class="line">grpck   用户配置文件检测</span><br><span class="line"> </span><br><span class="line">chgrp   修改文件所属组</span><br><span class="line"> </span><br><span class="line">vigr    编辑/etc/group文件(锁定文件)</span><br><span class="line"> </span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">chage  设定密码</span><br><span class="line"> </span><br><span class="line">-l  查看用户密码设置</span><br><span class="line"> </span><br><span class="line">-m  密码修改最小天数</span><br><span class="line"> </span><br><span class="line">-M  密码修改最大天数</span><br><span class="line"> </span><br><span class="line">-d  密码最后修改的日期</span><br><span class="line"> </span><br><span class="line">-I   密码过期后，锁定帐户的天数</span><br><span class="line"> </span><br><span class="line">-E 设置密码的过期日期，如果为0 代表密码立即过期，如果为-1代表用不过期</span><br><span class="line"> </span><br><span class="line">-W 设置密码过期前 开始警告的天数</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">启动或停用shadow功能</span><br><span class="line"> </span><br><span class="line">pwconv/pwunconv  启动 停用</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LINUX/" rel="tag"># LINUX</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/06/17/%E4%B8%8B%E9%9D%A2%E4%BB%8B%E7%BB%8D%E5%85%AD%E7%A7%8D%E5%B8%B8%E7%94%A8%E5%8F%91%E8%A1%8C%E7%89%88linux%E7%9A%84root%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B/" rel="prev" title="下面介绍六种常用发行版linux的root密码破解教程">
+      <i class="fa fa-chevron-left"></i> 下面介绍六种常用发行版linux的root密码破解教程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2013/06/17/RedHat(CentOS)%E5%92%8CUbuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%AF%94(%E5%8C%BA%E5%88%AB)/" rel="next" title="RedHat(CentOS)和Ubuntu安装软件命令对比(区别)">
+      RedHat(CentOS)和Ubuntu安装软件命令对比(区别) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泽宬"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">泽宬</p>
+  <div class="site-description" itemprop="description">路虽遥,行必至.事虽难,做必成.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泽宬</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">817k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">12:23</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
